@@ -308,7 +308,7 @@ select.field option { background: #0a1530; color: var(--tx); }
 @media (max-width: 699px) {
   .nav {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
-    display: grid; grid-template-columns: repeat(6, minmax(0, 1fr));
+    display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
     padding: 4px max(4px, env(safe-area-inset-right, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)) max(4px, env(safe-area-inset-left, 0px));
     background: linear-gradient(180deg, #0b1835, #050b18);
     border-top: 1px solid var(--edge);
@@ -800,6 +800,81 @@ select.field option { background: #0a1530; color: var(--tx); }
 .medals { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .medals li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font: var(--f-m); min-width: 0; }
 .medals li canvas { flex: none; }
+
+/* ---------- 3단계: 클랜원 구분, 운영진 화면, 클랜전 (2026-11-25) ---------- */
+.ctag { display: inline-block; padding: 0 4px; margin-left: 4px; font: var(--f-sb); line-height: 16px; color: var(--cc, var(--sub)); box-shadow: inset 0 0 0 1px var(--cc, var(--edge-dim)); white-space: nowrap; flex: none; }
+.ctag.c-tester { --cc: #7fd8ff; }
+.ctag.c-friend { --cc: #9fe6b0; }
+.ctag.c-wait { --cc: #a9b6cc; }
+.prof-guest { margin: 0 0 12px; color: var(--sub); }
+.adm-tag { margin-left: 8px; text-decoration: none; box-shadow: inset 0 0 0 1px var(--sys); padding: 0 4px; }
+.adm-tag:hover { color: #fff; }
+
+/* 운영진 화면 */
+.adm-page .gate-form { max-width: 440px; }
+.adm-help { padding: 10px 12px 0; color: var(--sub); font: var(--f-s); }
+.adm-tools { padding: 10px 12px; }
+.adm-mem { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.adm-m { display: grid; grid-template-columns: minmax(180px, 1fr) auto; align-items: center; gap: 6px 12px; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+.adm-m.dirty { background: rgba(242, 210, 75, 0.07); box-shadow: inset 3px 0 0 var(--sys); }
+.adm-m-id { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.adm-m-n { display: flex; flex-direction: column; min-width: 0; }
+.adm-m-n .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.adm-m-s { font: var(--f-s); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.adm-m-f { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.adm-m-f select.field { width: auto; }
+.adm-m-f input.field { width: 160px; }
+.adm-add { padding: 10px 12px; border-top: 1px solid var(--edge-dim); }
+.adm-add .note { margin-top: 6px; }
+.adm-st { padding: 0 12px 12px; }
+.adm-st .btn { margin-left: 6px; }
+@media (max-width: 699px) {
+  .adm-m { grid-template-columns: minmax(0, 1fr); }
+  .adm-m-f input.field { flex: 1 1 140px; width: auto; }
+}
+
+/* 클랜전 */
+.cw-bar { margin: 0 0 12px; }
+.cw-bar .note { margin: 0; }
+.cw-res { display: inline-block; min-width: 24px; padding: 0 4px; text-align: center; font: var(--f-sb); line-height: 18px; color: #06101f; background: var(--sub); }
+.cw-res.r-w { background: var(--win); }
+.cw-res.r-l { background: var(--loss); }
+.cw-res.r-d { background: var(--dim); }
+.cw-list2 { list-style: none; margin: 0; padding: 0; }
+.cw-row { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto auto; grid-template-areas: "d o s r" "d m m m"; align-items: baseline; gap: 2px 10px; padding: 8px 12px; border-bottom: 1px solid var(--line); color: var(--tx); text-decoration: none; }
+.cw-row:hover { background: rgba(70, 130, 235, 0.12); }
+.cw-d { grid-area: d; font: var(--f-s); }
+.cw-o { grid-area: o; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--name); }
+.cw-s { grid-area: s; white-space: nowrap; }
+.cw-row .cw-res { grid-area: r; }
+.cw-m { grid-area: m; font: var(--f-s); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cw-p { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.cw-tbl td { vertical-align: middle; }
+.cw-score { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 20px; padding: 8px 0 4px; }
+.cw-team { font: var(--f-h); color: var(--name); max-width: 100%; overflow-wrap: anywhere; }
+.cw-team.us { color: var(--brand); }
+.cw-num { font: var(--f-x); white-space: nowrap; }
+.cw-note { white-space: pre-wrap; overflow-wrap: anywhere; }
+.cw-del { margin-top: 12px; padding: 10px 12px; box-shadow: inset 0 0 0 1px var(--loss); }
+.cw-form { max-width: 760px; }
+.cw-top { display: grid; grid-template-columns: minmax(0, 180px) minmax(0, 1fr); gap: 0 12px; }
+.cw-top .field { width: 100%; }
+.cw-setl { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.cw-set { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: start; gap: 8px; padding: 8px; background: #061024; box-shadow: inset 0 0 0 1px var(--edge-dim); }
+.cw-set-n { font: var(--f-s); color: var(--sub); padding-top: 6px; }
+.cw-set-f { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-width: 0; }
+.cw-set-f select.field { width: auto; max-width: 100%; }
+.cw-set-f input.field { flex: 1 1 120px; min-width: 0; width: auto; }
+.cw-from { flex-basis: 100%; }
+.cw-nums { display: flex; align-items: center; gap: 8px; }
+.cw-n { width: 72px; }
+.cw-sum { margin-top: 10px; }
+.cw-ta { width: 100%; height: auto; min-height: 72px; padding: 8px 10px; resize: vertical; }
+@media (max-width: 699px) {
+  .cw-top { grid-template-columns: minmax(0, 1fr); }
+  .cw-set { grid-template-columns: minmax(0, 1fr) auto; }
+  .cw-set-n { grid-column: 1 / -1; padding-top: 0; }
+}
 
 /* THUG 클랜 — 내전 리그 화면. style.css의 색 변수·패널·단추·칩을 그대로 쓰고 리그에만 필요한 것만 더함
    글꼴은 style.css 규칙 그대로: --f-l(Galmuri14 15px) 내용, --f-s·--f-sb(Galmuri11 12px) 보조, --f-h·--f-x 제목 */
@@ -1339,6 +1414,21 @@ td .lg-ak { margin-left: 0; }
   .lg-md-r { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* 정식판: 창고와 맞추기 줄, 보기만 하는 칸, 옛 리그 올리기 */
+.lg-sync { display: flex; flex-direction: column; gap: 4px; }
+.lg-sync-r { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 8px 12px; font: var(--f-s); color: var(--sub); background: #071330; box-shadow: inset 0 0 0 1px var(--edge-dim), inset 3px 0 0 var(--edge-hi); }
+.lg-sync-r.bad { color: var(--tx); box-shadow: inset 0 0 0 1px rgba(229, 72, 77, 0.45), inset 3px 0 0 var(--loss); }
+.lg-sync-r.bad .lg-temp-k { color: #fff; background: var(--loss); }
+.lg-sync-r > span:not(.lg-temp-k) { flex: 1 1 220px; min-width: 0; overflow-wrap: anywhere; }
+.lg-temp .more { margin-left: auto; }
+.lg-memo-ro { font: var(--f-l); color: var(--tx); white-space: pre-wrap; overflow-wrap: anywhere; }
+.lg-ml-b.ro, .lg-nx-b.ro { cursor: default; }
+.lg-ml-b.ro:hover, .lg-nx-b.ro:hover { border-color: var(--edge-dim); }
+.lg-legacy-l { list-style: none; margin: 0; padding: 0; }
+.lg-legacy-l li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-height: 32px; padding: 4px 0; border-top: 1px solid var(--line); font: var(--f-l); }
+.lg-legacy-l li:first-child { border-top: 0; }
+.lg-legacy-l .nm { min-width: 0; overflow-wrap: anywhere; color: #fff; }
+
 /* 메달 겹(medal.js, 전역 MD). 초상 canvas·img를 감싼 span 위에 메달 canvas를 얹는다.
    감싼 span은 원래 요소와 같은 크기: 안의 초상은 block, 줄 높이 0, 늘어나지 않음.
    메달 크기는 초상 너비에 대한 비율(%)이라 초상을 CSS로 키우거나 줄여도 칸이 맞는다. 글자는 쓰지 않음. */
@@ -1356,6 +1446,56 @@ span.md-wrap > canvas.md {
 .md-portrait > canvas.md { left: var(--md-x); bottom: var(--md-y); }
 /* 자리 비움 줄에서는 초상만큼 흐리지 않고 조금만 */
 .away span.md-wrap > canvas.md { opacity: 0.85; }
+
+/* 카드 미리 보기 창과 주간 소식 화면(cards.js, 전역 CD). 색·글꼴은 style.css의 토큰을 씀 */
+.cd-ov {
+  position: fixed; inset: 0; z-index: 40; /* 상단·메뉴(20·30) 위, 알림(toast 50) 아래 */
+  display: grid; place-items: center;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+  background: rgba(2, 5, 12, 0.84);
+  overflow-y: auto; overscroll-behavior: contain;
+}
+.cd-dlg { width: min(520px, 100%); max-height: calc(100dvh - 32px); }
+.cd-dlg-b { display: flex; flex-direction: column; gap: 0; min-height: 0; overflow-y: auto; }
+.cd-pic {
+  display: grid; place-items: center; min-height: 200px;
+  background: #040a16; box-shadow: inset 0 0 0 1px var(--edge-dim);
+}
+.cd-img {
+  display: block; width: 100%; height: auto;
+  max-height: calc(100dvh - 210px); object-fit: contain;
+}
+.cd-msg { padding: 24px 12px; color: var(--sub); }
+.cd-btns { margin-top: 12px; }
+.cd-btns .btn { flex: 1 1 auto; }
+.cd-hint { margin-top: 8px; }
+
+/* 채널 패널 */
+.p-week .facts { margin-bottom: 12px; }
+.p-week .cd-none { margin: 0 0 12px; }
+
+/* 주간 소식 화면 */
+.cd-wk-nav { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 8px; }
+.cd-wk-l { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 8px; min-width: 0; color: #fff; text-align: center; }
+.cd-wk-d { white-space: nowrap; }
+.cd-tag { font: var(--f-s); color: var(--sub); box-shadow: inset 0 0 0 1px var(--edge-dim); padding: 0 4px; }
+.cd-wk-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+@media (min-width: 900px) { .cd-wk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
+.cd-rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.cd-rows li {
+  display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 40px;
+  padding: 4px 0; border-bottom: 1px solid var(--line);
+}
+.cd-rows li:last-child { border-bottom: 0; }
+.cd-rows .plink, .cd-rows li > span:not(.cd-rk):not(.cd-v) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cd-rk { font: var(--f-s); color: var(--sys); min-width: 3em; flex: none; }
+.cd-v { margin-left: auto; white-space: nowrap; flex: none; }
+.cd-rows .btn { flex: none; }
+@media (max-width: 600px) {
+  .cd-wk-nav { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .cd-make { grid-column: 1 / -1; margin-left: 0; }
+  .cd-from { display: none; } /* 좁은 화면은 오른 점수만 */
+}
 
 </style>
 <div class="sky" aria-hidden="true"></div>
@@ -1912,8 +2052,18 @@ const DB = (() => {
   const persons = S.persons.filter((p) => !p.hidden);
   const byId = new Map(persons.map((p) => [p.id, p]));
   const shortName = (n) => n.replace(/^thug_/i, '') || n;
+  // 클랜원 구분(운영진이 창고에 정함, 줄이 없으면 정식). 서열·리그·메달·칭호는 정식·테스터만(2026-11-25 원장님)
+  const CLS_NAME = { member: '정식', tester: '테스터', friend: '친구', wait: '대기자' };
+  const CM = (LIVE && LIVE.club && LIVE.club.members) || {};
+  const setOf = (p) => { for (const a of [p.name, ...(p.aliases || [])]) { const v = CM[String(a).toLowerCase()]; if (v) return v; } return null; };
 
   for (const p of persons) {
+    const set = setOf(p);
+    p.cls = set && CLS_NAME[set.cls] ? set.cls : 'member';
+    p.clsName = CLS_NAME[p.cls];
+    p.ranked = p.cls === 'member' || p.cls === 'tester';
+    p.gradeSet = set && Number.isInteger(set.grade) && set.grade >= 1 && set.grade <= 6 ? set.grade : null;
+    p.adminNote = set && typeof set.note === 'string' ? set.note : '';
     const { P, T, Z } = p.race;
     const max = Math.max(P, T, Z);
     p.main = P >= CFG.randomPct && T >= CFG.randomPct && Z >= CFG.randomPct ? 'R' : max === T ? 'T' : max === Z ? 'Z' : 'P';
@@ -1926,8 +2076,10 @@ const DB = (() => {
     p.rmUrl = 'https://repmastered.icza.net/player?n=' + encodeURIComponent(p.aliases.map((a) => `"${a}"`).join(', '));
   }
 
-  // 래더 서열
-  const ladder = persons.filter((p) => p.mmr).sort((a, b) => b.mmr.cur.v - a.mmr.cur.v || b.mmr.max.v - a.mmr.max.v);
+  const ranked = persons.filter((p) => p.ranked);
+
+  // 래더 서열(정식·테스터만)
+  const ladder = ranked.filter((p) => p.mmr).sort((a, b) => b.mmr.cur.v - a.mmr.cur.v || b.mmr.max.v - a.mmr.max.v);
   ladder.forEach((p, i) => { p.ladderRank = i + 1; });
 
   // 경기
@@ -1956,7 +2108,8 @@ const DB = (() => {
     if (sa) { ea.w++; eb.l++; } else { eb.w++; ea.l++; }
     elo.set(A.id, ea); elo.set(B.id, eb);
   }
-  const eloRank = [...elo.entries()].map(([id, e]) => ({ id, ...e })).sort((a, b) => b.r - a.r);
+  // 내전 점수는 모든 내전으로 계산하되, 서열에는 정식·테스터만
+  const eloRank = [...elo.entries()].filter(([id]) => byId.get(id).ranked).map(([id, e]) => ({ id, ...e })).sort((a, b) => b.r - a.r);
   eloRank.filter((e) => e.n >= CFG.ranked).forEach((e, i) => { e.rank = i + 1; });
 
   // 맞대결
@@ -2030,8 +2183,15 @@ const DB = (() => {
     p.gradeNone = !p.mmr && !(p.elo && p.elo.n >= GR.eloMin);
     p.gradeName = p.gradeNone ? GR.none : gradeName(p.grade);
     p.gradeWhy = p.gradeNone ? `래더 기록과 내전 ${GR.eloMin}전이 아직 없음` : p.gradeBy === 'elo' ? `내전 점수 ${p.elo.r}` : `래더 최고 ${p.mmr.max.t} ${p.mmr.max.v}`;
+    p.gradeAuto = p.grade; p.gradeAutoName = p.gradeName; p.gradeAutoWhy = p.gradeWhy;
     const n = p.grade + 1;
-    if (p.gradeNone) p.gradeNext = `래더 경기를 하거나 내전을 ${GR.eloMin}전 하면 등급이 정해집니다.` + (p.elo ? ` 지금 내전 ${p.elo.n}전.` : '');
+    if (p.gradeSet) {
+      // 운영진이 정한 등급(자동 등급은 gradeAuto에 남김)
+      p.grade = p.gradeSet; p.gradeBy = 'admin'; p.gradeNone = false;
+      p.gradeName = gradeName(p.grade);
+      p.gradeWhy = `운영진이 정함(자동이면 ${p.gradeAutoName})`;
+      p.gradeNext = '운영진이 정한 등급입니다.';
+    } else if (p.gradeNone) p.gradeNext = `래더 경기를 하거나 내전을 ${GR.eloMin}전 하면 등급이 정해집니다.` + (p.elo ? ` 지금 내전 ${p.elo.n}전.` : '');
     else if (n > 6) p.gradeNext = '가장 높은 등급입니다.';
     else {
       const ways = [];
@@ -2042,7 +2202,7 @@ const DB = (() => {
     }
   }
   const gradeCount = [0, 0, 0, 0, 0, 0, 0];
-  for (const p of persons) gradeCount[p.grade]++;
+  for (const p of ranked) gradeCount[p.grade]++;
 
   // 상대 전적: 승패가 난 1:1 경기를 상대별로 묶음(클랜원은 id, 바깥 상대는 이름)
   const oppCache = new Map();
@@ -2164,28 +2324,28 @@ const DB = (() => {
   ];
   const board = (k) => {
     const b = BOARDS.find((x) => x.k === k) || BOARDS[0];
-    const rows = persons.filter((p) => b.ok(p)).map((p) => ({ p, v: b.val(p) }));
+    const rows = ranked.filter((p) => b.ok(p)).map((p) => ({ p, v: b.val(p) }));
     // 같은 값이면 판이 많은 쪽을 위에(순위 숫자는 같게 둠)
     rows.sort((x, y) => (b.asc ? x.v - y.v : y.v - x.v) || (b.tie ? b.tie(y.p) - b.tie(x.p) : 0) || x.p.name.localeCompare(y.p.name, 'en', { sensitivity: 'base' }));
     rows.forEach((r, i) => { r.rank = i && rows[i - 1].v === r.v ? rows[i - 1].rank : i + 1; });
-    return { b, rows, out: persons.length - rows.length };
+    return { b, rows, out: ranked.length - rows.length };
   };
 
   // 칭호
   const titles = new Map();
   const give = (p, k, d) => { if (p) (titles.get(p.id) || titles.set(p.id, []).get(p.id)).push({ k, d }); };
   const best = (arr, f) => arr.slice().sort((a, b) => f(b) - f(a))[0];
-  const enough = persons.filter((p) => p.games >= CFG.minGames);
+  const enough = ranked.filter((p) => p.games >= CFG.minGames);
   give(ladder[0], '본좌', '래더 점수 1위');
   const eloTop = eloRank.find((e) => e.n >= CFG.ranked);
   if (eloTop) give(byId.get(eloTop.id), '내전 최강', '내전 점수 1위(3전 이상)');
-  give(best(persons.filter((p) => p.w + p.l >= CFG.minGames), (p) => p.winRate), '승률왕', '승률 1위(30판 이상)');
-  give(best(persons, (p) => p.w), '다승왕', '이긴 판 수 1위');
-  give(best(persons, (p) => p.games), '출석왕', '경기 수 1위');
+  give(best(ranked.filter((p) => p.w + p.l >= CFG.minGames), (p) => p.winRate), '승률왕', '승률 1위(30판 이상)');
+  give(best(ranked, (p) => p.w), '다승왕', '이긴 판 수 1위');
+  give(best(ranked, (p) => p.games), '출석왕', '경기 수 1위');
   give(best(enough, (p) => p.apm), 'APM 1위', '평균 APM 1위(30판 이상)');
   give(best(enough, (p) => -p.len), '속전속결', '평균 경기 시간이 가장 짧음(30판 이상)');
   give(best(enough, (p) => p.len), '장기전 장인', '평균 경기 시간이 가장 김(30판 이상)');
-  const streakTop = best(persons.filter((p) => p.streak >= 3), (p) => p.streak);
+  const streakTop = best(ranked.filter((p) => p.streak >= 3), (p) => p.streak);
   if (streakTop) give(streakTop, '연승 중', `내전 ${streakTop.streak}연승 중`);
   for (const p of persons) p.titles = titles.get(p.id) || [];
 
@@ -2228,11 +2388,109 @@ const DB = (() => {
   const weekUpset = week.filter((g) => g.upset).sort((a, b) => (b.elo.before[1 - b.winner] - b.elo.before[b.winner]) - (a.elo.before[1 - a.winner] - a.elo.before[a.winner]))[0];
 
   return {
-    S, CFG, NOW, DAY, RACE, TIER, persons, byId, ladder, games, byPerson, elo, eloRank, vs, relations, topPair, autoLine,
+    S, CFG, NOW, DAY, RACE, TIER, persons, ranked, CLS_NAME, byId, ladder, games, byPerson, elo, eloRank, vs, relations, topPair, autoLine,
     opponents, gradeName, gradeRule, gradeCount, form, predict, BOARDS, board,
     week: { n: week.length, top: weekTop ? { p: byId.get(weekTop[0]), w: weekTop[1] } : null, long: weekLong, upset: weekUpset },
     internalCount: games.filter((g) => g.internal).length,
   };
+})();
+
+/* THUG 클랜 — 창고의 클랜 기록: 클랜원 구분·등급 조정, 클랜전.
+   정식판(LIVE.club)에서만 내용이 있고, 임시 사이트는 빈 기록이다. 묶는 순서는 model.js 뒤.
+   클랜전 저장 모양(club_wars.data):
+     { v:1, opp:'상대 클랜', our:우리 세트 승, their:상대 세트 승, result:'w'|'l'|'d',
+       sets:[{ our:'우리 선수 이름', oid:사람 id|null, their:'상대 선수 이름', map:'맵', win:true|false }], note:'' }
+     세트가 없으면 our·their는 운영진이 넣은 점수. result가 없으면 점수로 정함 */
+const CL = (() => {
+  const CLS = [['member', '정식'], ['tester', '테스터'], ['friend', '친구(협동클랜)'], ['wait', '대기자']];
+  const SHORT = { member: '정식', tester: '테스터', friend: '친구', wait: '대기자' };
+  const empty = { leagues: [], members: {}, wars: [] };
+  const club = () => (LIVE && LIVE.club) || empty;
+
+  // 이름(소문자) → 사람. 같은 배틀넷 계정으로 묶인 다른 이름도 찾음
+  let nameMap = null;
+  const personByName = (name) => {
+    if (!name) return null;
+    if (!nameMap) {
+      nameMap = new Map();
+      for (const p of DB.persons) for (const a of [p.name, ...(p.aliases || [])]) nameMap.set(String(a).toLowerCase(), p);
+    }
+    return nameMap.get(String(name).toLowerCase()) || null;
+  };
+
+  const num = (x) => (Number.isFinite(+x) && +x >= 0 ? Math.floor(+x) : 0);
+  const noon = (on) => Date.parse(on + 'T12:00:00+09:00');
+  const okDay = (s) => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && !Number.isNaN(noon(s));
+
+  function normWar(row) {
+    const d = row && row.data && typeof row.data === 'object' ? row.data : {};
+    const on = okDay(row && row.on) ? row.on : okDay(d.on) ? d.on : null;
+    if (!row || !row.id || !on) return null;
+    const sets = (Array.isArray(d.sets) ? d.sets : []).map((s) => {
+      const p = (s && s.oid && DB.byId.get(s.oid)) || personByName(s && s.our);
+      return { p: p || null, name: p ? p.name : String((s && s.our) || '?'), their: String((s && s.their) || ''), map: String((s && s.map) || ''), win: !!(s && s.win) };
+    });
+    let our = num(d.our), their = num(d.their);
+    if (sets.length) { our = sets.filter((s) => s.win).length; their = sets.length - our; }
+    const result = d.result === 'w' || d.result === 'l' || d.result === 'd' ? d.result : our > their ? 'w' : our < their ? 'l' : 'd';
+    return { id: String(row.id), on, t: noon(on), opp: String(d.opp || '이름 없는 클랜').trim() || '이름 없는 클랜', result, our, their, sets, note: typeof d.note === 'string' ? d.note : '', raw: d };
+  }
+
+  let wCache = null, wSrc = null;
+  function wars() {
+    const src = club().wars || [];
+    if (wCache && wSrc === src) return wCache;
+    wSrc = src;
+    wCache = src.map(normWar).filter(Boolean).sort((a, b) => b.t - a.t || (a.id < b.id ? 1 : -1));
+    return wCache;
+  }
+  const byWar = (id) => wars().find((w) => w.id === id) || null;
+
+  function tally(list) {
+    const o = { n: 0, w: 0, l: 0, d: 0, sw: 0, sl: 0 };
+    for (const w of list) { o.n++; o[w.result]++; o.sw += w.our; o.sl += w.their; }
+    return o;
+  }
+  const totals = () => tally(wars());
+
+  // 상대 클랜별(대소문자·띄어쓰기는 묶음)
+  function byOpp() {
+    const m = new Map();
+    for (const w of wars()) {
+      const k = w.opp.toLowerCase().replace(/\s+/g, '');
+      const e = m.get(k) || { opp: w.opp, list: [] };
+      e.list.push(w);
+      m.set(k, e);
+    }
+    return [...m.values()].map((e) => ({ opp: e.opp, last: e.list[0].on, ...tally(e.list) }))
+      .sort((a, b) => b.n - a.n || (a.last < b.last ? 1 : -1));
+  }
+
+  // 선수별 클랜전 세트 승패(우리 선수)
+  function byPlayer() {
+    const m = new Map();
+    for (const w of wars()) for (const s of w.sets) {
+      const k = s.p ? 'p:' + s.p.id : 'n:' + s.name.toLowerCase();
+      const e = m.get(k) || { p: s.p, name: s.name, n: 0, w: 0, l: 0, wars: new Set() };
+      e.n++; if (s.win) e.w++; else e.l++;
+      e.wars.add(w.id);
+      m.set(k, e);
+    }
+    return [...m.values()].map((e) => ({ p: e.p, name: e.name, n: e.n, w: e.w, l: e.l, wars: e.wars.size, rate: e.n ? e.w / e.n : 0 }))
+      .sort((a, b) => b.w - a.w || b.rate - a.rate || b.n - a.n);
+  }
+  const ofPerson = (p) => byPlayer().find((e) => e.p && e.p.id === p.id) || null;
+
+  // 운영진이 정한 사람별 값(없으면 null)
+  const members = () => club().members || {};
+  function member(p) {
+    const m = members();
+    for (const a of [p.name, ...(p.aliases || [])]) { const v = m[String(a).toLowerCase()]; if (v) return v; }
+    return null;
+  }
+
+  window.addEventListener('thug:club', () => { wCache = null; wSrc = null; });
+  return { CLS, SHORT, club, wars, byWar, totals, byOpp, byPlayer, ofPerson, members, member, personByName, normWar };
 })();
 
 /* THUG 클랜 — 메뉴와 패널에 쓰는 12x12 도트 아이콘(이 사이트에서 새로 그림) */
@@ -2309,6 +2567,20 @@ const IC = (() => {
       '....#.......',
       '++###.......',
     ],
+    war: [
+      '............',
+      '.##.........',
+      '.#+########.',
+      '.#+oooooooo#',
+      '.#+oo**oooo#',
+      '.#+o****ooo#',
+      '.#+oo**oooo#',
+      '.#+oooooooo#',
+      '.#+########.',
+      '.#+#........',
+      '.#+#........',
+      '.###........',
+    ],
     look: [
       '............',
       '...######...',
@@ -2384,6 +2656,8 @@ const V = (() => {
   const byName = (x, y) => x.name.localeCompare(y.name, 'en', { sensitivity: 'base' });
   const lastT = (p) => { const g = (DB.byPerson.get(p.id) || [])[0]; return g ? g.time : Date.parse(p.last + 'T12:00:00Z'); };
   const activity = (p) => (p.away ? '자리 비움' : fmt.active(p.daysAgo));
+  // 클랜원 구분 표시(정식은 표시 없음). 친구·대기자는 서열·리그에 넣지 않음
+  const clsTag = (p) => (p.cls && p.cls !== 'member' ? h('span', { class: 'ctag c-' + p.cls, title: p.ranked ? `${p.clsName} · 서열·리그 대상` : `${p.clsName} · 명단에만 보임(서열·리그 대상 아님)` }, p.clsName) : null);
 
   // 패널: 제목 줄 + 본문
   function pnl(title, more, ...kids) {
@@ -2421,7 +2695,8 @@ const V = (() => {
     const root = h('div', { class: 'lobby', 'data-pane': st.lobby });
 
     // --- 클랜원 ---
-    const people = DB.persons.slice().sort((a, b) => a.daysAgo - b.daysAgo || lastT(b) - lastT(a) || b.games - a.games);
+    const byAct = (a, b) => a.daysAgo - b.daysAgo || lastT(b) - lastT(a) || b.games - a.games;
+    const people = [...DB.persons.filter((p) => p.ranked !== false).sort(byAct), ...DB.persons.filter((p) => p.ranked === false).sort(byAct)];
     const memCount = h('span', { class: 'cnt' });
     const memQ = h('input', { type: 'search', class: 'field sm', placeholder: '이름 찾기', 'aria-label': '클랜원 이름 찾기', value: st.mq });
     const memChips = h('div', { class: 'chips tight', role: 'group', 'aria-label': '종족 거르기' });
@@ -2433,13 +2708,14 @@ const V = (() => {
       const rows = people.filter((p) => (st.mr === 'all' || p.main === st.mr) && (!term || p.aliases.some((a) => a.toLowerCase().includes(term))));
       memCount.textContent = rows.length === people.length ? `(${people.length})` : `(${rows.length}/${people.length})`;
       const out = [];
-      let awayShown = false;
+      let awayShown = false, guestShown = false;
       for (const p of rows) {
-        if (p.away && !awayShown) { awayShown = true; out.push(h('li', { class: 'mem-sep' }, `자리 비움 · 14일 넘게 경기 없음`)); }
+        if (p.ranked === false) { if (!guestShown) { guestShown = true; out.push(h('li', { class: 'mem-sep' }, '친구·대기자 · 서열과 리그에는 넣지 않음')); } }
+        else if (p.away && !awayShown) { awayShown = true; out.push(h('li', { class: 'mem-sep' }, `자리 비움 · 14일 넘게 경기 없음`)); }
         out.push(h('li', null, h('a', { class: 'mem-r' + (p.away ? ' away' : ''), href: '#p--' + p.id },
           app.icon(p, 24),
           raceBadge(p.main),
-          h('span', { class: 'mem-n' }, h('span', { class: 'nm' }, p.name), p.isMaster ? h('span', { class: 'mtag', title: '클랜 마스터' }, 'M') : null),
+          h('span', { class: 'mem-n' }, h('span', { class: 'nm' }, p.name), p.isMaster ? h('span', { class: 'mtag', title: '클랜 마스터' }, 'M') : null, clsTag(p)),
           h('span', { class: 'mem-a' }, activity(p)),
           p.mmr ? tier(p.mmr.cur) : h('span', { class: 'tier none' }, '-'))));
       }
@@ -2533,12 +2809,29 @@ const V = (() => {
       h('div', { class: 'pnl-foot' }, h('a', { class: 'btn sm wide', href: '#rank' }, '전체 서열')));
 
     const cw = DB.S.clanWar, wk = DB.week;
-    const infoPanel = pnl('클랜 정보', { cls: 'p-info' },
-      h('div', { class: 'info-b' },
+    const wars = LIVE && typeof CL !== 'undefined' ? CL.wars() : [];
+    let cwBlock;
+    if (wars.length) {
+      const t = CL.totals();
+      cwBlock = h('div', { class: 'info-b' },
+        h('p', { class: 'info-l' }, '클랜전'),
+        h('p', { class: 'cw-big' }, h('span', { class: 'w' }, `${t.w}승`), ' ', h('span', { class: 'l' }, `${t.l}패`), t.d ? h('span', { class: 'c-dim' }, ` ${t.d}무`) : null,
+          h('span', { class: 'c-dim' }, t.w + t.l ? ` · 승률 ${fmt.pct(t.w / (t.w + t.l))}` : '')),
+        h('ul', { class: 'cw-list' }, wars.slice(0, 2).map((w) => h('li', null, h('span', { class: 'c-dim' }, fmt.date(w.on)), h('a', { class: 'plink', href: '#war--' + w.id }, `vs ${w.opp}`),
+          h('span', { class: w.result === 'w' ? 'w' : w.result === 'l' ? 'l' : 'c-dim' }, `${w.our}:${w.their} ${WR.RES[w.result]}`)))),
+        h('a', { class: 'more', href: '#war' }, '클랜전 기록실'));
+    } else if (cw && cw.w + cw.l) {
+      cwBlock = h('div', { class: 'info-b' },
         h('p', { class: 'info-l' }, '클랜전'),
         h('p', { class: 'cw-big' }, h('span', { class: 'w' }, `${cw.w}승`), ' ', h('span', { class: 'l' }, `${cw.l}패`), h('span', { class: 'c-dim' }, ` · 승률 ${fmt.pct(cw.w / (cw.w + cw.l))}`)),
-        h('ul', { class: 'cw-list' }, cw.recent.slice(0, 2).map((r) => h('li', null, h('span', { class: 'c-dim' }, fmt.date(r.date)), h('span', null, `vs ${r.vs}`),
-          h('span', { class: r.result === 'W' ? 'w' : 'l' }, (r.score ? r.score + ' ' : '') + (r.result === 'W' ? '승' : '패')))))),
+        h('ul', { class: 'cw-list' }, (cw.recent || []).slice(0, 2).map((r) => h('li', null, h('span', { class: 'c-dim' }, fmt.date(r.date)), h('span', null, `vs ${r.vs}`),
+          h('span', { class: r.result === 'W' ? 'w' : 'l' }, (r.score ? r.score + ' ' : '') + (r.result === 'W' ? '승' : '패'))))),
+        LIVE ? h('a', { class: 'more', href: '#war' }, '클랜전 기록실') : null);
+    } else {
+      cwBlock = h('div', { class: 'info-b' }, h('p', { class: 'info-l' }, '클랜전'), h('p', { class: 'c-dim' }, '아직 넣은 클랜전이 없습니다.'), LIVE ? h('a', { class: 'more', href: '#war' }, '클랜전 기록실') : null);
+    }
+    const infoPanel = pnl('클랜 정보', { cls: 'p-info' },
+      cwBlock,
       h('div', { class: 'info-b' },
         h('p', { class: 'info-l' }, '최근 7일 내전'),
         h('dl', { class: 'facts' },
@@ -2560,8 +2853,14 @@ const V = (() => {
     root.append(sw, h('div', { class: 'lobby-grid' },
       h('div', { class: 'col col-mem' }, memPanel),
       h('div', { class: 'col col-news' }, newsPanel),
-      h('div', { class: 'col col-side' }, ladderPanel, infoPanel)));
+      h('div', { class: 'col col-side' }, ladderPanel, infoPanel, weeklyPanel(app))));
     return root;
+  }
+
+  // 주간 소식 패널(cards.js의 CD). 없거나 실패하면 비움
+  function weeklyPanel(app) {
+    if (typeof CD === 'undefined' || !CD.weeklyPanel) return null;
+    try { return CD.weeklyPanel(app); } catch (e) { console.error(e); return null; }
   }
 
   // ================= 서열 =================
@@ -2583,7 +2882,9 @@ const V = (() => {
     bsel.addEventListener('change', () => { st.board = bsel.value; draw(); });
     const bbar = h('div', { class: 'toolbar bbar' }, h('label', { class: 'lbl inl', for: 'board' }, '부문'), bsel);
     const races = [['all', '전체'], ['T', '테란'], ['Z', '저그'], ['P', '프로토스'], ['R', '랜덤']];
-    const nm = (p, sub) => h('span', { class: 'nm-b' }, h('span', { class: 'nm-1' }, raceBadge(p.main), h('span', { class: 'nm' }, p.name), p.isMaster ? h('span', { class: 'mtag', title: '클랜 마스터' }, 'M') : null, gradeTag(p)), h('span', { class: 'nm-2' }, sub));
+    const nm = (p, sub) => h('span', { class: 'nm-b' }, h('span', { class: 'nm-1' }, raceBadge(p.main), h('span', { class: 'nm' }, p.name), p.isMaster ? h('span', { class: 'mtag', title: '클랜 마스터' }, 'M') : null, gradeTag(p), clsTag(p)), h('span', { class: 'nm-2' }, sub));
+    const guests = DB.persons.length - DB.ranked.length;
+    const guestNote = guests > 0 ? ` 친구·대기자 ${guests}명은 서열에 넣지 않습니다.` : '';
     const draw = () => {
       tabs.replaceChildren(...modes.map(([k, t]) => h('button', { type: 'button', class: 'tab', 'aria-pressed': String(st.rankMode === k), onclick: () => { st.rankMode = k; draw(); } }, t)));
       chips.replaceChildren(...races.map(([k, t]) => chipBtn(st.rankRace === k, k === 'all' ? t : [raceBadge(k), ' ', t], () => { st.rankRace = k; draw(); })));
@@ -2592,7 +2893,7 @@ const V = (() => {
       if (st.rankMode === 'board') {
         const { b, rows } = DB.board(st.board);
         const shown = rows.filter((r) => ok(r.p));
-        const outN = DB.persons.filter(ok).length - shown.length;
+        const outN = DB.ranked.filter(ok).length - shown.length;
         list.replaceChildren(
           h('div', { class: 'row brd head', 'aria-hidden': 'true' }, h('span', null, '#'), h('span', null, ''), h('span', null, '이름'), h('span', { class: 'sc' }, b.label)),
           ...shown.map((r) => h('a', { class: 'row brd' + (r.p.away ? ' away' : ''), href: '#p--' + r.p.id },
@@ -2602,12 +2903,12 @@ const V = (() => {
             h('span', { class: 'sc' }, b.tier ? tier(b.tier(r.p)) : null, h('b', null, b.show(r.v))))),
           shown.length ? null : h('p', { class: 'empty' }, '조건에 맞는 사람이 없습니다.'),
           outN > 0 ? h('div', { class: 'row-sep' }, `조건이 안 돼 순위에서 뺀 사람 ${outN}명`) : null);
-        note.textContent = `${b.label}: ${b.cond}.${b.sample ? (LIVE ? ' 수집한 1:1 경기로 셉니다. 지난 기록이 채워지면서 바뀝니다.' : ' 표본 기준(12명의 최근 1:1 경기 20판씩)이라 정식판에서 바뀝니다.') : ' RepMastered에 적힌 값입니다.'} 같은 값은 같은 순위입니다.`;
+        note.textContent = (guestNote ? guestNote.trim() + ' ' : '') + `${b.label}: ${b.cond}.${b.sample ? (LIVE ? ' 수집한 1:1 경기로 셉니다. 지난 기록이 채워지면서 바뀝니다.' : ' 표본 기준(12명의 최근 1:1 경기 20판씩)이라 정식판에서 바뀝니다.') : ' RepMastered에 적힌 값입니다.'} 같은 값은 같은 순위입니다.`;
         return;
       }
       if (st.rankMode === 'ladder') {
         const ranked = DB.ladder.filter(ok);
-        const none = DB.persons.filter((p) => !p.mmr && ok(p)).sort(byName);
+        const none = DB.ranked.filter((p) => !p.mmr && ok(p)).sort(byName);
         const row = (p) => h('a', { class: 'row' + (p.away ? ' away' : ''), href: '#p--' + p.id },
           h('span', { class: 'rk' + (p.ladderRank && p.ladderRank <= 3 ? ' top' : '') }, p.ladderRank || '-'),
           app.icon(p, 24),
@@ -2623,7 +2924,7 @@ const V = (() => {
           ...ranked.map(row),
           none.length ? h('div', { class: 'row-sep' }, `래더 기록 없음 ${none.length}명`) : null,
           ...none.map(row));
-        note.textContent = '래더 점수는 사람마다 RepMastered에 적힌 최근 래더 점수입니다. 같은 배틀넷 계정의 Thug_ 아이디는 한 사람으로 묶었습니다.';
+        note.textContent = '래더 점수는 사람마다 RepMastered에 적힌 최근 래더 점수입니다. 같은 배틀넷 계정의 Thug_ 아이디는 한 사람으로 묶었습니다.' + guestNote;
       } else {
         const rows = DB.eloRank.filter((e) => ok(DB.byId.get(e.id)));
         list.replaceChildren(
@@ -2872,13 +3173,14 @@ const V = (() => {
         h('div', { class: 'prof-id' },
           p.titles.length ? h('div', { class: 'titles' }, p.titles.map((t) => h('span', { class: 'ttl-chip', title: t.d }, t.k))) : null,
           h('h1', { class: 'prof-name' }, p.name),
-          h('p', { class: 'prof-line' }, gradeTag(p), raceBadge(p.main), ` ${raceLabel}`, p.isMaster ? h('span', { class: 'mtag long' }, '클랜 마스터') : null,
+          h('p', { class: 'prof-line' }, gradeTag(p), clsTag(p), raceBadge(p.main), ` ${raceLabel}`, p.isMaster ? h('span', { class: 'mtag long' }, '클랜 마스터') : null,
             ' · ', p.mmr ? [tier(p.mmr.cur), ` ${p.mmr.cur.v}점`] : '래더 기록 없음', ` · ${p.away ? '자리 비움' : '마지막 경기 ' + fmt.days(p.daysAgo)}`),
           p.aliases.length > 1 ? h('p', { class: 'prof-alias' }, '같은 계정: ', p.aliases.filter((a) => a !== p.name).join(', ')) : null,
           h('p', { class: 'say' }, h('span', { class: 'say-k' }, '한마디'), h('span', { class: 'say-t' }, app.lineOf(p))),
           h('div', { class: 'btns' },
             foe ? h('a', { class: 'btn', href: `#duel--${p.id}--${foe}` }, '맞대결 보기') : null,
             h('a', { class: 'btn', href: '#look', onclick: () => app.setMe(p.id) }, '이 초상 꾸미기'),
+            typeof CD !== 'undefined' && CD.open ? h('button', { type: 'button', class: 'btn', onclick: (e) => CD.open('profile', p, app, e.currentTarget) }, '전적 카드') : null,
             h('a', { class: 'btn', href: p.rmUrl, target: '_blank', rel: 'noopener' }, 'RepMastered'))),
         h('div', { class: 'prof-side' },
           emb(p.emblem, 'emb prof-emb', `${p.isMaster ? '클랜 마스터' : raceLabel} 엠블럼`),
@@ -2920,10 +3222,23 @@ const V = (() => {
           m.team ? h('span', { class: 'c-dim' }, m.team) : null,
           h('span', { class: 'c-dim' }, m.date ? fmt.date(new Date(+m.date + 9 * 3600e3).toISOString().slice(0, 10)) : ''))))
         : h('p', { class: 'note' }, '아직 메달이 없습니다.'),
-      medals.length ? h('p', { class: 'note' }, '리그가 이 기기에만 저장되어 메달도 이 기기에서만 보입니다.') : null);
+      medals.length && !LIVE ? h('p', { class: 'note' }, '임시 사이트라 리그가 이 기기에만 저장되어 메달도 이 기기에서만 보입니다.') : null);
+
+    // 클랜전(정식판, 넣은 기록이 있을 때만)
+    const cwMe = LIVE && typeof CL !== 'undefined' ? CL.ofPerson(p) : null;
+    const cwPanel = cwMe ? pnl('클랜전', { right: h('span', { class: 'pnl-sub' }, `${cwMe.wars}번 출전`) },
+      h('p', { class: 'cw-big' }, h('span', { class: 'w' }, `${cwMe.w}승`), ' ', h('span', { class: 'l' }, `${cwMe.l}패`), h('span', { class: 'c-dim' }, ` · 세트 승률 ${fmt.pct(cwMe.rate)}`)),
+      h('ul', { class: 'cw-list' }, CL.wars().filter((w) => w.sets.some((s) => s.p && s.p.id === p.id)).slice(0, 5).map((w) => {
+        const mine = w.sets.filter((s) => s.p && s.p.id === p.id);
+        const mw = mine.filter((s) => s.win).length;
+        return h('li', null, h('span', { class: 'c-dim' }, fmt.date(w.on)), h('a', { class: 'plink', href: '#war--' + w.id }, `vs ${w.opp}`),
+          h('span', null, h('span', { class: 'w' }, `${mw}승`), ' ', h('span', { class: 'l' }, `${mine.length - mw}패`)));
+      }))) : null;
 
     return h('div', { class: 'page' }, head,
+      p.ranked === false ? h('p', { class: 'note prof-guest' }, `${p.clsName}입니다. 명단과 맞대결에는 보이고 서열·리그·메달에는 넣지 않습니다.`) : null,
       medalPanel,
+      cwPanel,
       oppPanel(app, p),
       h('div', { class: 'grid2' }, recTable, splitWin),
       recentWin);
@@ -3167,8 +3482,522 @@ const V = (() => {
   return { channel, rank, games, profile, duel, look, leagueWait };
 })();
 
+/* THUG 클랜 — 운영진 화면(#admin, 정식판). 원장님 결정(2026-11-25): 운영 암호 하나를 함께 쓰고, 넣으면 그 기기에 운영진 통행증 30일.
+   ① 운영진 들어가기·나가기 ② 클랜원 구분·등급 조정·메모 ③ 입장 암호 바꾸기 ④ 운영 암호 바꾸기 ⑤ 수집기 마지막 갱신 */
+const AD = (() => {
+  const GN = DB.CFG.grade.names;
+  const pnl = (title, opt, ...kids) => h('section', { class: 'pnl' + (opt.cls ? ' ' + opt.cls : ''), 'aria-label': typeof title === 'string' ? title : opt.label },
+    h('div', { class: 'pnl-h' }, h('h2', null, title), opt.right ? h('div', { class: 'pnl-r' }, opt.right) : null),
+    h('div', { class: 'pnl-b' + (opt.flush ? ' flush' : '') }, ...kids));
+  const pageTitle = (txt, sub) => h('header', { class: 'ptitle' }, h('h1', null, txt), sub ? h('p', null, sub) : null);
+  const pwField = (id, label, ac) => [h('label', { class: 'lbl', for: id }, label), h('input', { id, class: 'field', type: 'password', autocomplete: ac, maxlength: '64' })];
+  const why = (r) => (!r ? '연결이 안 됩니다. 잠시 뒤 다시 해 주세요.'
+    : r.reason === 'wrong' ? '운영 암호가 틀렸습니다.'
+      : r.reason === 'wait' ? '여러 번 틀려 잠시 막혔습니다. 15분 뒤 다시 해 주세요.'
+        : r.reason === 'notset' ? '운영 암호가 아직 정해지지 않았습니다.'
+          : r.reason === 'short' ? '새 암호를 4자 이상으로 넣어 주세요.'
+            : r.reason === 'admin' ? '운영진 통행증이 끝났습니다. 위에서 다시 들어와 주세요.'
+              : '하지 못했습니다.');
+
+  function view(app) {
+    const root = h('div', { class: 'page adm-page' });
+    const st = { q: '', f: 'all', dirty: new Map(), saved: 0 };
+    const draw = () => root.replaceChildren(...parts(app, st, draw));
+    // 다른 기기·화면에서 운영진 상태가 바뀌면 다시 그림(고치던 줄은 st.dirty에 남음)
+    const onAdmin = () => { if (root.isConnected) draw(); };
+    window.addEventListener('thug:admin', onAdmin);
+    app.onLeave(() => window.removeEventListener('thug:admin', onAdmin));
+    draw();
+    return root;
+  }
+
+  function parts(app, st, draw) {
+    const admin = LIVE.isAdmin();
+    const out = [pageTitle('운영진 화면', '클랜원 구분과 등급, 리그·클랜전 입력, 암호 관리')];
+    if (LIVE.offline) out.push(pnl('연결 없음', {}, h('p', null, '지금은 연결이 안 되어 이 기기에 저장해 둔 기록으로 보고 있습니다. 운영진 일은 연결된 뒤에 할 수 있습니다.')));
+    out.push(enterPanel(app, admin, draw));
+    out.push(collectorPanel());
+    if (admin && !LIVE.offline) {
+      out.push(memberPanel(app, st, draw));
+      out.push(h('div', { class: 'grid2' }, entryPwPanel(), adminPwPanel(app)));
+    }
+    return out;
+  }
+
+  // ① 운영진 들어가기·나가기
+  function enterPanel(app, admin, draw) {
+    if (admin) {
+      const until = LIVE.adminUntil();
+      return pnl('운영진', { right: h('span', { class: 'pnl-sub' }, until ? `${fmt.day(until)}까지` : '') },
+        h('p', null, '운영진으로 들어와 있습니다. 이 기기에서 리그를 만들고 결과를 넣고, 클랜전을 넣고, 아래에서 클랜원 구분과 등급을 바꿀 수 있습니다.'),
+        h('div', { class: 'btns' },
+          h('a', { class: 'btn hot', href: '#war-edit' }, '클랜전 넣기'),
+          h('a', { class: 'btn', href: '#league' }, '리그 만들기·결과 넣기'),
+          h('button', { type: 'button', class: 'btn out', onclick: () => { LIVE.adminLeave(); app.toast('운영진에서 나갔습니다.'); draw(); } }, '운영진 나가기')));
+    }
+    const msg = h('p', { class: 'note', role: 'status' });
+    const [l, pw] = pwField('admEnter', '운영 암호', 'current-password');
+    const go = h('button', { class: 'btn hot', type: 'submit', disabled: LIVE.offline }, '운영진으로 들어가기');
+    const form = h('form', { class: 'gate-form adm-form', autocomplete: 'off' }, l, pw, h('div', { class: 'adm-row' }, go), msg);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!pw.value.trim()) { msg.textContent = '운영 암호를 넣어 주세요.'; pw.focus(); return; }
+      go.disabled = true; msg.textContent = '확인하는 중입니다.';
+      const r = await LIVE.adminEnter(pw.value);
+      go.disabled = false;
+      if (r && r.ok) { pw.value = ''; app.toast('운영진으로 들어왔습니다.'); draw(); return; }
+      msg.textContent = why(r);
+      pw.select();
+    });
+    return pnl('운영진 들어가기', {},
+      h('p', null, '리그·클랜전 입력과 클랜원 구분은 운영진만 합니다. 운영 암호를 넣으면 이 기기에서 30일 동안 운영진입니다.'),
+      form,
+      h('p', { class: 'note' }, '운영 암호는 원장님께 받습니다. 공용 기기에서는 쓰고 나서 운영진 나가기를 눌러 주세요.'));
+  }
+
+  // ⑤ 수집기 마지막 갱신
+  function collectorPanel() {
+    const m = DB.S.meta;
+    const hrs = Math.floor((Date.now() - DB.NOW) / 3600e3);
+    const late = hrs >= 48;
+    return pnl('기록 수집', { right: h('span', { class: 'pnl-sub' + (late ? ' l' : '') }, late ? `${Math.floor(hrs / 24)}일 멈춤` : '날마다 9시') },
+      h('dl', { class: 'facts' },
+        h('dt', null, '마지막 수집'), h('dd', null, fmt.when(DB.NOW), h('span', { class: 'c-dim' }, hrs < 1 ? ' · 1시간 안' : hrs < 48 ? ` · ${hrs}시간 전` : ` · ${Math.floor(hrs / 24)}일 전`)),
+        LIVE.builtAt ? [h('dt', null, '창고에 올림'), h('dd', null, fmt.when(Date.parse(LIVE.builtAt)))] : null,
+        h('dt', null, '받은 기록'), h('dd', null, `사람 ${DB.persons.length}명 · 1:1 경기 ${fmt.num(DB.games.length)}판(내전 ${fmt.num(DB.internalCount)}판)`),
+        m.queries != null ? [h('dt', null, '조회'), h('dd', null, `마지막 수집에서 RepMastered ${m.queries}번(하루 50번까지)`)] : null),
+      late ? h('p', { class: 'note l' }, '이틀 넘게 새 기록이 없습니다. 원장님 PC가 켜져 있는지, 예약 작업 \'THUG 클랜 수집기\'가 도는지 봐 주세요.') : null);
+  }
+
+  // ② 클랜원 구분·등급 조정·메모
+  function memberPanel(app, st, draw) {
+    const people = DB.persons.slice().sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }));
+    const known = new Set(people.flatMap((p) => [p.name, ...(p.aliases || [])].map((x) => String(x).toLowerCase())));
+    const extra = Object.entries(CL.members()).filter(([k]) => !known.has(k)).map(([k, v]) => ({ key: k, name: k, extra: true, set: v }));
+    const cur = (p) => {
+      if (st.dirty.has(p.key || p.id)) return st.dirty.get(p.key || p.id);
+      const v = p.extra ? p.set : CL.member(p);
+      return { cls: (v && v.cls) || 'member', grade: v && Number.isInteger(v.grade) ? v.grade : null, note: (v && v.note) || '' };
+    };
+    const base = (p) => { const v = p.extra ? p.set : CL.member(p); return { cls: (v && v.cls) || 'member', grade: v && Number.isInteger(v.grade) ? v.grade : null, note: (v && v.note) || '' }; };
+    const same = (a, b) => a.cls === b.cls && a.grade === b.grade && a.note.trim() === b.note.trim();
+
+    const counts = { all: people.length + extra.length, member: 0, tester: 0, friend: 0, wait: 0, set: 0 };
+    for (const p of [...people, ...extra]) { const v = base(p); counts[v.cls]++; if (v.cls !== 'member' || v.grade || v.note) counts.set++; }
+    const FL = [['all', '전체'], ['member', '정식'], ['tester', '테스터'], ['friend', '친구'], ['wait', '대기자'], ['set', '운영진이 정한 사람']];
+
+    const q = h('input', { type: 'search', class: 'field sm', placeholder: '이름 찾기', 'aria-label': '클랜원 이름 찾기', value: st.q });
+    const list = h('ul', { class: 'adm-mem' });
+    const chips = h('div', { class: 'chips tight', role: 'group', 'aria-label': '구분 거르기' });
+    const status = h('p', { class: 'note', role: 'status' });
+    const redrawList = () => {
+      chips.replaceChildren(...FL.map(([k, t]) => h('button', { type: 'button', class: 'chip', 'aria-pressed': String(st.f === k), onclick: () => { st.f = k; redrawList(); } }, `${t} ${counts[k]}`)));
+      const term = st.q.trim().toLowerCase();
+      const rows = [...people, ...extra].filter((p) => {
+        const v = base(p);
+        if (st.f === 'set' ? !(v.cls !== 'member' || v.grade || v.note) : st.f !== 'all' && v.cls !== st.f) return false;
+        return !term || [p.name, ...(p.aliases || [])].some((a) => String(a).toLowerCase().includes(term));
+      });
+      list.replaceChildren(...(rows.length ? rows.map((p) => row(p)) : [h('li', { class: 'empty' }, '맞는 사람이 없습니다.')]));
+    };
+    q.addEventListener('input', () => { st.q = q.value; redrawList(); });
+
+    function row(p) {
+      const key = p.key || p.id;
+      const v = { ...cur(p) };
+      const save = h('button', { type: 'button', class: 'btn sm hot', disabled: true }, '저장');
+      const mark = () => {
+        const ch = !same(v, base(p));
+        save.disabled = !ch;
+        if (ch) st.dirty.set(key, { ...v }); else st.dirty.delete(key);
+        li.classList.toggle('dirty', ch);
+      };
+      const cls = h('select', { class: 'field sm', 'aria-label': `${p.name} 구분` }, CL.CLS.map(([k, t]) => h('option', { value: k, selected: v.cls === k }, t)));
+      cls.addEventListener('change', () => { v.cls = cls.value; mark(); });
+      const auto = p.extra ? '자동' : `자동(${p.gradeAutoName})`;
+      const grade = h('select', { class: 'field sm', 'aria-label': `${p.name} 등급` },
+        h('option', { value: '', selected: v.grade == null }, auto),
+        [1, 2, 3, 4, 5, 6].map((g) => h('option', { value: String(g), selected: v.grade === g }, `${g} ${GN[g]}`)));
+      grade.addEventListener('change', () => { v.grade = grade.value ? +grade.value : null; mark(); });
+      const note = h('input', { type: 'text', class: 'field sm', maxlength: '100', value: v.note, placeholder: '메모', 'aria-label': `${p.name} 메모` });
+      note.addEventListener('input', () => { v.note = note.value; mark(); });
+      save.addEventListener('click', async () => {
+        save.disabled = true; save.textContent = '저장하는 중';
+        const r = await LIVE.adminCall('thug_member_put', { p_name: p.extra ? p.name : p.name, p_cls: v.cls, p_grade: v.grade, p_note: v.note.trim() });
+        save.textContent = '저장';
+        if (r && r.ok) {
+          st.dirty.delete(key);
+          st.saved++;
+          await LIVE.refreshClub();
+          status.replaceChildren('저장했습니다. 서열·명단·초상에는 화면을 새로 열면 반영됩니다. ',
+            h('button', { type: 'button', class: 'btn sm', onclick: () => location.reload() }, '지금 새로 열기'));
+          redrawList();
+          return;
+        }
+        save.disabled = false;
+        status.textContent = `${p.name}: ${why(r)}`;
+        if (r && r.reason === 'admin') draw();
+      });
+      const li = h('li', { class: 'adm-m' + (st.dirty.has(key) ? ' dirty' : '') },
+        h('span', { class: 'adm-m-id' },
+          p.extra ? h('span', { class: 'pt-none' }) : app.icon(p, 24),
+          h('span', { class: 'adm-m-n' }, p.extra ? h('span', { class: 'nm' }, p.name) : h('a', { class: 'plink nm', href: '#p--' + p.id }, p.name),
+            h('span', { class: 'c-dim adm-m-s' }, p.extra ? '수집한 기록 없음' : `${DB.RACE[p.main].label} · ${p.gradeAutoWhy}`))),
+        h('span', { class: 'adm-m-f' }, cls, grade, note, save));
+      if (st.dirty.has(key)) save.disabled = false;
+      return li;
+    }
+
+    // 아이디 더하기(친구·대기자 등, 아직 수집하지 않은 아이디)
+    const addName = h('input', { type: 'text', class: 'field sm', maxlength: '40', placeholder: '아이디', 'aria-label': '더할 아이디', autocomplete: 'off' });
+    const addCls = h('select', { class: 'field sm', 'aria-label': '더할 아이디의 구분' }, CL.CLS.map(([k, t]) => h('option', { value: k, selected: k === 'friend' }, t)));
+    const addBtn = h('button', { type: 'button', class: 'btn sm' }, '더하기');
+    addBtn.addEventListener('click', async () => {
+      const n = addName.value.trim();
+      if (!n) { status.textContent = '더할 아이디를 넣어 주세요.'; addName.focus(); return; }
+      if (known.has(n.toLowerCase()) || CL.members()[n.toLowerCase()]) { status.textContent = '이미 목록에 있는 아이디입니다. 목록에서 구분을 바꿔 주세요.'; return; }
+      addBtn.disabled = true;
+      const r = await LIVE.adminCall('thug_member_put', { p_name: n, p_cls: addCls.value, p_grade: null, p_note: addCls.value === 'member' ? '더한 아이디' : '' });
+      addBtn.disabled = false;
+      if (r && r.ok) { await LIVE.refreshClub(); app.toast(`${n} 아이디를 더했습니다.`); draw(); return; }
+      status.textContent = why(r);
+    });
+
+    redrawList();
+    return pnl('클랜원 구분과 등급', { flush: true, right: h('span', { class: 'pnl-sub' }, '저장하면 모두에게 반영') },
+      h('div', { class: 'adm-help' },
+        h('p', null, '구분: 정식과 테스터는 서열·리그·메달에 들어가고, 친구(협동클랜)와 대기자는 명단에만 보입니다(맞대결은 볼 수 있음). 등급: 자동은 래더 최고 티어와 내전 점수로 정하고, 숫자를 고르면 그 등급으로 고정합니다.')),
+      h('div', { class: 'mem-tools adm-tools' }, q, chips),
+      list,
+      h('div', { class: 'adm-add' }, h('p', { class: 'lbl' }, '목록에 없는 아이디 더하기'), h('div', { class: 'adm-m-f' }, addName, addCls, addBtn),
+        h('p', { class: 'note' }, '협동클랜 친구처럼 Thug_로 시작하지 않는 아이디는 구분만 저장됩니다. 경기 기록은 지금 수집기가 받지 않습니다.')),
+      h('div', { class: 'adm-st' }, status));
+  }
+
+  // ③ 입장 암호 바꾸기(운영 암호가 있어야 함)
+  function entryPwPanel() {
+    const msg = h('p', { class: 'note', role: 'status' });
+    const form = h('form', { class: 'gate-form adm-form', autocomplete: 'off' },
+      pwField('admPw', '운영 암호', 'current-password'), pwField('newPw', '새 입장 암호(4자 이상)', 'new-password'), pwField('newPw2', '새 입장 암호 한 번 더', 'new-password'),
+      h('div', { class: 'adm-row' }, h('button', { class: 'btn', type: 'submit' }, '입장 암호 바꾸기')), msg);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const a = form.querySelector('#admPw').value, n1 = form.querySelector('#newPw').value, n2 = form.querySelector('#newPw2').value;
+      if (n1.trim().length < 4) { msg.textContent = '새 입장 암호를 4자 이상으로 넣어 주세요.'; return; }
+      if (n1 !== n2) { msg.textContent = '새 입장 암호 두 칸이 다릅니다.'; return; }
+      msg.textContent = '바꾸는 중입니다.';
+      const r = await LIVE.call('thug_set_entry', { p_admin: a, p_new: n1 }).catch(() => null);
+      if (r && r.ok) { msg.textContent = '바꿨습니다. 모든 기기에서 새 입장 암호를 한 번 넣어야 합니다. 잠시 뒤 입장 화면으로 갑니다.'; setTimeout(() => LIVE.leave(), 2500); }
+      else msg.textContent = why(r);
+    });
+    return pnl('입장 암호 바꾸기', {}, form, h('p', { class: 'note' }, '바꾸면 이 기기를 포함한 모든 클랜원이 새 암호를 한 번 넣습니다. 새 암호는 카톡 오픈채팅방 공지에 올려 주세요.'));
+  }
+
+  // ④ 운영 암호 바꾸기. 바꾸면 모든 운영진 통행증이 끝남
+  function adminPwPanel(app) {
+    const msg = h('p', { class: 'note', role: 'status' });
+    const form = h('form', { class: 'gate-form adm-form', autocomplete: 'off' },
+      pwField('admOld', '지금 운영 암호', 'current-password'), pwField('admNew', '새 운영 암호(4자 이상)', 'new-password'), pwField('admNew2', '새 운영 암호 한 번 더', 'new-password'),
+      h('div', { class: 'adm-row' }, h('button', { class: 'btn', type: 'submit' }, '운영 암호 바꾸기')), msg);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const a = form.querySelector('#admOld').value, n1 = form.querySelector('#admNew').value, n2 = form.querySelector('#admNew2').value;
+      if (n1.trim().length < 4) { msg.textContent = '새 운영 암호를 4자 이상으로 넣어 주세요.'; return; }
+      if (n1 !== n2) { msg.textContent = '새 운영 암호 두 칸이 다릅니다.'; return; }
+      msg.textContent = '바꾸는 중입니다.';
+      const r = await LIVE.call('thug_set_admin', { p_admin: a, p_new: n1 }).catch(() => null);
+      if (r && r.ok) { LIVE.adminLeave(); app.toast('운영 암호를 바꿨습니다. 새 운영 암호로 다시 들어와 주세요.'); }
+      else msg.textContent = why(r);
+    });
+    return pnl('운영 암호 바꾸기', {}, form, h('p', { class: 'note' }, '바꾸면 모든 운영진 기기가 운영진에서 나갑니다. 새 운영 암호는 운영진에게 따로 알려 주세요.'));
+  }
+
+  return { view };
+})();
+
+/* THUG 클랜 — 클랜전 기록실(#war, #war--id)과 운영진 입력(#war-edit, #war-edit--id).
+   읽기는 CL(club.js), 쓰기는 창고 thug_war_put(운영진 통행증). 저장 모양은 club.js 머리 주석 */
+const WR = (() => {
+  const RES = { w: '승', l: '패', d: '무' };
+  const RES_C = { w: 'w', l: 'l', d: 'c-dim' };
+  const pnl = (title, opt, ...kids) => h('section', { class: 'pnl' + (opt.cls ? ' ' + opt.cls : ''), 'aria-label': typeof title === 'string' ? title : opt.label },
+    h('div', { class: 'pnl-h' }, h('h2', null, title), opt.right ? h('div', { class: 'pnl-r' }, opt.right) : null),
+    h('div', { class: 'pnl-b' + (opt.flush ? ' flush' : '') }, ...kids));
+  const pageTitle = (txt, sub) => h('header', { class: 'ptitle' }, h('h1', null, txt), sub ? h('p', null, sub) : null);
+  const canEdit = () => !!(LIVE && LIVE.isAdmin() && !LIVE.offline);
+  const kstDay = (t) => new Date(t + 9 * 3600e3).toISOString().slice(0, 10);
+  const newId = () => 'war-' + Date.now().toString(36) + '-' + Math.floor(Math.random() * 46656).toString(36);
+  const who = (app, s) => (s.p ? h('a', { class: 'plink cw-p', href: '#p--' + s.p.id }, app.icon(s.p, 16), h('span', null, s.p.name)) : h('span', { class: 'cw-p' }, h('span', { class: 'pt-none' }), h('span', null, s.name)));
+  const resTag = (r) => h('span', { class: 'cw-res r-' + r }, RES[r]);
+  const cardBtn = (app, w) => (typeof CD !== 'undefined' && CD.open ? h('button', { type: 'button', class: 'btn sm', onclick: (e) => CD.open('war', w, app, e.currentTarget) }, '전적 카드') : null);
+  const failMsg = (r) => (!r ? '연결이 안 됩니다. 잠시 뒤 다시 해 주세요.'
+    : r.reason === 'admin' ? '운영진 통행증이 끝났습니다. 운영진 화면에서 다시 들어와 주세요.'
+      : r.reason === 'data' ? '날짜나 내용이 맞지 않아 저장하지 못했습니다.'
+        : '저장하지 못했습니다.');
+
+  // 저장한 뒤 화면이 바로 새 기록을 쓰게: 창고에서 다시 받고, 안 되면 이 기기 사본만 고침
+  async function afterWrite(id, row) {
+    if (await LIVE.refreshClub()) return;
+    const rest = (LIVE.club.wars || []).filter((x) => x.id !== id);
+    LIVE.club = { ...LIVE.club, wars: row ? [row, ...rest] : rest };
+    window.dispatchEvent(new Event('thug:club'));
+  }
+
+  // ================= 기록실 =================
+  function view(app, id) {
+    if (id) return detail(app, id);
+    const out = [pageTitle('클랜전 기록실', '운영진이 넣은 클랜전 결과와 상대 클랜별·선수별 전적')];
+    if (!LIVE) {
+      const cw = DB.S.clanWar;
+      out.push(pnl('임시 사이트', {},
+        h('p', null, '기록실은 정식판에서 열립니다. 운영진이 넣은 클랜전이 여기에 모입니다.'),
+        cw ? h('p', { class: 'note' }, `지금 적어 둔 클랜전 전적: ${cw.w}승 ${cw.l}패`) : null));
+      return h('div', { class: 'page cw' }, ...out);
+    }
+    const wars = CL.wars();
+    out.push(h('div', { class: 'cw-bar' },
+      canEdit() ? h('a', { class: 'btn hot', href: '#war-edit' }, '클랜전 넣기')
+        : h('p', { class: 'note' }, '클랜전은 운영진이 넣습니다. ', h('a', { class: 'plink', href: '#admin' }, '운영진 화면'))));
+    if (!wars.length) {
+      const cw = DB.S.clanWar;
+      out.push(pnl('기록', {}, h('p', { class: 'empty' }, '아직 넣은 클랜전이 없습니다.'),
+        cw && cw.w + cw.l ? h('p', { class: 'note' }, `그전에 따로 적어 둔 전적은 ${cw.w}승 ${cw.l}패입니다. 첫 클랜전을 넣으면 채널의 클랜 정보도 기록실 전적으로 바뀝니다.`) : null));
+      return h('div', { class: 'page cw' }, ...out);
+    }
+    const t = CL.totals();
+    const decided = t.w + t.l;
+    out.push(pnl('전체 전적', {},
+      h('div', { class: 'cells' },
+        h('div', { class: 'cell big' }, h('span', { class: 'cell-l' }, '전적'), h('span', { class: 'cell-v' }, h('span', { class: 'w' }, `${t.w}승`), ' ', h('span', { class: 'l' }, `${t.l}패`), t.d ? h('span', { class: 'c-dim' }, ` ${t.d}무`) : null), h('span', { class: 'cell-s' }, `클랜전 ${t.n}번`)),
+        h('div', { class: 'cell big' }, h('span', { class: 'cell-l' }, '승률'), h('span', { class: 'cell-v' }, decided ? fmt.pct(t.w / decided) : '-'), h('span', { class: 'cell-s' }, t.d ? '무승부는 빼고 셈' : '')),
+        h('div', { class: 'cell' }, h('span', { class: 'cell-l' }, '세트'), h('span', { class: 'cell-v' }, h('span', { class: 'w' }, `${t.sw}승`), ' ', h('span', { class: 'l' }, `${t.sl}패`)), h('span', { class: 'cell-s' }, `상대 클랜 ${CL.byOpp().length}곳`)))));
+
+    const opp = CL.byOpp();
+    const oppTbl = pnl('상대 클랜별', { flush: true },
+      h('div', { class: 'scroll-x' }, h('table', { class: 'tbl cw-tbl' },
+        h('thead', null, h('tr', null, h('th', null, '상대 클랜'), h('th', null, '전적'), h('th', null, '세트'), h('th', null, '마지막'))),
+        h('tbody', null, opp.map((o) => h('tr', null,
+          h('td', null, o.opp),
+          h('td', null, h('span', { class: 'w' }, `${o.w}승`), ' ', h('span', { class: 'l' }, `${o.l}패`), o.d ? h('span', { class: 'c-dim' }, ` ${o.d}무`) : null),
+          h('td', null, `${o.sw}:${o.sl}`),
+          h('td', { class: 'c-dim' }, fmt.date(o.last))))))));
+    const pl = CL.byPlayer();
+    const plTbl = pnl('선수별', { flush: true, right: h('span', { class: 'pnl-sub' }, '클랜전 세트') },
+      pl.length ? h('div', { class: 'scroll-x' }, h('table', { class: 'tbl cw-tbl' },
+        h('thead', null, h('tr', null, h('th', null, '선수'), h('th', null, '세트 승패'), h('th', null, '승률'), h('th', null, '출전'))),
+        h('tbody', null, pl.map((e) => h('tr', null,
+          h('td', null, who(app, e)),
+          h('td', null, h('span', { class: 'w' }, `${e.w}승`), ' ', h('span', { class: 'l' }, `${e.l}패`)),
+          h('td', null, fmt.pct(e.rate)),
+          h('td', { class: 'c-dim' }, `${e.wars}번`)))))) : h('p', { class: 'empty' }, '세트를 넣은 클랜전이 없어 선수별 전적이 없습니다.'));
+    out.push(h('div', { class: 'grid2' }, oppTbl, plTbl));
+
+    out.push(pnl(h('span', null, '클랜전 ', h('span', { class: 'cnt' }, `(${wars.length})`)), { flush: true, label: '클랜전 목록' },
+      h('ul', { class: 'cw-list2' }, wars.map((w) => h('li', null, h('a', { class: 'cw-row', href: '#war--' + w.id },
+        h('span', { class: 'cw-d c-dim' }, fmt.date(w.on)),
+        h('span', { class: 'cw-o' }, `vs ${w.opp}`),
+        h('span', { class: 'cw-s' }, h('b', { class: w.result === 'w' ? 'gold' : '' }, String(w.our)), h('span', { class: 'c-dim' }, ' : '), h('b', null, String(w.their))),
+        resTag(w.result),
+        h('span', { class: 'cw-m c-dim' }, w.sets.length ? w.sets.map((s) => s.p ? s.p.short : s.name).join(' · ') : '세트 기록 없음')))))));
+    return h('div', { class: 'page cw' }, ...out);
+  }
+
+  // ================= 한 경기 =================
+  function detail(app, id) {
+    const w = LIVE ? CL.byWar(id) : null;
+    if (!w) return h('div', { class: 'page cw' }, pageTitle('클랜전'), pnl('찾을 수 없음', {}, h('p', null, '이 클랜전 기록을 찾지 못했습니다. 지워졌을 수 있습니다. ', h('a', { class: 'plink', href: '#war' }, '기록실로'))));
+    const del = h('div', { class: 'cw-del', hidden: true });
+    const msg = h('p', { class: 'note', role: 'status' });
+    const askDel = () => {
+      del.hidden = false;
+      del.replaceChildren(h('p', null, `${fmt.date(w.on)} ${w.opp}전 기록을 지울까요? 지우면 클랜원 모두의 화면에서 빠집니다.`),
+        h('div', { class: 'btns' },
+          h('button', { type: 'button', class: 'btn hot sm', onclick: async () => {
+            msg.textContent = '지우는 중입니다.';
+            const r = await LIVE.adminCall('thug_war_put', { p_id: w.id, p_on: null, p_data: null });
+            if (r && r.ok) { await afterWrite(w.id, null); app.toast('클랜전 기록을 지웠습니다.'); location.hash = '#war'; }
+            else msg.textContent = failMsg(r);
+          } }, '지우기'),
+          h('button', { type: 'button', class: 'btn sm', onclick: () => { del.hidden = true; } }, '그만두기')));
+    };
+    const head = pnl(`${fmt.date(w.on)} 클랜전`, { right: resTag(w.result) },
+      h('div', { class: 'cw-score' },
+        h('span', { class: 'cw-team us' }, 'THUG'),
+        h('span', { class: 'cw-num' }, h('b', { class: w.result === 'w' ? 'gold' : '' }, String(w.our)), h('span', { class: 'c-dim' }, ' : '), h('b', { class: w.result === 'l' ? 'gold' : '' }, String(w.their))),
+        h('span', { class: 'cw-team' }, w.opp)),
+      h('div', { class: 'btns' },
+        cardBtn(app, w),
+        canEdit() ? h('a', { class: 'btn sm', href: '#war-edit--' + w.id }, '고치기') : null,
+        canEdit() ? h('button', { type: 'button', class: 'btn sm', onclick: askDel }, '지우기') : null,
+        h('a', { class: 'btn sm', href: '#war' }, '기록실로')),
+      del, msg);
+    const sets = pnl('세트', { flush: true },
+      w.sets.length ? h('div', { class: 'scroll-x' }, h('table', { class: 'tbl cw-tbl' },
+        h('thead', null, h('tr', null, h('th', null, '세트'), h('th', null, '우리 선수'), h('th', null, '상대 선수'), h('th', null, '맵'), h('th', null, '결과'))),
+        h('tbody', null, w.sets.map((s, i) => h('tr', null,
+          h('td', { class: 'c-dim' }, `${i + 1}세트`),
+          h('td', null, who(app, s)),
+          h('td', null, s.their || '-'),
+          h('td', { class: 'c-dim' }, s.map || '-'),
+          h('td', null, h('span', { class: s.win ? 'w' : 'l' }, s.win ? '승' : '패'))))))) : h('p', { class: 'empty' }, '세트 기록 없이 점수만 넣은 클랜전입니다.'));
+    return h('div', { class: 'page cw' }, pageTitle(`vs ${w.opp}`, `${fmt.date(w.on)} · ${w.our}:${w.their} ${RES[w.result]}`),
+      head, sets, w.note.trim() ? pnl('메모', {}, h('p', { class: 'cw-note' }, w.note)) : null);
+  }
+
+  // ================= 넣기·고치기(운영진) =================
+  function edit(app, id) {
+    const title = id ? '클랜전 고치기' : '클랜전 넣기';
+    if (!LIVE) return h('div', { class: 'page cw' }, pageTitle(title), pnl('임시 사이트', {}, h('p', null, '클랜전 입력은 정식판에서 운영진이 합니다.')));
+    if (!canEdit()) {
+      return h('div', { class: 'page cw' }, pageTitle(title),
+        pnl('운영진만', {}, h('p', null, LIVE.offline ? '지금은 연결이 안 되어 넣을 수 없습니다.' : '클랜전은 운영진만 넣고 고칩니다. '),
+          LIVE.offline ? null : h('p', null, h('a', { class: 'btn', href: '#admin' }, '운영진 화면에서 들어오기'))));
+    }
+    const old = id ? CL.byWar(id) : null;
+    if (id && !old) return h('div', { class: 'page cw' }, pageTitle(title), pnl('찾을 수 없음', {}, h('p', null, '고칠 클랜전을 찾지 못했습니다. ', h('a', { class: 'plink', href: '#war' }, '기록실로'))));
+    const st = old
+      ? { on: old.on, opp: old.opp, our: old.our, their: old.their, note: old.note, sets: old.sets.map((s) => ({ oid: s.p ? s.p.id : null, name: s.name, their: s.their, map: s.map, win: s.win, typed: !s.p })) }
+      : { on: kstDay(Date.now()), opp: '', our: 0, their: 0, note: '', sets: [{ oid: null, name: '', their: '', map: '', win: null, typed: false }] };
+
+    const people = DB.persons.slice().sort((a, b) => (b.ranked - a.ranked) || a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }));
+    const opps = [...new Set(CL.wars().map((w) => w.opp))];
+    const maps = [...new Set([...CL.wars().flatMap((w) => w.sets.map((s) => s.map)), ...DB.games.map((g) => g.map)].filter(Boolean))].slice(0, 80);
+    const dlOpp = h('datalist', { id: 'cw-opps' }, opps.map((o) => h('option', { value: o })));
+    const dlMap = h('datalist', { id: 'cw-maps' }, maps.map((m) => h('option', { value: m })));
+
+    const onIn = h('input', { id: 'cw-on', class: 'field', type: 'date', value: st.on, required: true });
+    onIn.addEventListener('input', () => { st.on = onIn.value; drawSets(); });
+    const oppIn = h('input', { id: 'cw-opp', class: 'field', type: 'text', maxlength: '40', list: 'cw-opps', value: st.opp, placeholder: '예: ABC', autocomplete: 'off' });
+    oppIn.addEventListener('input', () => { st.opp = oppIn.value; });
+    const noteIn = h('textarea', { id: 'cw-note', class: 'field cw-ta', maxlength: '300', rows: '3', placeholder: '하고 싶은 말, 규칙, 다음 일정' });
+    noteIn.value = st.note;
+    noteIn.addEventListener('input', () => { st.note = noteIn.value; });
+
+    const setBox = h('div', { class: 'cw-sets' });
+    const scoreBox = h('div', { class: 'cw-only' });
+    const sum = h('p', { class: 'cw-sum', role: 'status' });
+    const msg = h('p', { class: 'lg-err', role: 'alert' });
+    const nums = () => {
+      if (st.sets.length) { const our = st.sets.filter((s) => s.win === true).length; return { our, their: st.sets.filter((s) => s.win === false).length }; }
+      return { our: st.our, their: st.their };
+    };
+    const drawSum = () => {
+      const { our, their } = nums();
+      const r = our > their ? 'w' : our < their ? 'l' : 'd';
+      sum.replaceChildren(...['결과 ', h('b', null, `${our} : ${their}`), ' ', resTag(r), st.sets.some((s) => s.win == null) ? h('span', { class: 'c-dim' }, ' · 승패를 안 고른 세트가 있습니다') : null].filter(Boolean));
+    };
+
+    // 그 사람의 그날 1:1 경기(클랜원끼리 한 것 빼고) → 상대·맵·승패 채우기
+    const dayGames = (oid) => {
+      if (!oid || !st.on) return [];
+      return (DB.byPerson.get(oid) || []).filter((g) => g.p.length === 2 && g.winner >= 0 && !g.internal && kstDay(g.time) === st.on).slice(0, 15);
+    };
+    function setRow(s, i) {
+      const pick = h('select', { class: 'field sm', 'aria-label': `${i + 1}세트 우리 선수` },
+        h('option', { value: '' }, '우리 선수 고르기'),
+        h('optgroup', { label: '클랜원' }, people.filter((p) => p.ranked).map((p) => h('option', { value: p.id, selected: s.oid === p.id }, p.name))),
+        people.some((p) => !p.ranked) ? h('optgroup', { label: '친구·대기자' }, people.filter((p) => !p.ranked).map((p) => h('option', { value: p.id, selected: s.oid === p.id }, p.name))) : null,
+        h('option', { value: '__typed', selected: s.typed }, '목록에 없음(직접 쓰기)'));
+      pick.addEventListener('change', () => {
+        if (pick.value === '__typed') { s.typed = true; s.oid = null; s.name = ''; }
+        else { s.typed = false; s.oid = pick.value || null; const p = s.oid && DB.byId.get(s.oid); s.name = p ? p.name : ''; }
+        drawSets();
+      });
+      const typed = s.typed ? h('input', { class: 'field sm', type: 'text', maxlength: '30', value: s.name, placeholder: '우리 선수 아이디', 'aria-label': `${i + 1}세트 우리 선수 아이디` }) : null;
+      if (typed) typed.addEventListener('input', () => { s.name = typed.value; });
+      const their = h('input', { class: 'field sm', type: 'text', maxlength: '30', value: s.their, placeholder: '상대 선수', 'aria-label': `${i + 1}세트 상대 선수` });
+      their.addEventListener('input', () => { s.their = their.value; });
+      const map = h('input', { class: 'field sm', type: 'text', maxlength: '40', list: 'cw-maps', value: s.map, placeholder: '맵', 'aria-label': `${i + 1}세트 맵` });
+      map.addEventListener('input', () => { s.map = map.value; });
+      const wl = h('div', { class: 'chips tight', role: 'group', 'aria-label': `${i + 1}세트 승패` },
+        h('button', { type: 'button', class: 'chip', 'aria-pressed': String(s.win === true), onclick: () => { s.win = true; drawSets(); } }, '우리 승'),
+        h('button', { type: 'button', class: 'chip', 'aria-pressed': String(s.win === false), onclick: () => { s.win = false; drawSets(); } }, '우리 패'));
+      const gs = dayGames(s.oid);
+      let from = null;
+      if (gs.length) {
+        from = h('select', { class: 'field sm cw-from', 'aria-label': `${i + 1}세트 그날 경기에서 고르기` },
+          h('option', { value: '' }, `그날 경기에서 고르기 (${gs.length}판)`),
+          gs.map((g, k) => { const me = g.p.findIndex((x) => x.id === s.oid), o = g.p[1 - me]; return h('option', { value: String(k) }, `${fmt.hm(g.time)} · ${o.n} · ${g.map} · ${g.winner === me ? '승' : '패'}`); }));
+        from.addEventListener('change', () => {
+          const g = gs[+from.value];
+          if (!g) return;
+          const me = g.p.findIndex((x) => x.id === s.oid);
+          s.their = g.p[1 - me].n; s.map = g.map; s.win = g.winner === me;
+          drawSets();
+        });
+      }
+      const rm = h('button', { type: 'button', class: 'btn sm out', 'aria-label': `${i + 1}세트 빼기`, onclick: () => { st.sets.splice(i, 1); drawSets(); } }, '빼기');
+      return h('li', { class: 'cw-set' },
+        h('span', { class: 'cw-set-n' }, `${i + 1}세트`),
+        h('div', { class: 'cw-set-f' }, pick, typed, their, map, wl, from),
+        rm);
+    }
+    function drawSets() {
+      setBox.replaceChildren(
+        st.sets.length ? h('ol', { class: 'cw-setl' }, st.sets.map(setRow)) : h('p', { class: 'note' }, '세트를 하나도 넣지 않으면 아래에 점수만 넣습니다.'),
+        h('div', { class: 'btns' }, h('button', { type: 'button', class: 'btn sm', onclick: () => {
+          const last = st.sets[st.sets.length - 1];
+          st.sets.push({ oid: null, name: '', their: '', map: last ? last.map : '', win: null, typed: false });
+          drawSets();
+        } }, '세트 더하기')));
+      if (st.sets.length) scoreBox.replaceChildren();
+      else {
+        const a = h('input', { class: 'field sm cw-n', type: 'number', min: '0', max: '20', value: String(st.our), 'aria-label': '우리 점수' });
+        const b = h('input', { class: 'field sm cw-n', type: 'number', min: '0', max: '20', value: String(st.their), 'aria-label': '상대 점수' });
+        a.addEventListener('input', () => { st.our = Math.max(0, Math.floor(+a.value || 0)); drawSum(); });
+        b.addEventListener('input', () => { st.their = Math.max(0, Math.floor(+b.value || 0)); drawSum(); });
+        scoreBox.replaceChildren(h('p', { class: 'lbl' }, '점수만 넣기'), h('div', { class: 'cw-nums' }, h('span', null, 'THUG'), a, h('span', { class: 'c-dim' }, ':'), b, h('span', null, '상대')));
+      }
+      drawSum();
+    }
+    drawSets();
+
+    const save = h('button', { type: 'submit', class: 'btn hot' }, '저장');
+    const form = h('form', { class: 'cw-form', autocomplete: 'off', novalidate: true },
+      dlOpp, dlMap,
+      h('div', { class: 'cw-top' },
+        h('div', null, h('label', { class: 'lbl', for: 'cw-on' }, '날짜'), onIn),
+        h('div', null, h('label', { class: 'lbl', for: 'cw-opp' }, '상대 클랜'), oppIn)),
+      h('p', { class: 'lbl' }, '세트'), setBox, scoreBox, sum,
+      h('label', { class: 'lbl', for: 'cw-note' }, '메모'), noteIn,
+      msg,
+      h('div', { class: 'btns' }, save, h('a', { class: 'btn', href: id ? '#war--' + id : '#war' }, '그만두기')));
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const opp = st.opp.trim();
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(st.on || '')) { msg.textContent = '날짜를 넣어 주세요.'; onIn.focus(); return; }
+      if (!opp) { msg.textContent = '상대 클랜 이름을 넣어 주세요.'; oppIn.focus(); return; }
+      const bad = st.sets.findIndex((s) => !s.name.trim() || s.win == null);
+      if (bad >= 0) { msg.textContent = `${bad + 1}세트의 우리 선수와 승패를 넣어 주세요.`; return; }
+      const { our, their } = nums();
+      if (!st.sets.length && our + their === 0) { msg.textContent = '세트를 넣거나 점수를 넣어 주세요.'; return; }
+      const wid = id || newId();
+      const data = {
+        v: 1, opp, our, their, result: our > their ? 'w' : our < their ? 'l' : 'd',
+        sets: st.sets.map((s) => ({ our: s.name.trim(), oid: s.oid || null, their: s.their.trim(), map: s.map.trim(), win: !!s.win })),
+        note: st.note.trim(),
+      };
+      msg.textContent = '';
+      save.disabled = true; save.textContent = '저장하는 중';
+      const r = await LIVE.adminCall('thug_war_put', { p_id: wid, p_on: st.on, p_data: data });
+      if (r && r.ok) {
+        await afterWrite(wid, { id: wid, on: st.on, data });
+        app.toast(id ? '클랜전을 고쳤습니다.' : '클랜전을 넣었습니다. 클랜원 모두에게 보입니다.');
+        location.hash = '#war--' + wid;
+        return;
+      }
+      save.disabled = false; save.textContent = '저장';
+      msg.textContent = failMsg(r);
+    });
+    return h('div', { class: 'page cw' }, pageTitle(title, '운영진만 넣고 고칩니다. 저장하면 클랜원 모두에게 보입니다.'),
+      pnl(old ? `${fmt.date(old.on)} ${old.opp}전` : '새 클랜전', {}, form));
+  }
+
+  return { view, edit, RES };
+})();
+
 /* THUG 클랜 — 내전 리그: 토너먼트 중심. 개인 토너먼트·팀리그·풀리그의 대진표·순위표를 만들고 결과를 정리함
-   (임시 사이트라 이 기기에만 저장. 저장 형식은 아래 '저장' 절의 설명 참고) */
+   (임시 사이트는 이 기기에만, 정식판은 창고에 저장하고 운영진만 고침. 저장 형식은 아래 '저장' 절의 설명 참고) */
 const LG = (() => {
   const KEY = 'thug.leagues';
   const MAX = 32;
@@ -3268,6 +4097,7 @@ const LG = (() => {
   }
   function load() {
     if (S) return S;
+    if (LIVE) return loadLive();
     const raw = store.get(KEY, null);
     S = raw && typeof raw === 'object' && Array.isArray(raw.list) ? raw : { v: 2, list: [], exampleMade: false, exampleTeam: false };
     S.list = S.list.filter((lg) => lg && typeof lg === 'object' && lg.id && Array.isArray(lg.ents));
@@ -3289,7 +4119,244 @@ const LG = (() => {
     if (changed) save();
     return S;
   }
-  function save() { saveOk = store.set(KEY, S); return saveOk; }
+  function save() {
+    if (LIVE) { saveLive(); return true; }
+    saveOk = store.set(KEY, S); return saveOk;
+  }
+
+  /* ---------------- 정식판: 창고(thug_league_put)와 맞추기 ----------------
+     읽기는 LIVE.club.leagues([{id, ver, data}]), 쓰기는 리그마다 thug_league_put(판 번호 대조).
+     SY: 리그 id → { ver: 창고 판 번호(새 리그 0), base: 창고와 맞춘 내용(norm 뒤 JSON, 아직 안 올린 새 리그는 null),
+                    busy: 올리는 중, again: 올리는 동안 또 바뀜, fail: 연결이 안 돼 못 올림 }
+     예시 리그는 만들지 않음. 리그 안 _로 시작하는 필드는 올리지 않음 */
+  const SY = new Map();
+  let syNote = null; // 리그 화면 위 알림 { msg, admin: 운영진 화면 링크를 붙일지 }
+  let legacyBusy = false, legacyMsg = '';
+  const canEdit = () => !LIVE || (!LIVE.offline && !!(LIVE.isAdmin && LIVE.isAdmin()));
+  const pack = (lg) => { const o = {}; for (const k of Object.keys(lg)) if (k[0] !== '_') o[k] = lg[k]; return JSON.stringify(o); };
+  const byNew = (a, b) => (b.created || 0) - (a.created || 0);
+  const clubRows = () => { const c = LIVE && LIVE.club; return c && Array.isArray(c.leagues) ? c.leagues : []; };
+  // 창고 한 줄 → 리그(복사본). 망가진 것은 _bad로 두고 올리지 않음
+  function fromRow(r) {
+    if (!r || !r.id || !r.data || typeof r.data !== 'object') return null;
+    let lg;
+    try { lg = JSON.parse(JSON.stringify(r.data)); } catch (e) { return null; }
+    lg.id = String(r.id);
+    if (!Array.isArray(lg.ents)) return null;
+    try { norm(lg); delete lg._bad; } catch (e) { console.error(e); lg._bad = true; }
+    SY.set(lg.id, { ver: Number(r.ver) || 0, base: lg._bad ? null : pack(lg), busy: false, again: false, fail: false });
+    return lg;
+  }
+  function loadLive() {
+    S = { v: 2, list: [], live: true };
+    for (const r of clubRows()) { const lg = fromRow(r); if (lg) S.list.push(lg); }
+    S.list.sort(byNew);
+    return S;
+  }
+  const syOf = (id) => { let st = SY.get(id); if (!st) { st = { ver: 0, base: null, busy: false, again: false, fail: false }; SY.set(id, st); } return st; };
+  const dirty = (lg) => { if (lg._bad) return false; const st = SY.get(lg.id); return !st || st.base == null || pack(lg) !== st.base; };
+  function saveLive() {
+    if (!S) return;
+    const ch = S.list.filter(dirty);
+    if (!ch.length) return;
+    if (!canEdit()) {
+      // 운영진이 아니거나 연결이 없으면 창고 내용으로 되돌림
+      for (const lg of ch) revert(lg.id);
+      setNote(LIVE.offline ? { msg: '연결이 없어 고친 내용을 올리지 못하고 되돌렸습니다. 연결된 뒤 다시 넣어 주세요.' } : { msg: '운영진 통행증이 끝났습니다. 운영진 화면에서 다시 들어와 주세요.', admin: true });
+      redraw(true);
+      return;
+    }
+    for (const lg of ch) push(lg);
+    syncBar();
+  }
+  // 창고 내용으로 되돌림(올린 적 없는 새 리그는 목록에서 뺌)
+  function revert(id) {
+    const st = SY.get(id);
+    const at = S.list.findIndex((x) => x.id === id);
+    if (!st || st.base == null) { if (at >= 0) S.list.splice(at, 1); SY.delete(id); }
+    else {
+      const lg = fromRow({ id, ver: st.ver, data: JSON.parse(st.base) });
+      if (lg && at >= 0) S.list[at] = lg; else if (lg) S.list.push(lg);
+    }
+    if (curId === id) resetUi();
+  }
+  function replaceWith(id, r) {
+    const at = S.list.findIndex((x) => x.id === id);
+    SY.delete(id);
+    const lg = r && !r.deleted && r.data ? fromRow({ id, ver: r.ver, data: r.data }) : null;
+    if (lg) { if (at >= 0) S.list[at] = lg; else { S.list.push(lg); S.list.sort(byNew); } }
+    else if (at >= 0) S.list.splice(at, 1);
+    if (curId === id) resetUi();
+  }
+  function resetUi() { ui.open = null; ui.edit = null; ui.ts = null; ui.tcf = null; ui.tpick = false; ui.confirm = null; ui.redo = null; ui.renaming = false; ui.pick = false; ui.err = ''; }
+  const FAIL = {
+    conflict: '다른 운영진이 먼저 고쳐서 최신본으로 다시 그렸습니다. 고친 내용을 다시 넣어 주세요.',
+    admin: '운영진 통행증이 끝났습니다. 운영진 화면에서 다시 들어와 주세요.',
+    size: '리그 내용이 너무 커서 올리지 못하고 되돌렸습니다. 메모나 세트 기록을 줄여 주세요.',
+    id: '리그 번호가 맞지 않아 올리지 못하고 되돌렸습니다.',
+    gone: '이 리그는 창고에서 지워져 목록에서 뺐습니다.',
+  };
+  async function push(lg) {
+    const id = lg.id;
+    const st = syOf(id);
+    if (st.busy) { st.again = true; return; }
+    st.busy = true; st.again = false;
+    const body = pack(lg);
+    let r = null;
+    try { r = await LIVE.adminCall('thug_league_put', { p_id: id, p_data: JSON.parse(body), p_ver: st.ver }); } catch (e) { r = null; }
+    st.busy = false;
+    const cur = S.list.find((x) => x.id === id) || null;
+    if (r && r.ok) {
+      st.ver = Number(r.ver) || st.ver + 1; st.base = body; st.fail = false;
+      if (syNote && syNote.retry) syNote = null;
+      if (cur && dirty(cur)) { push(cur); return; } // 올리는 동안 또 바뀜
+      laterRefresh();
+    } else if (!r) {
+      st.fail = true;
+      if (st.again && cur) { push(cur); return; }
+    } else {
+      const why = r.reason;
+      if (why === 'conflict') replaceWith(id, r);
+      else if (why === 'gone') replaceWith(id, null);
+      else revert(id);
+      // 통행증이 끝났으면 올리지 못한 다른 변경도 창고 내용으로 되돌림
+      if (why === 'admin') for (const x of S.list.filter(dirty)) { const s = SY.get(x.id); if (!s || !s.busy) revert(x.id); }
+      setNote({ msg: FAIL[why] || '올리지 못하고 창고 내용으로 되돌렸습니다.', admin: why === 'admin' });
+      redraw(true);
+      return;
+    }
+    syncBar();
+  }
+  function retryAll() { if (!S) return; for (const lg of S.list) { const st = SY.get(lg.id); if (st) st.fail = false; } syNote = null; saveLive(); syncBar(); }
+  function setNote(n) { syNote = n; if (n && n.msg) toast(n.msg); }
+  // 글을 적는 중이면(입력 칸에 초점) 다시 그리지 않고 알림 줄만 고침
+  const typing = () => { const ae = document.activeElement; return !!(root && ae && root.contains(ae) && /^(INPUT|TEXTAREA)$/.test(ae.tagName) && ae.type !== 'checkbox'); };
+  function redraw(force) {
+    if (!root || !root.isConnected) return;
+    if (!force && typing()) { syncBar(); return; }
+    rerender();
+  }
+  // 올리기가 모두 끝나고 2초 뒤 LIVE.refreshClub() 한 번(그사이 또 올리면 다시 2초)
+  let refTimer = null;
+  const pending = () => !!S && S.list.some((lg) => { const st = SY.get(lg.id); return (st && st.busy) || dirty(lg); });
+  function laterRefresh() {
+    if (!LIVE || typeof LIVE.refreshClub !== 'function') return;
+    clearTimeout(refTimer);
+    refTimer = setTimeout(() => {
+      refTimer = null;
+      if (pending()) return; // 아직 올릴 것이 있음 → 그 올리기가 끝나면 다시 잡음
+      Promise.resolve(LIVE.refreshClub()).catch(() => false);
+    }, 2000);
+  }
+  // 'thug:club': 올리는 중이거나 못 올린 변경이 없는 리그만 새 내용으로. 바뀐 것이 있으면 true
+  function mergeClub() {
+    if (!S) return false;
+    let changed = false;
+    const rows = new Map();
+    for (const r of clubRows()) if (r && r.id) rows.set(String(r.id), r);
+    const keep = (lg) => { const st = SY.get(lg.id); return !!(st && (st.busy || st.fail)) || dirty(lg); };
+    const next = [];
+    for (const lg of S.list) {
+      const r = rows.get(lg.id);
+      rows.delete(lg.id);
+      if (keep(lg)) { next.push(lg); continue; }
+      if (!r) { SY.delete(lg.id); changed = true; if (curId === lg.id) resetUi(); continue; }
+      const st = SY.get(lg.id);
+      if (st && Number(r.ver) === st.ver) { next.push(lg); continue; }
+      const nl = fromRow(r);
+      changed = true;
+      if (nl) { next.push(nl); if (curId === lg.id) resetUi(); }
+    }
+    for (const r of rows.values()) { const nl = fromRow(r); if (nl) { next.push(nl); changed = true; } }
+    S.list = next.sort(byNew);
+    return changed;
+  }
+  if (LIVE && typeof window !== 'undefined') {
+    // 바뀐 리그가 없으면(내가 올린 것을 다시 받은 경우) 다시 그리지 않아 펼친 칸·입력 중인 칸을 그대로 둠
+    window.addEventListener('thug:club', () => { if (mergeClub()) redraw(false); else syncBar(); });
+    window.addEventListener('thug:admin', () => { if (canEdit() && syNote && syNote.admin) syNote = null; if (!canEdit()) draft = null; redraw(false); });
+  }
+  // 리그 화면 위 줄: 못 올린 변경·올리는 중·알림. 내용이 없으면 숨김
+  function syncEl() {
+    if (!LIVE || !S) return h('div', { class: 'lg-sync', hidden: true });
+    const sts = S.list.map((lg) => SY.get(lg.id)).filter(Boolean);
+    const fail = sts.filter((s) => s.fail).length;
+    const busy = sts.filter((s) => s.busy).length;
+    const kids = [];
+    if (fail) {
+      kids.push(h('p', { class: 'lg-sync-r bad' }, h('span', { class: 'lg-temp-k' }, '못 올림'),
+        h('span', null, `아직 올리지 못한 변경이 있습니다(리그 ${fail}개). 연결을 확인하고 다시 올려 주세요.`),
+        canEdit() ? btn('다시 올리기', retryAll, 'sm hot', { 'data-k': 'sy-retry' }) : null));
+    } else if (busy) kids.push(h('p', { class: 'lg-sync-r' }, h('span', { class: 'c-dim' }, '창고에 올리는 중입니다.')));
+    if (syNote && syNote.msg) {
+      kids.push(h('p', { class: 'lg-sync-r bad', role: 'alert' }, h('span', null, syNote.msg),
+        syNote.admin ? h('a', { class: 'more', href: '#admin' }, '운영진 화면') : null,
+        btn('닫기', () => { syNote = null; syncBar(); }, 'sm', { 'data-k': 'sy-x' })));
+    }
+    return h('div', { class: 'lg-sync', hidden: !kids.length }, ...kids);
+  }
+  function syncBar() {
+    if (!root || !root.isConnected) return;
+    const old = root.querySelector('.lg-sync');
+    if (old) old.replaceWith(syncEl());
+  }
+  // 옛 리그: 정식판 이 기기 thug.leagues에 있던 리그 중 예시가 아니고 창고에 같은 id가 없는 것
+  function legacyList() {
+    if (!LIVE) return [];
+    const raw = store.get(KEY, null);
+    if (!raw || typeof raw !== 'object' || !Array.isArray(raw.list)) return [];
+    const have = new Set([...SY.keys(), ...clubRows().map((r) => r && String(r.id))]);
+    return raw.list.filter((lg) => lg && typeof lg === 'object' && lg.id && Array.isArray(lg.ents) && !lg.example && !lg.uploaded && !have.has(String(lg.id)));
+  }
+  // 올렸거나 창고에 이미 있는 리그는 이 기기 목록에서 빼서 다시 묻지 않음
+  function dropLegacy(ids) {
+    const raw = store.get(KEY, null);
+    if (!raw || !Array.isArray(raw.list)) return;
+    raw.list = raw.list.filter((lg) => !(lg && ids.has(String(lg.id))));
+    store.set(KEY, raw);
+  }
+  async function uploadLegacy() {
+    if (legacyBusy || !canEdit()) return;
+    legacyBusy = true; legacyMsg = '';
+    redraw(true);
+    let up = 0, stop = '';
+    for (const raw of legacyList()) {
+      let lg;
+      try { lg = JSON.parse(JSON.stringify(raw)); lg.id = String(lg.id); delete lg.example; norm(lg); } catch (e) { console.error(e); continue; }
+      const body = pack(lg);
+      let r = null;
+      try { r = await LIVE.adminCall('thug_league_put', { p_id: lg.id, p_data: JSON.parse(body), p_ver: 0 }); } catch (e) { r = null; }
+      if (r && r.ok) {
+        SY.set(lg.id, { ver: Number(r.ver) || 1, base: body, busy: false, again: false, fail: false });
+        S.list.push(lg); S.list.sort(byNew);
+        dropLegacy(new Set([lg.id]));
+        up++;
+      } else if (r && r.reason === 'conflict') {
+        replaceWith(lg.id, r); // 같은 id가 창고에 이미 있음 → 창고 것을 씀
+        dropLegacy(new Set([lg.id]));
+      } else { stop = !r ? '연결이 안 돼' : r.reason === 'admin' ? '운영진 통행증이 끝나' : r.reason === 'size' ? '내용이 너무 큰 리그가 있어' : '올리지 못한 리그가 있어'; if (r && r.reason === 'admin') setNote({ msg: FAIL.admin, admin: true }); break; }
+    }
+    legacyBusy = false;
+    const left = legacyList().length;
+    legacyMsg = stop ? `${up ? `${up}개를 올렸고, ` : ''}${stop} ${left}개가 남았습니다.` : '';
+    if (up) toast(`이 기기에만 있던 리그 ${up}개를 창고에 올렸습니다.`);
+    redraw(true);
+  }
+  function legacyPanel() {
+    if (!LIVE) return null;
+    const list = legacyList();
+    if (!list.length) return null;
+    if (!canEdit()) {
+      return h('p', { class: 'lg-temp' }, h('span', { class: 'lg-temp-k' }, '이 기기'),
+        h('span', null, `이 기기에만 저장된 옛 리그가 ${list.length}개 있습니다. 운영진이 이 기기에서 들어오면 창고로 올릴 수 있습니다.`));
+    }
+    return pnl(`이 기기에만 있는 리그 ${list.length}개`, { cls: 'lg-legacy', label: '이 기기에만 있는 리그' },
+      h('p', { class: 'lg-sub lg-tight' }, '창고가 생기기 전에 이 기기에서 만든 리그입니다. 올리면 클랜원 모두에게 보입니다.'),
+      h('ul', { class: 'lg-legacy-l' }, ...list.map((lg) => h('li', null, h('span', { class: 'lg-kind' }, KIND_TAG[lg.kind] || '풀리그'), h('span', { class: 'nm' }, String(lg.name || '이름 없는 리그')),
+        h('span', { class: 'c-dim' }, ` · ${lg.ents.length}명${lg.hidden ? ' · 숨김' : ''}`)))),
+      legacyMsg ? errLine(legacyMsg) : null,
+      h('div', { class: 'btns lg-tight' }, btn(legacyBusy ? '올리는 중' : '창고로 올리기', uploadLegacy, 'hot sm', { 'data-k': 'lgc-up', 'aria-disabled': legacyBusy ? 'true' : null })));
+  }
   const leagues = () => load().list.filter((x) => !x._bad);
   const byLeague = (id) => leagues().find((x) => x.id === id) || null;
   const newId = () => 'lg-' + Date.now().toString(36) + '-' + Math.floor(Math.random() * 46656).toString(36);
@@ -3861,10 +4928,12 @@ const LG = (() => {
   function awards(lg) {
     if (!lg || lg.example || lg.hidden || lg._bad) return null;
     const list = [];
+    // 친구·대기자(p.ranked === false)는 메달 없음. 순위·대진표의 이름과 결과는 그대로
+    const okIx = (ix) => { const e = lg.ents[ix]; const p = e && e.id ? DB.byId.get(e.id) : null; return !(p && p.ranked === false); };
     const add = (kind, place, side) => {
       if (side == null || side < 0) return;
-      if (isTeam(lg)) { const T = lg.teams[side]; if (T) for (const e of T.members) list.push({ kind, place, ix: e, team: T.name, ti: side }); }
-      else list.push({ kind, place, ix: side, team: null, ti: -1 });
+      if (isTeam(lg)) { const T = lg.teams[side]; if (T) for (const e of T.members) if (okIx(e)) list.push({ kind, place, ix: e, team: T.name, ti: side }); }
+      else if (okIx(side)) list.push({ kind, place, ix: side, team: null, ti: -1 });
     };
     let ms;
     if (isBracket(lg)) {
@@ -3891,6 +4960,8 @@ const LG = (() => {
   }
   const medalEntry = (lg, aw, x) => ({ kind: x.kind, leagueId: lg.id, leagueName: lg.name, date: aw.date, place: x.place, team: x.team });
   // 클랜원마다 받은 메달(날짜 최신 순): { personId: [{ kind, leagueId, leagueName, date(ms), place, team }] }. 클랜원이 아닌 이름은 빠짐
+  // 메달은 정식·테스터만(친구·대기자는 리그에 있어도 메달 없음)
+  const medalPerson = (id) => { const p = id ? DB.byId.get(id) : null; return !!p && p.ranked !== false; };
   function medals() {
     const out = {};
     for (const lg of leagues()) {
@@ -3898,7 +4969,7 @@ const LG = (() => {
       if (!aw) continue;
       for (const x of aw.list) {
         const e = lg.ents[x.ix];
-        if (!e || !e.id || !DB.byId.has(e.id)) continue;
+        if (!e || !medalPerson(e.id)) continue;
         (out[e.id] || (out[e.id] = [])).push(medalEntry(lg, aw, x));
       }
     }
@@ -3907,7 +4978,7 @@ const LG = (() => {
   }
   // 그 리그에서 받은 메달 하나 또는 null(꾸미기에서 단 메달이 아직 유효한지 볼 때)
   function medalOf(personId, leagueId) {
-    if (!personId || !leagueId) return null;
+    if (!personId || !leagueId || !medalPerson(personId)) return null;
     const lg = byLeague(String(leagueId));
     const aw = awards(lg);
     if (!aw) return null;
@@ -4100,9 +5171,16 @@ const LG = (() => {
   const chip = (on, label, fn, extra) => h('button', { type: 'button', class: 'chip', 'aria-pressed': String(!!on), onclick: fn, ...extra }, label);
   const btn = (label, fn, cls = '', extra) => h('button', { type: 'button', class: 'btn ' + cls, onclick: fn, ...extra }, label);
   const errLine = (msg) => h('p', { class: 'lg-err', role: 'alert' }, msg || '');
-  const tempNote = () => h('p', { class: 'lg-temp' }, h('span', { class: 'lg-temp-k' }, LIVE ? '이 기기' : '임시'),
-    h('span', null, LIVE ? '리그는 이 기기(브라우저)에만 저장됩니다. 운영진이 입력하면 모두에게 보이는 저장은 다음 단계에서 붙습니다.' : '리그는 이 기기(브라우저)에만 저장됩니다. 정식판에서는 운영진이 입력하면 클랜원 모두에게 보입니다.'),
-    saveOk ? null : h('span', { class: 'l' }, ' 이 기기는 저장이 막혀 있어 새로 고치면 사라집니다.'));
+  function tempNote() {
+    if (LIVE) {
+      if (LIVE.offline) return h('p', { class: 'lg-temp' }, h('span', { class: 'lg-temp-k' }, '연결 없음'), h('span', null, '연결이 없어 이 기기에 저장해 둔 기록으로 보고 있습니다. 리그는 보기만 할 수 있습니다.'));
+      if (canEdit()) return h('p', { class: 'lg-temp' }, h('span', { class: 'lg-temp-k' }, '운영진'), h('span', null, '운영진으로 들어와 있습니다. 여기서 만들고 고친 리그는 클랜원 모두에게 보입니다.'));
+      return h('p', { class: 'lg-temp' }, h('span', { class: 'lg-temp-k' }, '보기'), h('span', null, '리그는 운영진만 만들고 고칩니다.'), h('a', { class: 'more', href: '#admin' }, '운영진 화면'));
+    }
+    return h('p', { class: 'lg-temp' }, h('span', { class: 'lg-temp-k' }, '임시'),
+      h('span', null, '리그는 이 기기(브라우저)에만 저장됩니다. 정식판에서는 운영진이 입력하면 클랜원 모두에게 보입니다.'),
+      saveOk ? null : h('span', { class: 'l' }, ' 이 기기는 저장이 막혀 있어 새로 고치면 사라집니다.'));
+  }
   // sel: 선택자 하나 또는 차례대로 찾아볼 선택자 목록
   function focusLater(sel) { setTimeout(() => { if (!root) return; let el = null; for (const s of [].concat(sel)) { el = root.querySelector(s); if (el) break; } if (el) { el.focus({ preventScroll: true }); el.scrollIntoView({ block: 'nearest' }); } }, 0); }
   let uid = 0;
@@ -4111,16 +5189,21 @@ const LG = (() => {
   // ================= 목록 =================
   function listView() {
     const all = leagues();
+    const edit = canEdit();
+    if (!edit) draft = null;
     const shown = all.filter((x) => !x.hidden);
-    const hidden = all.filter((x) => x.hidden);
+    const hidden = edit ? all.filter((x) => x.hidden) : [];
     const out = [];
-    out.push(h('header', { class: 'ptitle' }, h('h1', null, '내전 리그'), h('p', null, '토너먼트를 중심으로 대진표를 짜고 결과를 정리합니다. 팀리그와 풀리그도 만들 수 있습니다.')));
+    out.push(h('header', { class: 'ptitle' }, h('h1', null, '내전 리그'), h('p', null, edit ? '토너먼트를 중심으로 대진표를 짜고 결과를 정리합니다. 팀리그와 풀리그도 만들 수 있습니다.' : '운영진이 짠 대진표와 결과를 봅니다. 토너먼트·팀리그·풀리그가 있습니다.')));
+    out.push(syncEl());
     out.push(tempNote());
-    out.push(draft && draft.quick ? quickPanel() : quickBanner());
+    const lgc = legacyPanel();
+    if (lgc) out.push(lgc);
+    if (edit) out.push(draft && draft.quick ? quickPanel() : quickBanner());
     const wiz = draft && !draft.quick;
-    const newBtn = btn(wiz ? '만들기 닫기' : '새 리그 만들기', () => { draft = wiz ? null : freshDraft(); rerender(); if (draft) focusLater('[data-k="d-name"]'); }, 'sm', { 'aria-expanded': String(!!wiz), 'aria-controls': 'lg-new', 'data-k': 'new' });
+    const newBtn = !edit ? null : btn(wiz ? '만들기 닫기' : '새 리그 만들기', () => { draft = wiz ? null : freshDraft(); rerender(); if (draft) focusLater('[data-k="d-name"]'); }, 'sm', { 'aria-expanded': String(!!wiz), 'aria-controls': 'lg-new', 'data-k': 'new' });
     out.push(pnl(h('span', null, '리그 ', h('span', { class: 'cnt' }, `(${shown.length})`)), { right: newBtn, label: '리그 목록' },
-      shown.length ? h('ul', { class: 'lg-cards' }, ...shown.map(card)) : h('p', { class: 'empty' }, '아직 리그가 없습니다. 위에서 대진표를 자동으로 짜거나 새 리그를 만들어 보세요.'),
+      shown.length ? h('ul', { class: 'lg-cards' }, ...shown.map(card)) : h('p', { class: 'empty' }, edit ? '아직 리그가 없습니다. 위에서 대진표를 자동으로 짜거나 새 리그를 만들어 보세요.' : '아직 리그가 없습니다. 운영진이 만들면 여기에 보입니다.'),
       hidden.length ? hiddenBox(hidden) : null));
     if (wiz) out.push(wizard());
     out.push(tracePanel());
@@ -4141,7 +5224,7 @@ const LG = (() => {
         h('span', { class: 'lg-bar', 'aria-hidden': 'true' }, h('i', { style: `width:${pr.total ? (pr.done / pr.total) * 100 : 0}%` })),
         h('span', null, `경기 ${pr.done}/${pr.total}`)),
       h('span', { class: 'lg-card-w' + (win ? ' on' : '') }, win ? winK + win : pr.done ? '진행 중' : '시작 전'),
-      aw ? h('span', { class: 'lg-card-md' }, medalIcon('gold', 16), h('span', { class: 'lg-card-mdn' }, `${medalLabel('gold')} ${medalNames(lg, aw, 'gold', true).join(', ')}`)) : null));
+      aw && aw.list.some((x) => x.kind === 'gold') ? h('span', { class: 'lg-card-md' }, medalIcon('gold', 16), h('span', { class: 'lg-card-mdn' }, `${medalLabel('gold')} ${medalNames(lg, aw, 'gold', true).join(', ')}`)) : null));
   }
   function hiddenBox(list) {
     const open = !!ui.hiddenOpen;
@@ -4171,18 +5254,19 @@ const LG = (() => {
         h('span', { class: 'lg-tr-s' }, h('b', { class: e.a > e.b ? 'gold' : '' }, String(e.a)), h('span', { class: 'c-dim' }, ' : '), h('b', { class: e.b > e.a ? 'gold' : '' }, String(e.b))),
         h('span', { class: 'lg-tr-p' + (e.b > e.a ? ' win' : '') }, icon(e.B, 24), nameNode(e.B))),
       h('span', { class: 'lg-tr-r' }, e.games.map((g) => `${g.room.trim().replace(/\s+/g, ' ')} (${g.map})`).join(' · '))));
-    return pnl('리그 경기로 보이는 기록', { flush: true, right: list.length ? btn('이 사람들로 만들기', start, 'sm', { 'data-k': 'tr-start' }) : null },
+    const edit = canEdit();
+    return pnl('리그 경기로 보이는 기록', { flush: true, right: list.length && edit ? btn('이 사람들로 만들기', start, 'sm', { 'data-k': 'tr-start' }) : null },
       h('p', { class: 'lg-sub' }, '표본 경기의 방 제목에 16강, 결승, 리그, 1차전, 2R 같은 말이 있는 경기를 두 사람과 날짜로 묶었습니다.'),
       list.length ? h('ul', { class: 'lg-trs' }, ...rows) : h('p', { class: 'empty' }, '표본에서 리그 흔적이 있는 경기를 찾지 못했습니다.'),
-      list.length ? h('p', { class: 'lg-sub' }, `여기 나온 ${people.length}명으로 새 토너먼트를 시작할 수 있습니다. 참가자는 다음 단계에서 더하거나 뺄 수 있습니다.`) : null);
+      list.length && edit ? h('p', { class: 'lg-sub' }, `여기 나온 ${people.length}명으로 새 토너먼트를 시작할 수 있습니다. 참가자는 다음 단계에서 더하거나 뺄 수 있습니다.`) : null);
   }
 
   // ================= 대진표 자동으로 짜기 =================
   const byMmr = (a, b) => (b.mmr ? b.mmr.cur.v : -1) - (a.mmr ? a.mmr.cur.v : -1) || a.name.localeCompare(b.name, 'en');
   // 참가자 빠른 고르기: [키, 단추 글, 사람 목록, 알림에 쓸 이름]
   function quickPicks() {
-    const recent = DB.persons.filter((p) => p.daysAgo <= 14).sort(byMmr);
-    const top = (k) => DB.ladder.slice(0, k);
+    const recent = DB.persons.filter((p) => p.ranked !== false && p.daysAgo <= 14).sort(byMmr);
+    const top = (k) => DB.ladder.filter((p) => p.ranked !== false).slice(0, k);
     return [
       ['recent', `최근 14일 안에 경기한 클랜원 전원 (${recent.length}명)`, recent, '최근 14일 안에 경기한 클랜원'],
       ['top8', '래더 상위 8명', top(8)], ['top16', '래더 상위 16명', top(16)], ['top32', '래더 상위 32명', top(32)],
@@ -4412,7 +5496,7 @@ const LG = (() => {
     const count = h('p', { class: 'lg-count', 'aria-live': 'polite' });
     const selBox = h('ul', { class: 'lg-sel', 'aria-label': '고른 참가자' });
     const err = errLine(d.err);
-    const people = DB.persons.slice().sort(byMmr);
+    const people = DB.persons.filter((p) => p.ranked !== false).sort(byMmr); // 리그 대상은 정식·테스터
     const has = (k) => d.sel.some((e) => selKey(e) === k);
     const full = `한 리그에는 ${MAX}명까지 넣을 수 있습니다.`;
     const changed = (msg) => { d.order = null; d.teams = null; d.A.order = null; d.TA.order = null; d.err = msg || ''; draw(); if (after) after(); };
@@ -4464,7 +5548,7 @@ const LG = (() => {
       const v = cu.value.trim();
       if (!v) { d.err = '넣을 이름을 적어 주세요.'; draw(); cu.focus(); return; }
       if (d.sel.length >= MAX) { d.err = full; draw(); return; }
-      const mem = DB.persons.find((p) => p.aliases.some((a) => a.toLowerCase() === v.toLowerCase()));
+      const mem = DB.persons.find((p) => p.ranked !== false && p.aliases.some((a) => a.toLowerCase() === v.toLowerCase()));
       const e = mem ? { id: mem.id, name: mem.name } : { id: null, name: v };
       if (has(selKey(e)) || d.sel.some((x) => x.name.toLowerCase() === v.toLowerCase())) { d.err = `${josa(e.name, '은/는')} 이미 들어 있습니다.`; draw(); return; }
       d.sel.push(e); d.custom = ''; cu.value = '';
@@ -4744,11 +5828,14 @@ const LG = (() => {
     const lg = byLeague(id);
     if (!lg) {
       return [h('header', { class: 'ptitle' }, h('h1', null, '내전 리그')),
-        pnl('리그를 찾을 수 없습니다', {}, h('p', null, LIVE ? '이 기기에 저장된 리그가 아닙니다. 리그는 아직 만든 기기에서만 보입니다.' : '이 기기에 저장된 리그가 아닙니다. 임시 사이트라 리그는 만든 기기에서만 보입니다.'),
+        pnl('리그를 찾을 수 없습니다', {}, h('p', null, LIVE ? '창고에 없는 리그입니다. 지워졌거나 주소가 틀렸습니다.' : '이 기기에 저장된 리그가 아닙니다. 임시 사이트라 리그는 만든 기기에서만 보입니다.'),
           h('div', { class: 'btns' }, h('a', { class: 'btn', href: '#league' }, '리그 목록으로')))];
     }
     const out = [];
+    const edit = canEdit();
+    if (!edit) { ui.renaming = false; ui.redo = null; ui.rmemo = false; ui.open = null; }
     out.push(h('nav', { class: 'lg-crumb', 'aria-label': '위치' }, h('a', { class: 'more', href: '#league' }, '◂ 리그 목록')));
+    out.push(syncEl());
     if (ui.renaming) {
       const f = h('input', { id: 'lg-rn', class: 'field', value: lg.name, maxlength: '40', 'data-k': 'rn', autocomplete: 'off' });
       const ok = () => { const v = f.value.trim(); if (!v) { ui.renameErr = '이름을 비울 수 없습니다.'; rerender(); return; } lg.name = v; ui.renaming = false; ui.renameErr = ''; save(); toast('이름을 고쳤습니다.'); rerender(); focusLater('[data-k="rn-open"]'); };
@@ -4763,14 +5850,15 @@ const LG = (() => {
         ? ` 래더 점수 상위 ${lg.ents.length}명을 자동으로 ${lg.teams.length}팀으로 나눴고, 결과는 비워 두었습니다. 지어낸 결과는 없습니다. 세트를 넣어 보며 써 볼 수 있습니다.`
         : ' 래더 점수 상위 16명을 시드 순으로 놓았고, 표본에 두 사람이 실제로 붙은 기록이 있는 경기만 그 기록으로 채웠습니다. 지어낸 결과는 없습니다. 빈 경기는 결과를 넣어 보며 써 볼 수 있습니다.')));
     }
-    if (lg.hidden) out.push(h('div', { class: 'lg-ex' }, h('p', null, '숨긴 리그입니다.'), btn('되살리기', () => { lg.hidden = false; save(); toast('되살렸습니다.'); rerender(); }, 'sm', { 'data-k': 'unhide' })));
+    if (lg.hidden) out.push(h('div', { class: 'lg-ex' }, h('p', null, '숨긴 리그입니다.'), !edit ? null : btn('되살리기', () => { lg.hidden = false; save(); toast('되살렸습니다.'); rerender(); }, 'sm', { 'data-k': 'unhide' })));
 
     const pr = progress(lg);
     out.push(h('div', { class: 'lg-tools' },
       btn('글로 복사', () => copyText(lg), 'hot sm', { 'data-k': 'copy' }),
-      btn('이름 고치기', () => { ui.renaming = true; ui.renameErr = ''; rerender(); }, 'sm', { 'data-k': 'rn-open' }),
-      lg.hidden ? null : btn(lg.example ? '예시 숨기기' : '리그 숨기기', () => { lg.hidden = true; save(); toast(`${josa(lg.name, '을/를')} 숨겼습니다. 목록 아래 '숨긴 리그'에서 되살릴 수 있습니다.`); ui = {}; location.hash = '#league'; }, 'sm', { 'data-k': 'hide' }),
-      isBracket(lg) ? redoBtn(lg) : null,
+      typeof CD !== 'undefined' && CD.open ? btn('결과 카드', (e) => CD.open('league', lg, APP, e.currentTarget), 'sm', { 'data-k': 'card' }) : null,
+      !edit ? null : btn('이름 고치기', () => { ui.renaming = true; ui.renameErr = ''; rerender(); }, 'sm', { 'data-k': 'rn-open' }),
+      lg.hidden || !edit ? null : btn(lg.example ? '예시 숨기기' : '리그 숨기기', () => { lg.hidden = true; save(); toast(`${josa(lg.name, '을/를')} 숨겼습니다. 목록 아래 '숨긴 리그'에서 되살릴 수 있습니다.`); ui = {}; location.hash = '#league'; }, 'sm', { 'data-k': 'hide' }),
+      isBracket(lg) && edit ? redoBtn(lg) : null,
       h('span', { class: 'lg-tools-p' }, `경기 ${pr.done}/${pr.total}`)));
     if (ui.redo && isBracket(lg)) out.push(redoPanel(lg));
     if (ui.copy != null) {
@@ -4785,7 +5873,13 @@ const LG = (() => {
     else if (lg.kind === 'team') out.push(...teamPanels(lg));
     else out.push(...rrPanels(lg));
 
-    // 메모
+    // 메모(운영진이 아니면 적힌 글만)
+    if (!edit) {
+      if (lg.note && lg.note.trim()) out.push(pnl('메모', { label: '메모' }, h('p', { class: 'lg-memo-ro' }, lg.note.trim())));
+      out.push(tempNote());
+      out.push(h('p', { class: 'sr lg-live', role: 'status', 'aria-live': 'polite' }));
+      return out;
+    }
     const memo = h('textarea', { id: 'lg-memo', class: 'field lg-memo', rows: '4', maxlength: '2000', 'data-k': 'memo', placeholder: '일정, 맵 순서, 상품 같은 것을 적어 둡니다.' }, lg.note || '');
     const memoSt = h('span', { class: 'pnl-sub', 'aria-live': 'polite' }, '');
     memo.addEventListener('input', () => {
@@ -4880,9 +5974,16 @@ const LG = (() => {
     const pr = progress(lg);
     const dinfo = [drawDesc(lg), drawLogText(lg, rs)].filter(Boolean).join(' · ');
     const side = (ix) => h('span', { class: 'lg-nx-p' }, isTeam(lg) ? teamTag(lg, ix) : icon(lg.ents[ix], 24), h('span', { class: 'nm' }, sideName(lg, ix)));
+    const edit = canEdit();
     const nx = next.slice(0, 8).map((m) => {
       const on = ui.open === m.id;
       const memo = memoOf(m.third ? 'p3' : String(m.r));
+      if (!edit) {
+        return h('li', null, h('div', { class: 'lg-nx-b ro' + (m.st === 'live' ? ' live' : '') },
+          h('span', { class: 'lg-nx-l' }, matchLabel(lg, m), memo ? h('span', { class: 'c-dim' }, ` · ${memo}`) : null),
+          side(m.a), h('span', { class: 'lg-nx-s' }, m.res ? `${m.res.a} : ${m.res.b}` : 'vs'), side(m.b),
+          h('span', { class: 'lg-nx-st' }, m.st === 'live' ? '진행 중' : '경기 전')));
+      }
       return h('li', null, h('button', {
         type: 'button', class: 'lg-nx-b' + (m.st === 'live' ? ' live' : ''), 'aria-expanded': String(on), 'aria-controls': 'lg-ed', 'data-k': 'nx-' + m.id,
         'aria-label': `${matchLabel(lg, m)}: ${sideName(lg, m.a)} 대 ${sideName(lg, m.b)}${m.res ? `, ${m.res.a} 대 ${m.res.b}` : ''}. 결과 넣기`,
@@ -4897,10 +5998,10 @@ const LG = (() => {
     const allDone = pod.first != null && (!rs.p3 || rs.p3.st === 'done' || rs.p3.st === 'bye');
     if (allDone) now = [h('span', { class: 'ttl-chip' }, '끝'), ' 모든 경기가 끝났습니다. 우승 ', h('b', { class: 'gold' }, sideName(lg, pod.first))];
     else if (pod.first != null) now = ['우승 ', h('b', { class: 'gold' }, sideName(lg, pod.first)), ' · 3·4위전이 남았습니다.'];
-    else if (cur && cur.undrawn) now = [h('b', { class: 'gold' }, cur.name), " 추첨 전 · 아래 '다음 라운드 추첨'으로 짭니다."];
+    else if (cur && cur.undrawn) now = [h('b', { class: 'gold' }, cur.name), edit ? " 추첨 전 · 아래 '다음 라운드 추첨'으로 짭니다." : ' 추첨 전 · 운영진이 추첨하면 경기가 나옵니다.'];
     else if (cur) now = [h('b', { class: 'gold' }, cur.name), ` ${cur.done}/${cur.total} 진행`, memoOf(cur.key) ? h('span', { class: 'c-dim' }, ` · ${memoOf(cur.key)}`) : null];
     else now = '경기를 기다립니다.';
-    const rmOpen = !!ui.rmemo;
+    const rmOpen = edit && !!ui.rmemo;
     const rmBox = rmOpen ? h('div', { class: 'lg-rm', id: 'lg-rmemo' },
       h('p', { class: 'lg-sub lg-tight' }, '라운드마다 날짜와 맵을 적어 둡니다. 대진표의 라운드 이름 아래와 진행 상황에 보입니다.'),
       h('div', { class: 'lg-rm-g' }, ...rounds.map((x) => {
@@ -4920,11 +6021,11 @@ const LG = (() => {
       })),
       h('p', { class: 'lg-now' }, ...[].concat(now)),
       dinfo ? h('p', { class: 'lg-dinfo' }, h('span', { class: 'lg-dinfo-k' }, '대진'), ' ', dinfo) : null,
-      lg.fmtB === 'redraw' && pod.first == null ? drawBar(lg, rs) : null,
+      lg.fmtB === 'redraw' && pod.first == null && edit ? drawBar(lg, rs) : null,
       !allDone ? h('p', { class: 'info-l lg-nx-h' }, '다음에 치를 경기') : null,
       !allDone ? (nx.length ? h('ul', { class: 'lg-nx' }, ...nx) : h('p', { class: 'c-dim lg-nx-none' }, cur && cur.undrawn ? '다음 라운드를 추첨하면 경기가 나옵니다.' : '지금 치를 수 있는 경기가 없습니다. 앞 경기 결과를 기다립니다.')) : null,
       next.length > 8 ? h('p', { class: 'lg-sub lg-tight' }, `그 밖에 ${next.length - 8}경기가 더 있습니다. 대진표에서 고를 수 있습니다.`) : null,
-      h('div', { class: 'btns lg-tight' }, btn(rmOpen ? '라운드 메모 닫기' : '라운드 메모(날짜·맵)', () => { ui.rmemo = !rmOpen; rerender(); if (!rmOpen) focusLater('#lg-rmemo input'); }, 'sm', { 'aria-expanded': String(rmOpen), 'aria-controls': 'lg-rmemo', 'data-k': 'rm-open' })),
+      !edit ? null : h('div', { class: 'btns lg-tight' }, btn(rmOpen ? '라운드 메모 닫기' : '라운드 메모(날짜·맵)', () => { ui.rmemo = !rmOpen; rerender(); if (!rmOpen) focusLater('#lg-rmemo input'); }, 'sm', { 'aria-expanded': String(rmOpen), 'aria-controls': 'lg-rmemo', 'data-k': 'rm-open' })),
       rmBox);
   }
 
@@ -4949,7 +6050,7 @@ const LG = (() => {
       anyMemo ? h('p', { class: 'lg-col-m' }, ' ') : null,
       h('div', { class: 'lg-col-b' }, h('div', { class: 'lg-slot' + (cp != null ? ' done' : '') },
         h('div', { class: 'lg-cup' + (cp != null ? ' on' : '') }, cp != null
-          ? [who(cp, 32), h('span', { class: 'lg-cup-n' }, sideName(lg, cp)), h('span', { class: 'lg-cup-k' }, live && awards(lg) ? medalIcon('gold', 16) : null, '우승'),
+          ? [who(cp, 32), h('span', { class: 'lg-cup-n' }, sideName(lg, cp)), h('span', { class: 'lg-cup-k' }, live && (awards(lg) || { list: [] }).list.some((x) => x.kind === 'gold') ? medalIcon('gold', 16) : null, '우승'),
             pod.second != null || pod.third != null ? h('span', { class: 'lg-pod' }, pod.second != null ? h('span', null, `준우승 ${sideName(lg, pod.second)}`) : null, pod.third != null ? h('span', null, `3위 ${sideName(lg, pod.third)}`) : null) : null]
           : h('span', { class: 'lg-cup-k' }, '결승 뒤에 정해집니다'))))));
     return h('div', { class: 'lg-br-scroll', tabindex: '0', role: 'region', 'aria-label': (live ? '대진표' : '대진표 미리보기') + '(옆으로 넘겨 볼 수 있음)', 'data-sx': 'br-' + (key || 'main') }, h('div', { class: 'lg-br' + (lg.fmtB === 'redraw' ? ' redraw' : '') }, ...cols));
@@ -4981,8 +6082,8 @@ const LG = (() => {
     return h('div', { class: 'lg-medals', role: 'group', 'aria-label': '메달' },
       h('p', { class: 'lg-md-h' }, h('span', { class: 'ttl-chip' }, '메달'), ` ${fmt.day(aw.date)} 확정${many ? ' · 조마다 1~3위' : ''}`),
       h('ul', { class: 'lg-md-l' }, ...rows),
-      h('p', { class: 'lg-temp lg-md-note' }, h('span', { class: 'lg-temp-k' }, LIVE ? '이 기기' : '임시'),
-        h('span', null, LIVE ? '메달은 이 기기에 저장된 리그 결과로 정해져 이 기기에서만 보입니다. 모두에게 보이는 저장은 다음 단계에서 붙습니다.' : '메달은 이 기기에 저장된 리그 결과로 정해져 이 기기에서만 보입니다. 정식판에서는 클랜원 모두에게 보입니다.')));
+      LIVE ? null : h('p', { class: 'lg-temp lg-md-note' }, h('span', { class: 'lg-temp-k' }, '임시'),
+        h('span', null, '메달은 이 기기에 저장된 리그 결과로 정해져 이 기기에서만 보입니다. 정식판에서는 클랜원 모두에게 보입니다.')));
   }
   function bracketPanel(lg, rs) {
     const pod = podium(lg, rs);
@@ -4997,11 +6098,14 @@ const LG = (() => {
     }
     kids.push(bracketScroller(lg, rs, true));
     if (rs.p3) kids.push(p3Box(lg, rs.p3, true));
-    kids.push(h('p', { class: 'lg-sub' }, (isTeam(lg)
-      ? '경기를 누르면 세트를 넣는 칸이 대진표 아래에 열립니다. 이긴 팀은 다음 라운드로 저절로 올라갑니다.'
-      : '경기를 누르면 결과를 넣는 칸이 대진표 아래에 열립니다. 이긴 사람은 다음 라운드로 저절로 올라갑니다.')
+    const edit = canEdit();
+    kids.push(h('p', { class: 'lg-sub' }, !edit
+      ? (isTeam(lg) ? '이긴 팀이 다음 라운드로 올라갑니다.' : '이긴 사람이 다음 라운드로 올라갑니다.') + (lg.fmtB === 'redraw' ? ' 라운드마다 다시 추첨하는 리그라, 다음 라운드 상대는 앞 라운드가 끝난 뒤 정해집니다.' : '')
+      : (isTeam(lg)
+        ? '경기를 누르면 세트를 넣는 칸이 대진표 아래에 열립니다. 이긴 팀은 다음 라운드로 저절로 올라갑니다.'
+        : '경기를 누르면 결과를 넣는 칸이 대진표 아래에 열립니다. 이긴 사람은 다음 라운드로 저절로 올라갑니다.')
       + (lg.fmtB === 'redraw' ? " 라운드마다 다시 추첨하는 리그라, 다음 라운드 상대는 진행 상황의 '다음 라운드 추첨'으로 정합니다." : '')));
-    const open = ui.open ? allMatches(rs).find((m) => m.id === ui.open) : null;
+    const open = ui.open && edit ? allMatches(rs).find((m) => m.id === ui.open) : null;
     if (open && open.st !== 'bye' && open.a != null && open.b != null) kids.push(isTeam(lg) ? teamEditor(lg, open) : editor(lg, open));
     return pnl('대진표', { flush: true, label: '대진표', cls: 'lg-brp', right: h('span', { class: 'pnl-sub' }, isTeam(lg) ? `${lg.size}강 · ${modeName(lg)}` : `${lg.size}강 · ${boName(lg.bo)}`) }, ...kids);
   }
@@ -5027,7 +6131,7 @@ const LG = (() => {
     };
     const a = row(mt.a, mt.res ? mt.res.a : null), b = row(mt.b, mt.res ? mt.res.b : null);
     const label = matchLabel(lg, mt);
-    if (!live || mt.st === 'bye' || mt.a == null || mt.b == null) {
+    if (!live || !canEdit() || mt.st === 'bye' || mt.a == null || mt.b == null) {
       return h('div', {
         class: 'lg-mc static' + (mt.st === 'bye' ? ' bye' : ''), role: 'group',
         'aria-label': mt.st === 'bye' ? `${label}: ${sideName(lg, mt.winner)} 부전승` : mt.undrawn ? `${label}: 추첨 전` : mt.a == null || mt.b == null ? `${label}: 앞 경기 결과를 기다림` : `${label}: ${sideName(lg, mt.a)} 대 ${sideName(lg, mt.b)}`,
@@ -5202,21 +6306,23 @@ const LG = (() => {
             h('td', { class: 'n' }, h('b', null, String(r.pt))));
         })));
       const doneN = ms.filter((m) => m.winner != null).length;
+      const edit = canEdit();
       const list = h('ul', { class: 'lg-ml' }, ...ms.map((mt, k) => {
-        const on = ui.open === mt.id;
+        const on = edit && ui.open === mt.id;
         const A = lg.ents[mt.a], B = lg.ents[mt.b];
         const side = (e, ix, sc) => h('span', { class: 'lg-ml-p' + (mt.winner == null ? '' : mt.winner === ix ? ' win' : ' lose') }, icon(e, 24), h('span', { class: 'nm' + (personOf(e) ? '' : ' outsider') }, e.name), h('span', { class: 'lg-ml-s' }, sc == null ? '-' : String(sc)));
         const desc = `${gname} ${k + 1}경기: ${A.name} 대 ${B.name}` + (mt.res ? `, ${mt.res.a} 대 ${mt.res.b}` : ', 결과 없음') + '. 결과 넣기';
+        const kids = [h('span', { class: 'lg-ml-no' }, String(k + 1)), side(A, mt.a, mt.res ? mt.res.a : null), h('span', { class: 'g-x' }, 'vs'), side(B, mt.b, mt.res ? mt.res.b : null),
+          h('span', { class: 'lg-ml-st' }, mt.st === 'done' ? '끝' : mt.st === 'live' ? '진행 중' : '경기 전')];
+        if (!edit) return h('li', { class: 'lg-ml-i' }, h('div', { class: 'lg-ml-b ro st-' + mt.st }, ...kids));
         return h('li', { class: 'lg-ml-i' + (on ? ' open' : '') },
-          h('button', { type: 'button', class: 'lg-ml-b st-' + mt.st, 'aria-expanded': String(on), 'aria-controls': on ? 'lg-ed' : null, 'aria-label': desc, 'data-k': 'm-' + mt.id, onclick: () => openEditor(lg, mt.id) },
-            h('span', { class: 'lg-ml-no' }, String(k + 1)), side(A, mt.a, mt.res ? mt.res.a : null), h('span', { class: 'g-x' }, 'vs'), side(B, mt.b, mt.res ? mt.res.b : null),
-            h('span', { class: 'lg-ml-st' }, mt.st === 'done' ? '끝' : mt.st === 'live' ? '진행 중' : '경기 전')),
+          h('button', { type: 'button', class: 'lg-ml-b st-' + mt.st, 'aria-expanded': String(on), 'aria-controls': on ? 'lg-ed' : null, 'aria-label': desc, 'data-k': 'm-' + mt.id, onclick: () => openEditor(lg, mt.id) }, ...kids),
           on ? editor(lg, mt) : null);
       }));
       out.push(pnl(many ? `${gname}` : '풀리그', { flush: true, label: gname, right: h('span', { class: 'pnl-sub' }, `경기 ${doneN}/${ms.length}${allDone && rows[0] ? ` · 1위 ${lg.ents[rows[0].i].name}` : ''}`) },
         h('div', { class: 'scroll-x' }, table),
         h('p', { class: 'lg-sub' }, '순위는 이긴 경기 수, 세트 득실, 승자승 순입니다. 승점은 이긴 경기마다 3점입니다.'),
-        h('p', { class: 'lg-ml-h' }, '경기 목록 · 누르면 결과를 넣는 칸이 열립니다'),
+        h('p', { class: 'lg-ml-h' }, edit ? '경기 목록 · 누르면 결과를 넣는 칸이 열립니다' : '경기 목록'),
         list));
     });
     return out;
@@ -5263,14 +6369,16 @@ const LG = (() => {
   function teamGamesPanel(lg) {
     const tour = lg.tfmt === 'tour';
     const ms = teamGames(lg);
+    const edit = canEdit();
     const items = ms.map((mt) => {
-      const on = ui.open === mt.id;
+      const on = edit && ui.open === mt.id;
       const side = (t, sc) => h('span', { class: 'lg-ml-p' + (mt.winner == null ? '' : mt.winner === t ? ' win' : ' lose') }, teamTag(lg, t), h('span', { class: 'nm' }, tname(lg, t)), h('span', { class: 'lg-ml-s' }, sc == null ? '-' : String(sc)));
       const label = matchLabel(lg, mt);
       const desc = `${label}: ${tname(lg, mt.a)} 대 ${tname(lg, mt.b)}` + (mt.res ? `, 세트 ${mt.res.a} 대 ${mt.res.b}` : ', 결과 없음') + '. 세트 넣기';
       const st = mt.st === 'done' ? (mt.tm.ev.allkill != null ? '끝 · 올킬' : '끝') : mt.st === 'live' ? '진행 중' : '경기 전';
       const head = [h('span', { class: 'lg-ml-no' }, tour ? (mt.third ? '3·4' : mt.round) : String(mt.no)), side(mt.a, mt.res ? mt.res.a : null), h('span', { class: 'g-x' }, 'vs'), side(mt.b, mt.res ? mt.res.b : null), h('span', { class: 'lg-ml-st' }, st)];
       const sets = mt.tm && mt.tm.sets.length && !(on && !tour) ? h('ol', { class: 'lg-sls', 'aria-label': `${label} 세트` }, ...mt.tm.sets.map((s, k) => setLine(lg, mt, s, k, mt.tm.ev.notes[k]))) : null;
+      if (!edit) return h('li', { class: 'lg-ml-i' + (tour ? ' tour' : '') }, h('div', { class: 'lg-ml-b ro st-' + mt.st + (tour ? ' wide' : '') }, ...head), sets);
       return h('li', { class: 'lg-ml-i' + (on ? ' open' : '') + (tour ? ' tour' : '') },
         h('button', { type: 'button', class: 'lg-ml-b st-' + mt.st + (tour ? ' wide' : ''), 'aria-expanded': String(on), 'aria-controls': 'lg-ed', 'aria-label': desc, 'data-k': (tour ? 'tl-' : 'm-') + mt.id, onclick: () => openEditor(lg, mt.id, tour) }, ...head),
         sets,
@@ -5278,7 +6386,7 @@ const LG = (() => {
     });
     const done = ms.filter((m) => m.st === 'done').length;
     return pnl('팀 경기', { flush: true, label: '팀 경기', right: h('span', { class: 'pnl-sub' }, `${modeName(lg)} · ${done}/${ms.length}`) },
-      h('p', { class: 'lg-ml-h first' }, tour ? '두 팀이 정해진 경기 · 누르면 대진표 아래에 세트를 넣는 칸이 열립니다' : '경기 목록 · 누르면 세트를 넣는 칸이 열립니다'),
+      h('p', { class: 'lg-ml-h first' }, !edit ? (tour ? '두 팀이 정해진 경기' : '경기 목록') : tour ? '두 팀이 정해진 경기 · 누르면 대진표 아래에 세트를 넣는 칸이 열립니다' : '경기 목록 · 누르면 세트를 넣는 칸이 열립니다'),
       items.length ? h('ul', { class: 'lg-ml' }, ...items) : h('p', { class: 'empty' }, '아직 두 팀이 정해진 경기가 없습니다.'));
   }
 
@@ -5606,7 +6714,953 @@ const LG = (() => {
     return root;
   }
 
-  return { view, josa, medals, medalOf, _awards: awards, _summary: summary, _traces: traces, _load: load, _stats: playerStats, _standings: teamStandings, _eval: evalSets, _split: autoSplit, _auto: autoOrder, _ctx: personCtx, _clash: clash, _seat: seatSlots, _bracket: bracket, _drawRound: drawRound, _build: build, _cascade: cascade, _applyCascade: applyCascade, _redrawState: redrawState, _progress: progress, _podium: podium, _norm: norm, TRACE };
+  // 리그 전부(숨긴 것 포함, 망가진 것 뺌). 카드 그림 등에서 씀
+  const list = () => leagues().slice();
+  return { view, list, josa, medals, medalOf, _awards: awards, _summary: summary, _traces: traces, _load: load, _stats: playerStats, _standings: teamStandings, _eval: evalSets, _split: autoSplit, _auto: autoOrder, _ctx: personCtx, _clash: clash, _seat: seatSlots, _bracket: bracket, _drawRound: drawRound, _build: build, _cascade: cascade, _applyCascade: applyCascade, _redrawState: redrawState, _progress: progress, _podium: podium, _norm: norm, TRACE };
+})();
+
+/* THUG 클랜 — 카톡에 올릴 카드 그림(캔버스 → PNG)과 주간 소식. 전역 CD
+   묶는 순서: league.js 뒤, main.js 앞(CL·LG가 없어도 돌아감). 모양은 cards.css.
+
+   API
+   - CD.profile(p, app)      프로필 카드. Promise<HTMLCanvasElement>(1080×1350)
+   - CD.league(lg, app)      리그 결과 카드(끝나지 않았으면 진행 상황)
+   - CD.war(w, app)          클랜전 결과 카드(CL.wars()의 한 줄). 세트가 많으면 더 길어짐
+   - CD.weekly(mon, app)     주간 소식 카드. 내용에 따라 더 길어짐
+   - CD.weekData(mon)        그 주(한국 시각 월 0시~일 24시) 기록. mon: 'YYYY-MM-DD'(그 주 아무 날) | 시각 ms | 없으면 지난주
+   - CD.weeklyPanel(app)     채널 화면에 넣는 작은 패널(지난주 요약 + '주간 소식 보기' #weekly)
+   - CD.weeklyView(app, mon) 화면 하나(#weekly = 지난주, #weekly--YYYY-MM-DD = 그 주 월요일)
+   - CD.open(kind, arg, app) 미리 보기 창. kind 'profile'|'league'|'war'|'weekly', arg는 사람·리그·클랜전(또는 id)·월요일
+   - CD.lastWeek()           지난주 월요일 'YYYY-MM-DD'(DB.NOW 기준)
+   그림 글꼴은 갈무리 정수 배(Galmuri11 12의 배수, Galmuri14 15의 배수)만 쓴다. */
+const CD = (() => {
+  'use strict';
+  const W = 1080, H = 1350, M = 48;
+  const DAY = 864e5, KST = 9 * 3600e3;
+  const C = {
+    bg: '#05080f', pnl: '#0a1530', deep: '#061024', edge: '#2f63b8', hi: '#6fa8ff', dim: '#1a3462',
+    tx: '#e6eefc', sub: '#b4c7e6', dimt: '#8ea6cc', name: '#cfe4ff', sys: '#f2d24b', win: '#62e07e', loss: '#ff7a6e', brand: '#ff5a2a',
+    gold: '#e5b234', silver: '#bfcad8', bronze: '#c97d45',
+  };
+  const GC = ['#8a9bb8', '#b4c7e6', '#7fe08f', '#7fd8ff', '#d8e2f0', '#f2d24b', '#ff9a6e']; // style.css .g0~.g6
+  const TCOL = ['#e5484d', '#20b2a0', '#a3d63c', '#f07ab8', '#6b6ff7', '#b5835a', '#eef1f6', '#237a4b']; // league.js 팀 색
+  const F = {
+    s: '24px Galmuri11', sb: '700 24px Galmuri11', t: '36px Galmuri11', tb: '700 36px Galmuri11', xb: '700 48px Galmuri11',
+    m: '30px Galmuri14', l: '45px Galmuri14', x: '60px Galmuri14',
+  };
+  const RACE = (r) => (DB.RACE[r] || DB.RACE.R);
+  const hasCL = () => typeof CL !== 'undefined' && CL && typeof CL.wars === 'function';
+  const hasLG = () => typeof LG !== 'undefined' && LG;
+  const ranked = (p) => !!p && p.ranked !== false;
+
+  /* ================= 준비: 글꼴·그림 ================= */
+  let fontsP = null;
+  function fontsReady() {
+    if (!fontsP) {
+      const list = [F.s, F.sb, F.t, F.m, F.x, '12px Galmuri11', '15px Galmuri14'];
+      fontsP = (document.fonts && document.fonts.load ? Promise.all(list.map((f) => document.fonts.load(f, '가A1'))) : Promise.resolve())
+        .then(() => (document.fonts && document.fonts.ready) || null).catch(() => null);
+    }
+    return fontsP;
+  }
+  const IMG = new Map();
+  function img(src) {
+    if (!IMG.has(src)) {
+      IMG.set(src, new Promise((res) => {
+        const i = new Image();
+        i.decoding = 'async';
+        i.onload = () => res(i);
+        i.onerror = () => res(null);
+        i.src = src;
+      }));
+    }
+    return IMG.get(src);
+  }
+  const emblemSrc = (p) => `assets/emblem-${p.isMaster ? 'master' : RACE(p.main).key}.webp`;
+
+  /* ================= 그리기 도구 ================= */
+  function sheet(h) {
+    const c = document.createElement('canvas');
+    c.width = W; c.height = h;
+    const x = c.getContext('2d');
+    x.imageSmoothingEnabled = false;
+    x.textBaseline = 'top';
+    return [c, x];
+  }
+  function sky(x, h, seed) {
+    x.fillStyle = C.bg; x.fillRect(0, 0, W, h);
+    const g = x.createRadialGradient(W / 2, -h * 0.08, 0, W / 2, -h * 0.08, h * 0.75);
+    g.addColorStop(0, 'rgba(40, 90, 200, 0.26)'); g.addColorStop(1, 'rgba(40, 90, 200, 0)');
+    x.fillStyle = g; x.fillRect(0, 0, W, h);
+    const r = UT.rng(UT.hash('card' + seed));
+    for (let i = 0; i < Math.round(h / 6); i++) {
+      const s = r() < 0.12 ? 4 : 2;
+      x.fillStyle = `rgba(214, 228, 255, ${(0.12 + r() * 0.45).toFixed(2)})`;
+      x.fillRect(Math.floor(r() * W / 2) * 2, Math.floor(r() * h / 2) * 2, s, s);
+    }
+    const v = x.createRadialGradient(W / 2, h * 0.45, Math.min(W, h) * 0.35, W / 2, h * 0.45, Math.max(W, h) * 0.8);
+    v.addColorStop(0, 'rgba(0, 0, 0, 0)'); v.addColorStop(1, 'rgba(0, 0, 0, 0.6)');
+    x.fillStyle = v; x.fillRect(0, 0, W, h);
+  }
+  function cut(x, X, Y, w, h, c) {
+    x.beginPath();
+    x.moveTo(X + c, Y); x.lineTo(X + w, Y); x.lineTo(X + w, Y + h - c); x.lineTo(X + w - c, Y + h); x.lineTo(X, Y + h); x.lineTo(X, Y + c);
+    x.closePath();
+  }
+  // 글 한 줄. o.max를 넘으면 o.fit의 작은 글꼴로, 그래도 넘으면 끝을 줄임. 돌려주는 값 = 그린 폭
+  function text(x, s, X, Y, font, color, o = {}) {
+    s = String(s == null ? '' : s);
+    let f = font;
+    x.font = f;
+    if (o.max && x.measureText(s).width > o.max) {
+      for (const ff of o.fit || []) { f = ff; x.font = ff; if (x.measureText(s).width <= o.max) break; }
+      if (x.measureText(s).width > o.max) {
+        while (s.length > 1 && x.measureText(s + '…').width > o.max) s = s.slice(0, -1);
+        s += '…';
+      }
+    }
+    x.fillStyle = color;
+    x.textAlign = o.align || 'left';
+    x.fillText(s, Math.round(X), Math.round(Y));
+    x.textAlign = 'left';
+    return x.measureText(s).width;
+  }
+  const measure = (x, s, font) => { x.font = font; return x.measureText(String(s)).width; };
+  // 여러 색 조각을 한 줄로: [[글, 글꼴, 색], ...]. 돌려주는 값 = 끝 x
+  function runs(x, parts, X, Y, align) {
+    let w = 0;
+    for (const [s, f] of parts) w += measure(x, s, f);
+    let cx = align === 'right' ? X - w : align === 'center' ? X - w / 2 : X;
+    for (const [s, f, col, dy] of parts) { text(x, s, cx, Y + (dy || 0), f, col); cx += measure(x, s, f); }
+    return cx;
+  }
+  // 패널: 1080 그림에 맞춘 사이트 패널(파란 경사 테두리, 모서리 깎기, 제목 줄). 돌려주는 값 = 본문 시작 y
+  function panel(x, X, Y, w, h, title, right) {
+    const c = 24;
+    const g = x.createLinearGradient(0, Y, 0, Y + h);
+    g.addColorStop(0, C.hi); g.addColorStop(Math.min(0.9, 120 / h), C.edge); g.addColorStop(1, C.dim);
+    cut(x, X, Y, w, h, c); x.fillStyle = g; x.fill();
+    x.save();
+    cut(x, X + 3, Y + 3, w - 6, h - 6, c - 1); x.clip();
+    x.fillStyle = C.pnl; x.fillRect(X, Y, w, h);
+    const g2 = x.createLinearGradient(0, Y, 0, Y + 320);
+    g2.addColorStop(0, 'rgba(56, 110, 210, 0.16)'); g2.addColorStop(1, 'rgba(56, 110, 210, 0)');
+    x.fillStyle = g2; x.fillRect(X, Y, w, 320);
+    x.fillStyle = 'rgba(120, 170, 255, 0.035)';
+    for (let yy = Y + 3; yy < Y + h; yy += 6) x.fillRect(X, yy, w, 2);
+    let top = Y + 3;
+    if (title) {
+      const hg = x.createLinearGradient(X, 0, X + w, 0);
+      hg.addColorStop(0, 'rgba(70, 130, 235, 0.42)'); hg.addColorStop(0.62, 'rgba(30, 70, 150, 0.14)'); hg.addColorStop(1, 'rgba(30, 70, 150, 0)');
+      x.fillStyle = hg; x.fillRect(X, Y, w, 72);
+      x.fillStyle = C.dim; x.fillRect(X, Y + 72, w, 3);
+      x.fillStyle = C.hi; x.fillRect(X + 36, Y + 30, 12, 12);
+      const rw = right ? measure(x, right, F.s) + 24 : 0;
+      text(x, title, X + 64, Y + 21, F.m, '#fff', { max: w - 100 - rw, fit: [F.s] });
+      if (right) text(x, right, X + w - 30, Y + 24, F.s, C.sub, { align: 'right' });
+      top = Y + 75;
+    }
+    x.restore();
+    return top;
+  }
+  // 작은 상자(칸): 안쪽 테두리 1줄 + 위 색 띠
+  function box(x, X, Y, w, h, top) {
+    x.fillStyle = C.deep; x.fillRect(X, Y, w, h);
+    x.strokeStyle = C.dim; x.lineWidth = 3; x.strokeRect(X + 1.5, Y + 1.5, w - 3, h - 3);
+    if (top) { x.fillStyle = top; x.fillRect(X, Y, w, 6); }
+  }
+  function tierBox(x, t, X, Y, s = 48) {
+    x.fillStyle = DB.TIER[t] || '#666'; x.fillRect(X, Y, s, s);
+    x.fillStyle = 'rgba(255, 255, 255, 0.4)'; x.fillRect(X, Y, s, 3);
+    x.fillStyle = 'rgba(0, 0, 0, 0.25)'; x.fillRect(X, Y + s - 6, s, 6);
+    text(x, t, X + s / 2, Y + (s - 24) / 2 - 1, F.sb, '#07101f', { align: 'center' });
+    return s;
+  }
+  function chip(x, s, X, Y, color, font = F.s) {
+    const w = Math.ceil(measure(x, s, font)) + 24, hh = font === F.s || font === F.sb ? 36 : 44;
+    x.fillStyle = 'rgba(8, 18, 40, 0.9)'; x.fillRect(X, Y, w, hh);
+    x.strokeStyle = color; x.lineWidth = 3; x.strokeRect(X + 1.5, Y + 1.5, w - 3, hh - 3);
+    text(x, s, X + 12, Y + (hh - (font === F.m ? 30 : 24)) / 2, font, color);
+    return w;
+  }
+  function smooth(x, on) { x.imageSmoothingEnabled = on; if (on) x.imageSmoothingQuality = 'high'; }
+  function drawImg(x, im, X, Y, w, h, soft) {
+    if (!im) return;
+    smooth(x, !!soft); x.drawImage(im, Math.round(X), Math.round(Y), Math.round(w), Math.round(h)); smooth(x, false);
+  }
+  // 이미지 비율 유지, 높이 hh에 맞춤. 돌려주는 값 = 그린 폭
+  function fitH(x, im, X, Y, hh, soft) { if (!im) return 0; const w = Math.round(im.width * hh / im.height); drawImg(x, im, X, Y, w, hh, soft); return w; }
+
+  /* ---------- 초상·아이콘·메달 ---------- */
+  const lookOf = (app, p) => { try { return app && app.lookOf ? app.lookOf(p) : PT.defaults(p, p.grade || 1); } catch (e) { return PT.defaults(p, p.grade || 1); } };
+  // 큰 초상 canvas(등급 테두리 포함, 움직임 없음). scale 6 → 394×444, 3 → 197×222
+  function portraitOf(app, p, scale) {
+    return PT.portrait(lookOf(app, p), {
+      scale, animate: false, crown: p.ladderRank === 1, streak: p.streak || 0, away: false, master: !!p.isMaster, grade: p.grade || 1,
+    });
+  }
+  function medalKind(app, p) { try { return app && app.medalKind ? app.medalKind(p) : null; } catch (e) { return null; } }
+  function medalsOf(app, p) { try { return (app && app.medalsOf ? app.medalsOf(p) : []) || []; } catch (e) { return []; } }
+  // 큰 초상 + 단 메달(가슴). 돌려주는 값 = { w, h }
+  function drawPortrait(x, app, p, X, Y, scale) {
+    const c = portraitOf(app, p, scale);
+    x.drawImage(c, Math.round(X), Math.round(Y));
+    const k = medalKind(app, p);
+    if (k && typeof MD !== 'undefined') {
+      let ax = 0, ay = 0, size = c.width;
+      const FR = typeof PT_ART !== 'undefined' && PT_ART.frames ? PT_ART.frames.sizes : null;
+      if (FR) for (const s of ['128', '64']) { const f = FR[s]; if (f && c.width % f.w === 0) { const kk = c.width / f.w; ax = f.x * kk; ay = f.y * kk; size = +s * kk; break; } }
+      const cell = Math.max(1, Math.floor(size / 56)), mpx = cell * 15;
+      const m = MD.icon(k, mpx);
+      if (m) x.drawImage(m, Math.round(X + ax + size * 0.375 - (mpx - 11 * cell) / 2), Math.round(Y + ay + size * (1 - 0.107) - mpx));
+    }
+    return { w: c.width, h: c.height };
+  }
+  // 아이콘(32칸을 정수 배로). p가 없으면 빈 칸
+  function drawIcon(x, app, p, X, Y, px = 64) {
+    if (!p) { x.fillStyle = '#0b1a38'; x.fillRect(X, Y, px, px); x.strokeStyle = C.dim; x.lineWidth = 3; x.strokeRect(X + 1.5, Y + 1.5, px - 3, px - 3); return px; }
+    // 32·24·16칸 가운데 정수 배로 px에 가장 크게 들어가는 것(48 → 24칸 2배, 64 → 32칸 2배)
+    let base = 16, k = 1;
+    for (const b of [32, 24, 16]) { const kk = Math.floor(px / b); if (kk >= 1 && b * kk > base * k) { base = b; k = kk; } }
+    const c = PT.icon(lookOf(app, p), base, { away: false, master: !!p.isMaster, grade: p.grade || 1 });
+    x.drawImage(c, Math.round(X), Math.round(Y), base * k, base * k);
+    return base * k;
+  }
+  function medalIcon(x, kind, X, Y, px) {
+    if (typeof MD === 'undefined') return 0;
+    const m = MD.icon(kind, px);
+    if (m) x.drawImage(m, Math.round(X), Math.round(Y));
+    return px;
+  }
+  const medalLabel = (k) => (typeof MD !== 'undefined' && MD.LABEL && MD.LABEL[k]) || { gold: '금메달', silver: '은메달', bronze: '동메달' }[k] || '';
+
+  /* ---------- 머리·꼬리 ---------- */
+  async function head(x, label, right) {
+    const mark = await img('assets/logo-mark.webp');
+    let X = M;
+    if (mark) { const w = fitH(x, mark, M, 40, 96, true); x.strokeStyle = C.edge; x.lineWidth = 3; x.strokeRect(M + 1.5, 41.5, w - 3, 93); X = M + w + 28; }
+    text(x, label, X, 46, F.tb, '#fff', { max: W - X - M - 240, fit: [F.sb] });
+    text(x, 'Clan THUG · 클랜 채널', X, 98, F.s, C.sub);
+    if (right) text(x, right, W - M, 98, F.s, C.sub, { align: 'right' });
+  }
+  function foot(x, h, extra) {
+    x.fillStyle = C.dim; x.fillRect(M, h - 78, W - 2 * M, 3);
+    const mw = text(x, '義 · TO THE DEATH · 忠誠', W - M, h - 54, F.s, C.dimt, { align: 'right' });
+    text(x, extra || `기록 RepMastered · ${fmt.when(DB.NOW)} 기준`, M, h - 54, F.s, C.dimt, { max: W - 2 * M - mw - 32 });
+  }
+
+  /* ================= 리그 정리 ================= */
+  function leagues() {
+    try {
+      if (!hasLG()) return [];
+      const l = typeof LG.list === 'function' ? LG.list() : LG._load().list;
+      return (l || []).filter((lg) => lg && !lg._bad);
+    } catch (e) { console.error(e); return []; }
+  }
+  const pOf = (e) => (e && e.id && DB.byId.get(e.id)) || null;
+  const isBr = (lg) => lg.kind === 'tour' || (lg.kind === 'team' && lg.tfmt === 'tour');
+  const boName = (bo) => (bo === 1 ? '단판' : `${bo}전 ${Math.ceil(bo / 2)}선승`);
+  function kindLabel(lg) {
+    if (lg.kind === 'tour') return `${lg.size}강 토너먼트 · ${boName(lg.bo)}`;
+    if (lg.kind === 'team') return `팀리그 ${lg.teams.length}팀 · ${lg.tfmt === 'tour' ? '토너먼트' : '풀리그'} · ${lg.mode === 'relay' ? '승자 연전' : `${lg.sets}세트`}`;
+    return `풀리그${lg.groups.length > 1 ? ` ${lg.groups.length}개 조` : ''} · ${boName(lg.bo)}`;
+  }
+  // 대진의 한쪽: 개인은 참가자, 팀리그는 팀
+  function sideOf(lg, i) {
+    if (i == null || i < 0) return null;
+    if (lg.kind === 'team') {
+      const T = lg.teams[i];
+      return T ? { team: true, name: T.name, color: TCOL[T.color] || C.sub, members: T.members.map((e) => ({ name: lg.ents[e] ? lg.ents[e].name : '?', p: pOf(lg.ents[e]) })) } : null;
+    }
+    const e = lg.ents[i];
+    return e ? { name: e.name, p: pOf(e) } : null;
+  }
+  // 개인 풀리그 순위(이긴 경기 → 세트 득실 → 딴 세트). 끝난 경기만 셈
+  function rrTable(lg) {
+    const need = Math.ceil(lg.bo / 2);
+    let total = 0, done = 0;
+    const groups = lg.groups.map((g, gi) => {
+      const t = new Map(g.map((i) => [i, { i, gi, w: 0, l: 0, sw: 0, sl: 0 }]));
+      for (let leg = 0; leg < lg.legs; leg++) for (let u = 0; u < g.length; u++) for (let v = u + 1; v < g.length; v++) {
+        total++;
+        const X = g[u], Y = g[v], a = leg ? Y : X, b = leg ? X : Y;
+        const r = lg.res[`g${gi}-${X}-${Y}-${leg}`];
+        if (!r || r.pa !== a || r.pb !== b) continue;
+        const wa = r.a === need && r.b < need, wb = r.b === need && r.a < need;
+        if (!wa && !wb) continue;
+        done++;
+        const A = t.get(a), B = t.get(b);
+        A.sw += r.a; A.sl += r.b; B.sw += r.b; B.sl += r.a;
+        if (wa) { A.w++; B.l++; } else { B.w++; A.l++; }
+      }
+      const rows = [...t.values()].sort((p, q) => q.w - p.w || (q.sw - q.sl) - (p.sw - p.sl) || q.sw - p.sw || String(lg.ents[p.i].name).localeCompare(lg.ents[q.i].name, 'en'));
+      rows.forEach((r, k) => { r.rank = k && rows[k - 1].w === r.w && rows[k - 1].sw - rows[k - 1].sl === r.sw - r.sl && rows[k - 1].sw === r.sw ? rows[k - 1].rank : k + 1; });
+      return rows;
+    });
+    return { groups, total, done };
+  }
+  // 리그 한 개의 카드용 정리
+  function leagueState(lg) {
+    const o = { lg, name: lg.name, kind: kindLabel(lg), n: lg.ents.length, done: false, prog: { done: 0, total: 0 }, pod: [], final: null, table: [], next: [] };
+    try { if (LG._progress) o.prog = LG._progress(lg); } catch (e) { console.error(e); }
+    if (isBr(lg)) {
+      const rs = LG._bracket(lg);
+      const f = rs[rs.length - 1][0];
+      o.done = f.st === 'done' && f.winner != null && f.winner >= 0;
+      if (o.done) {
+        const pd = LG._podium(lg, rs);
+        o.pod = [pd.first, pd.second, pd.third].map((i) => sideOf(lg, i));
+        if (f.res) o.final = { a: sideOf(lg, f.a), b: sideOf(lg, f.b), sa: f.res.a, sb: f.res.b, aw: f.winner === f.a };
+      }
+      const all = rs.flat().concat(rs.p3 ? [rs.p3] : []);
+      o.results = all.filter((m) => m.st === 'done' && m !== f).reverse().map((m) => ({ label: m.third ? '3·4위전' : `${m.round} ${m.no}경기`, a: sideOf(lg, m.a), b: sideOf(lg, m.b), res: m.res, aw: m.winner === m.a }));
+      // 진행 중: 부전승을 뺀 모든 경기(라운드 순). 아직 정해지지 않은 쪽은 '미정'
+      o.next = all.filter((m) => m.st !== 'bye')
+        .map((m) => ({ label: m.third ? '3·4위전' : m.round === '결승' ? '결승' : `${m.round} ${m.no}경기`, a: sideOf(lg, m.a), b: sideOf(lg, m.b), res: m.res && m.res.a + m.res.b > 0 ? m.res : null, aw: m.winner != null && m.winner === m.a, done: m.st === 'done' }));
+      o.last = all.filter((m) => m.st === 'done').slice(-3).map((m) => ({ label: m.third ? '3·4위전' : m.round === '결승' ? '결승' : `${m.round} ${m.no}경기`, a: sideOf(lg, m.a), b: sideOf(lg, m.b), res: m.res, aw: m.winner === m.a }));
+    } else if (lg.kind === 'team') {
+      const st = LG._standings(lg);
+      o.done = st.ms.length > 0 && st.ms.every((m) => m.winner != null);
+      o.table = st.rows.map((r) => ({ rank: r.rank, side: sideOf(lg, r.i), w: r.w, l: r.l, sw: r.sw, sl: r.sl }));
+      if (o.done) o.pod = [st.rows[0], st.rows[1]].map((r) => (r ? sideOf(lg, r.i) : null));
+    } else {
+      const t = rrTable(lg);
+      o.prog = { done: t.done, total: t.total };
+      o.done = t.total > 0 && t.done === t.total;
+      t.groups.forEach((rows, gi) => rows.forEach((r) => o.table.push({ rank: r.rank, group: lg.groups.length > 1 ? String.fromCharCode(65 + gi) + '조' : '', side: sideOf(lg, r.i), w: r.w, l: r.l, sw: r.sw, sl: r.sl })));
+      if (o.done && lg.groups.length === 1) o.pod = t.groups[0].slice(0, 3).map((r) => sideOf(lg, r.i));
+    }
+    // 메달이 계산되면(끝난 정식 리그) 그 순서를 따름
+    try {
+      const aw = LG._awards && LG._awards(lg);
+      if (aw && !(lg.kind === 'rr' && lg.groups.length > 1)) {
+        const pick = (kind) => { const xs = aw.list.filter((y) => y.kind === kind); if (!xs.length) return null; return lg.kind === 'team' ? sideOf(lg, xs[0].ti) : sideOf(lg, xs[0].ix); };
+        const pd = ['gold', 'silver', 'bronze'].map(pick);
+        if (pd[0]) o.pod = pd;
+      }
+      if (aw) o.medalDate = aw.date;
+    } catch (e) { console.error(e); }
+    return o;
+  }
+  // 그 리그에 결과가 들어간 시각들(없으면 만든 날 하나)
+  function leagueTimes(lg) {
+    const out = [];
+    for (const r of Object.values(lg.res || {})) if (r && r.at) out.push(r.at);
+    for (const m of Object.values(lg.tres || {})) for (const s of (m && m.sets) || []) if (s && s.at) out.push(s.at);
+    return out.length ? out : [lg.created || 0];
+  }
+
+  /* ================= 주간 기록 ================= */
+  const dayNo = (t) => Math.floor((t + KST) / DAY); // 한국 날짜 번호
+  const monNo = (t) => { const d = dayNo(t); return d - ((d + 3) % 7); }; // 1970-01-05가 월요일
+  const noStr = (n) => new Date(n * DAY).toISOString().slice(0, 10);
+  const strNo = (s) => Math.floor(Date.parse(s + 'T00:00:00Z') / DAY);
+  let RANGE = null;
+  function range() {
+    if (RANGE) return RANGE;
+    let lo = DB.NOW;
+    for (const g of DB.games) if (g.time < lo) lo = g.time;
+    RANGE = { min: monNo(lo), max: monNo(DB.NOW) };
+    return RANGE;
+  }
+  const lastWeek = () => noStr(Math.max(range().min, monNo(DB.NOW) - 7));
+  function monOf(mon) {
+    let n;
+    if (mon == null || mon === '' || mon === 'last') n = monNo(DB.NOW) - 7;
+    else if (typeof mon === 'number') n = monNo(mon);
+    else if (/^\d{4}-\d{2}-\d{2}$/.test(String(mon))) { const d = strNo(String(mon)); n = d - ((d + 3) % 7); }
+    else n = monNo(DB.NOW) - 7;
+    const R = range();
+    return Math.max(R.min, Math.min(R.max, Number.isFinite(n) ? n : R.max - 7));
+  }
+  const kday = (n) => { const d = new Date(n * DAY); return `${d.getUTCMonth() + 1}월 ${d.getUTCDate()}일`; };
+
+  // 래더 점수(g.mm: "'26s2·KR·C1598" = 그 경기 직전 클랜원의 시즌·지역·티어·점수). 사람·계정·시즌마다 시간순
+  const parseMM = (s) => { const m = /^'?(\d+)s(\d+)·.*·([SABCDEF])(\d+)\s*$/.exec(String(s || '')); return m ? { s: m[1] + 's' + m[2], t: m[3], v: +m[4] } : null; };
+  let SER = null;
+  function series() {
+    if (SER) return SER;
+    const m = new Map(), lastOf = new Map();
+    for (const g of DB.games) {
+      if (g.kind !== 'ladder' || !g.mm) continue;
+      const ours = g.p.filter((x) => x.id);
+      if (ours.length !== 1) continue; // 클랜원끼리 래더면 점수 주인을 알 수 없음
+      const mm = parseMM(g.mm);
+      if (!mm) continue;
+      const x = ours[0];
+      const key = x.id + '|' + String(x.n).toLowerCase() + '|' + mm.s;
+      let e = m.get(key);
+      if (!e) { e = { id: x.id, name: x.n, s: mm.s, list: [] }; m.set(key, e); }
+      e.list.push({ t: g.time, v: mm.v, tier: mm.t });
+      lastOf.set(x.id, Math.max(lastOf.get(x.id) || 0, g.time));
+    }
+    for (const e of m.values()) e.list.sort((a, b) => a.t - b.t);
+    SER = { list: [...m.values()], lastOf };
+    return SER;
+  }
+  function ladderGains(start, end) {
+    const S = series(), best = new Map();
+    for (const e of S.list) {
+      const inW = e.list.filter((x) => x.t >= start && x.t < end);
+      if (!inW.length) continue;
+      const p = DB.byId.get(e.id);
+      if (!p || !ranked(p)) continue;
+      const from = inW[0], last = inW[inW.length - 1];
+      const after = e.list.find((x) => x.t >= end);
+      let to;
+      if (after) to = { v: after.v, t: after.tier };
+      else if (last.t === S.lastOf.get(e.id) && p.mmr && Math.abs(p.mmr.cur.v - last.v) <= 80) to = { v: p.mmr.cur.v, t: p.mmr.cur.t }; // 마지막 경기 뒤 점수
+      else to = { v: last.v, t: last.tier };
+      const d = to.v - from.v;
+      const cur = best.get(e.id);
+      if (!cur || d > cur.d) best.set(e.id, { p, d, from: { v: from.v, t: from.tier }, to, n: inW.length });
+    }
+    return [...best.values()].filter((x) => x.d > 0).sort((a, b) => b.d - a.d || b.n - a.n).slice(0, 3);
+  }
+
+  const WCACHE = new Map();
+  function weekData(mon) {
+    const n = monOf(mon);
+    const key = n + '|' + DB.NOW;
+    if (WCACHE.has(key)) return WCACHE.get(key);
+    const start = n * DAY - KST, end = start + 7 * DAY;
+    const R = range();
+    const o = {
+      mon: noStr(n), start, end, label: `${kday(n)} ~ ${kday(n + 6)}`, live: end > DB.NOW,
+      prev: n > R.min ? noStr(n - 7) : null, next: n < R.max ? noStr(n + 7) : null, isLast: n === monNo(DB.NOW) - 7,
+      n: 0, wins: [], streak: null, ladder: [], leagues: [], wars: [], empty: true,
+    };
+    // 내전
+    const games = DB.games.filter((g) => g.internal && g.winner >= 0 && g.time >= start && g.time < end).sort((a, b) => a.time - b.time);
+    o.n = games.length;
+    const rec = new Map();
+    const run = new Map();
+    let bestRun = 0;
+    for (const g of games) {
+      g.p.forEach((x, i) => {
+        const r = rec.get(x.id) || { w: 0, l: 0 };
+        const won = g.winner === i;
+        if (won) r.w++; else r.l++;
+        rec.set(x.id, r);
+        const k = won ? (run.get(x.id) || 0) + 1 : 0;
+        run.set(x.id, k);
+        const pp = DB.byId.get(x.id);
+        if (won && ranked(pp)) {
+          if (k > bestRun) { bestRun = k; o.streak = { n: k, list: [pp] }; }
+          else if (k === bestRun && o.streak && !o.streak.list.includes(pp)) o.streak.list.push(pp);
+        }
+      });
+    }
+    if (o.streak && o.streak.n < 2) o.streak = null;
+    const ws = [...rec.entries()].map(([id, r]) => ({ p: DB.byId.get(id), ...r })).filter((r) => r.p && ranked(r.p) && r.w > 0)
+      .sort((a, b) => b.w - a.w || a.l - b.l || a.p.name.localeCompare(b.p.name, 'en', { sensitivity: 'base' }));
+    ws.forEach((r, k) => { r.rank = k && ws[k - 1].w === r.w && ws[k - 1].l === r.l ? ws[k - 1].rank : k + 1; });
+    o.wins = ws.filter((r) => r.rank <= 3).slice(0, 5);
+    // 래더
+    o.ladder = ladderGains(start, end);
+    // 리그
+    for (const lg of leagues()) {
+      if (lg.example || lg.hidden) continue;
+      if (!leagueTimes(lg).some((t) => t >= start && t < end)) continue;
+      try { o.leagues.push(leagueState(lg)); } catch (e) { console.error(e); }
+    }
+    // 클랜전
+    if (hasCL()) { try { o.wars = CL.wars().filter((w) => w.t >= start && w.t < end); } catch (e) { console.error(e); } }
+    o.empty = !o.n && !o.ladder.length && !o.leagues.length && !o.wars.length;
+    if (WCACHE.size > 30) WCACHE.clear();
+    WCACHE.set(key, o);
+    return o;
+  }
+  if (typeof window !== 'undefined') window.addEventListener('thug:club', () => WCACHE.clear());
+
+  /* ================= 카드 1: 프로필 ================= */
+  async function profile(p, app) {
+    await fontsReady();
+    const emb = await img(emblemSrc(p));
+    const [c, x] = sheet(H);
+    sky(x, H, p.id);
+    await head(x, '전적 카드', fmt.day(DB.NOW));
+    const PX = M, PY = 170, PW = W - 2 * M, PH = 1072;
+    const top = panel(x, PX, PY, PW, PH, '프로필', p.ladderRank ? `래더 ${p.ladderRank}위` : '래더 기록 없음');
+    const L = PX + 36, y0 = top + 20;
+    const pr = drawPortrait(x, app, p, L, y0, 6);
+    // 오른쪽: 칭호, 이름, 종족, 등급, 래더
+    const RX = L + pr.w + 36, RW = PX + PW - 36 - RX;
+    let y = y0;
+    if (p.titles && p.titles.length) {
+      let cx = RX;
+      for (const t of p.titles.slice(0, 4)) {
+        const w = measure(x, t.k, F.s) + 24;
+        if (cx + w > RX + RW) break;
+        cx += chip(x, t.k, cx, y, C.sys) + 12;
+      }
+      y += 52;
+    }
+    text(x, p.name, RX, y, F.xb, '#fff', { max: RW, fit: [F.tb, F.sb] });
+    y += 64;
+    const ew = emb ? fitH(x, emb, RX, y, 60, true) : 0;
+    runs(x, [[RACE(p.main).label, F.m, RACE(p.main).color], ...(p.isMaster ? [['  클랜 마스터', F.s, C.sys, 4]] : []), ...(p.clsName ? [[`  ${p.clsName}`, F.s, C.sub, 4]] : [])], RX + ew + (ew ? 16 : 0), y + 15);
+    y += 84;
+    // 등급
+    const g = p.gradeNone ? 0 : p.grade, gc = GC[g] || GC[1];
+    box(x, RX, y, RW, 116, gc);
+    text(x, '캐릭터 등급', RX + 20, y + 20, F.s, C.sub);
+    const gx = runs(x, [[p.gradeName, F.tb, gc]], RX + 20, y + 54);
+    for (let i = 0; i < 6; i++) { x.fillStyle = i < g ? gc : '#0b1a38'; x.fillRect(gx + 20 + i * 18, y + 60, 12, 24); if (i >= g) { x.strokeStyle = C.dim; x.lineWidth = 2; x.strokeRect(gx + 21 + i * 18, y + 61, 10, 22); } }
+    text(x, g ? `${g}등급` : '', RX + RW - 20, y + 62, F.s, C.sub, { align: 'right' });
+    y += 136;
+    // 래더
+    box(x, RX, y, RW, y0 + pr.h - y);
+    text(x, '래더', RX + 20, y + 18, F.s, C.sub);
+    if (p.mmr) {
+      tierBox(x, p.mmr.cur.t, RX + 20, y + 54, 48);
+      text(x, String(p.mmr.cur.v), RX + 84, y + 54, F.l, '#fff');
+      runs(x, [['최고 ', F.s, C.sub, 6]], RX + 20, y + 118);
+      tierBox(x, p.mmr.max.t, RX + 84, y + 114, 36);
+      text(x, String(p.mmr.max.v), RX + 132, y + 118, F.m, C.tx);
+    } else text(x, '래더 기록 없음', RX + 20, y + 60, F.m, C.dimt);
+    y = y0 + pr.h + 24;
+    // 칸 6개
+    const cw = (PW - 72 - 2 * 24) / 3;
+    const cell = (i, row, label, val, sub, col) => {
+      const cx = L + i * (cw + 24), cy = y + row * 150, ch = 136;
+      box(x, cx, cy, cw, ch, row ? null : C.edge);
+      text(x, label, cx + 20, cy + 16, F.s, C.sub);
+      if (Array.isArray(val)) runs(x, val, cx + 20, cy + 52); else text(x, val, cx + 20, cy + 48, F.l, col || '#fff', { max: cw - 40, fit: [F.m] });
+      if (sub) text(x, sub, cx + 20, cy + 98, F.s, C.dimt, { max: cw - 40 });
+    };
+    cell(0, 0, '전체 승패', [[`${fmt.num(p.w)}승`, F.m, C.win], [' ', F.m, C.tx], [`${fmt.num(p.l)}패`, F.m, C.loss]], `${fmt.num(p.games)}판`);
+    cell(1, 0, '승률', fmt.pct(p.winRate), 'RepMastered 전체');
+    const er = DB.eloRank.find((e) => e.id === p.id);
+    cell(2, 0, '내전 점수', p.elo ? String(p.elo.r) : '-', p.elo ? `${er && er.rank ? `내전 ${er.rank}위 · ` : ''}${p.elo.w}승 ${p.elo.l}패` : '표본에 내전 없음', p.elo ? '#7fd8ff' : C.dimt);
+    cell(0, 1, 'APM', String(p.apm || '-'), '평균');
+    cell(1, 1, '평균 경기 시간', fmt.len(p.len || 0), '');
+    const cw2 = hasCL() && CL.ofPerson ? CL.ofPerson(p) : null;
+    if (cw2) cell(2, 1, '클랜전 세트', [[`${cw2.w}승`, F.m, C.win], [' ', F.m, C.tx], [`${cw2.l}패`, F.m, C.loss]], `클랜전 ${cw2.wars}번`);
+    else cell(2, 1, '내전 최고 연승', p.bestStreak ? `${p.bestStreak}연승` : '-', p.streak ? `지금 ${p.streak}연승 중` : '표본 기준');
+    y += 150 * 2 + 4;
+    // 최근 10경기
+    const fm = DB.form(p.id, 10);
+    const list = fm.list.slice().reverse(); // 오래된 것 → 최근
+    if (list.length) runs(x, [[`최근 ${list.length}경기 `, F.s, C.sub], [`${fm.w}승`, F.s, C.win], [' ', F.s, C.sub], [`${fm.l}패`, F.s, C.loss]], L, y);
+    else runs(x, [['최근 경기', F.s, C.sub], [' · 받은 기록에 1:1 경기가 없습니다', F.s, C.dimt]], L, y);
+    text(x, list.length ? '오른쪽이 최근' : '', PX + PW - 36, y, F.s, C.dimt, { align: 'right' });
+    y += 38;
+    const sq = 64, gap = Math.floor((PW - 72 - 10 * sq) / 9);
+    for (let i = 0; i < 10; i++) {
+      const e = list[i], sx = L + i * (sq + gap);
+      if (!e) { x.strokeStyle = C.dim; x.lineWidth = 3; x.strokeRect(sx + 1.5, y + 1.5, sq - 3, sq - 3); continue; }
+      x.fillStyle = e.won ? '#1f6b34' : '#7a2a24'; x.fillRect(sx, y, sq, sq);
+      x.fillStyle = e.won ? C.win : C.loss; x.fillRect(sx, y, sq, 6);
+      text(x, e.won ? '승' : '패', sx + sq / 2, y + 17, F.m, '#fff', { align: 'center' });
+    }
+    y += sq + 22;
+    // 메달
+    const md = medalsOf(app, p);
+    text(x, '메달', L, y + 12, F.s, C.sub);
+    if (!md.length) text(x, '아직 없습니다', L + 80, y + 12, F.s, C.dimt);
+    else {
+      const per = Math.floor((PW - 72 - 80 - (md.length > 3 ? 100 : 0)) / Math.min(3, md.length));
+      md.slice(0, 3).forEach((m, i) => {
+        const mx = L + 80 + i * per;
+        medalIcon(x, m.kind, mx, y, 48);
+        text(x, m.leagueName, mx + 56, y + 12, F.s, C.tx, { max: per - 72 });
+      });
+      if (md.length > 3) text(x, `외 ${md.length - 3}개`, PX + PW - 36, y + 12, F.s, C.dimt, { align: 'right' });
+    }
+    foot(x, H);
+    return c;
+  }
+
+  /* ================= 카드 2: 리그 ================= */
+  function sideName(x, s, X, Y, font, col, max, align) {
+    if (!s) return text(x, '미정', X, Y, font, C.dimt, { align, max });
+    return text(x, s.name, X, Y, font, col || (s.team ? s.color : '#fff'), { max, fit: [F.m, F.s], align });
+  }
+  async function league(lg, app) {
+    await fontsReady();
+    const st = leagueState(lg);
+    const [c, x] = sheet(H);
+    sky(x, H, lg.id || lg.name);
+    await head(x, st.done ? '리그 결과' : '리그 진행', fmt.day(st.medalDate || DB.NOW));
+    const PX = M, PY = 170, PW = W - 2 * M, PH = 1100;
+    const top = panel(x, PX, PY, PW, PH, lg.example ? '내전 리그 · 예시' : '내전 리그', st.done ? '끝남' : `진행 ${st.prog.done} / ${st.prog.total}경기`);
+    const L = PX + 36, R = PX + PW - 36, CW = R - L;
+    let y = top + 28;
+    text(x, st.name, L, y, F.xb, '#fff', { max: CW, fit: [F.tb, F.m] });
+    y += 64;
+    text(x, `${st.kind} · 참가 ${st.n}명`, L, y, F.m, C.sub, { max: CW, fit: [F.s] });
+    y += 60;
+    const PLACE = [['우승', C.gold, 'gold'], ['준우승', C.silver, 'silver'], ['3위', C.bronze, 'bronze']];
+    const podSide = (s, i, cx, by, big) => { // 아래 가운데(cx, by)에 맞춤
+      const [lab, col, kind] = PLACE[i];
+      let ph;
+      if (s && !s.team && s.p) {
+        const sc = big ? 6 : 3;
+        const pc = portraitOf(app, s.p, sc);
+        ph = pc.height;
+        drawPortrait(x, app, s.p, cx - pc.width / 2, by - ph, sc);
+      } else if (s && s.team) {
+        const ms = s.members.slice(0, big ? 6 : 4);
+        const per = big ? 3 : 2, sz = 64, gap = 8;
+        const rowsN = Math.ceil(ms.length / per);
+        ph = rowsN * (sz + gap);
+        ms.forEach((m, k) => { const r = Math.floor(k / per), q = k % per; const n = Math.min(per, ms.length - r * per); drawIcon(x, app, m.p, cx - (n * (sz + gap) - gap) / 2 + q * (sz + gap), by - ph + r * (sz + gap), sz); });
+        x.fillStyle = s.color; x.fillRect(cx - 60, by - ph - 18, 120, 8);
+      } else {
+        ph = big ? 200 : 120;
+        box(x, cx - ph / 2, by - ph, ph, ph);
+      }
+      const ty = by + 16;
+      medalIcon(x, kind, cx - 24, ty, 48);
+      text(x, lab, cx, ty + 56, F.s, col, { align: 'center' });
+      sideName(x, s, cx, ty + 92, big ? F.m : F.s, null, big ? 360 : 240, 'center');
+      if (s && s.team) text(x, s.members.map((m) => m.name).join(', '), cx, ty + 132, F.s, C.dimt, { align: 'center', max: big ? 360 : 240 });
+    };
+    if (st.pod.length && st.pod[0]) {
+      const by = y + 444 - (st.pod[0].team ? 120 : 70); // 큰 초상 위 투명한 자리만큼 올림
+      podSide(st.pod[0], 0, W / 2, by, true);
+      if (st.pod[1]) podSide(st.pod[1], 1, L + 150, by, false);
+      if (st.pod[2]) podSide(st.pod[2], 2, R - 150, by, false);
+      y = by + (st.pod.some((q) => q && q.team) ? 190 : 170);
+    }
+    // 결승 점수
+    if (st.final) {
+      box(x, L, y, CW, 96, C.sys);
+      text(x, '결승', L + 24, y + 36, F.s, C.sys);
+      const mid = W / 2;
+      sideName(x, st.final.a, mid - 90, y + 30, F.m, st.final.aw ? '#fff' : C.sub, 300, 'right');
+      text(x, `${st.final.sa} : ${st.final.sb}`, mid, y + 24, F.l, '#fff', { align: 'center' });
+      sideName(x, st.final.b, mid + 90, y + 30, F.m, st.final.aw ? C.sub : '#fff', 300);
+      y += 120;
+    }
+    // 순위표(풀리그) 또는 남은 경기(토너먼트 진행 중)
+    const room = PY + PH - 40 - y;
+    if (st.table.length) {
+      const rowH = 64, max = Math.max(1, Math.floor((room - 44) / rowH));
+      text(x, st.done ? '순위' : '지금 순위', L, y, F.s, C.sub);
+      text(x, '승패 · 세트', R, y, F.s, C.dimt, { align: 'right' });
+      y += 40;
+      const rows = st.table.slice(0, max);
+      rows.forEach((r, k) => {
+        const ry = y + k * rowH;
+        if (k % 2 === 0) { x.fillStyle = 'rgba(70, 130, 235, 0.08)'; x.fillRect(L, ry, CW, rowH - 4); }
+        text(x, `${r.group ? r.group + ' ' : ''}${r.rank}위`, L + 16, ry + 16, F.m, r.rank <= 3 ? C.sys : C.sub);
+        let nx = L + (r.group ? 170 : 110);
+        if (r.side && !r.side.team) { drawIcon(x, app, r.side.p, nx, ry + 4, 48); nx += 64; }
+        else if (r.side && r.side.team) { x.fillStyle = r.side.color; x.fillRect(nx, ry + 12, 12, 36); nx += 28; }
+        sideName(x, r.side, nx, ry + 16, F.m, null, R - 300 - nx);
+        runs(x, [[`${r.w}승 ${r.l}패`, F.m, C.tx], [`  ${r.sw}:${r.sl}`, F.s, C.dimt, 4]], R - 16, ry + 16, 'right');
+      });
+    } else if ((!st.done && st.next.length) || (st.done && st.results && st.results.length)) {
+      const fitN = Math.floor((room - 40) / 72);
+      let list = st.done ? st.results : st.next;
+      if (!st.done && list.length > fitN) list = list.filter((m) => !m.done).concat(list.filter((m) => m.done)); // 넘치면 남은 경기 먼저
+      if (fitN >= 1) {
+        text(x, st.done ? '다른 경기' : '경기', L, y, F.s, C.sub);
+        if (list.length > fitN) text(x, `${list.length}경기 가운데 ${fitN}경기`, R, y, F.s, C.dimt, { align: 'right' });
+        y += 40;
+        list.slice(0, fitN).forEach((m, k) => {
+          const ry = y + k * 72;
+          box(x, L, ry, CW, 60);
+          text(x, m.label, L + 20, ry + 18, F.s, C.sub, { max: 170 });
+          const mid = L + CW / 2 + 70;
+          const done = m.res && (st.done || m.done);
+          sideName(x, m.a, mid - 64, ry + 15, F.m, done ? (m.aw ? '#fff' : C.dimt) : '#fff', 280, 'right');
+          text(x, m.res ? `${m.res.a} : ${m.res.b}` : 'vs', mid, ry + 15, F.m, m.res ? C.sys : C.dimt, { align: 'center' });
+          sideName(x, m.b, mid + 64, ry + 15, F.m, done ? (m.aw ? C.dimt : '#fff') : '#fff', 260);
+        });
+      }
+    } else if (!st.done) {
+      text(x, '아직 끝난 경기가 없습니다.', L, y, F.m, C.dimt);
+    }
+    foot(x, H, lg.note && lg.note.trim() ? `메모: ${lg.note.trim()}` : undefined);
+    return c;
+  }
+
+  /* ================= 카드 3: 클랜전 ================= */
+  async function war(w, app) {
+    await fontsReady();
+    const logo = await img('assets/logo.webp');
+    const sets = w.sets || [];
+    const rowH = 104;
+    const baseH = 720 + (w.note ? 80 : 0);
+    const HH = Math.max(H, baseH + sets.length * rowH);
+    const [c, x] = sheet(HH);
+    sky(x, HH, 'war' + w.id);
+    await head(x, '클랜전 결과', fmt.date(w.on));
+    const PX = M, PY = 170, PW = W - 2 * M, PH = HH - 170 - 100;
+    const RES = { w: ['승리', C.win], l: ['패배', C.loss], d: ['무승부', C.sys] }[w.result] || ['', C.sub];
+    const top = panel(x, PX, PY, PW, PH, '클랜전', `${sets.length ? sets.length + '세트' : '점수만'}`);
+    const L = PX + 36, R = PX + PW - 36, CW = R - L;
+    let y = top + 36;
+    // 우리 쪽
+    drawImg(x, logo, L + 40, y, 200, 200, true);
+    x.strokeStyle = C.edge; x.lineWidth = 3; x.strokeRect(L + 41.5, y + 1.5, 197, 197);
+    text(x, 'THUG', L + 140, y + 216, F.tb, '#fff', { align: 'center' });
+    // 상대 쪽
+    box(x, R - 240, y, 200, 200);
+    const ini = Array.from(w.opp.trim() || '?')[0].toUpperCase();
+    text(x, ini, R - 140, y + 70, F.x, C.sub, { align: 'center' });
+    text(x, w.opp, R - 140, y + 216, F.tb, '#fff', { align: 'center', max: 320, fit: [F.m, F.s] });
+    // 점수
+    text(x, `${w.our} : ${w.their}`, W / 2, y + 40, F.x, '#fff', { align: 'center' });
+    const bw = measure(x, RES[0], F.tb) + 48;
+    x.fillStyle = RES[1]; x.fillRect(W / 2 - bw / 2, y + 130, bw, 56);
+    text(x, RES[0], W / 2, y + 140, F.tb, '#07101f', { align: 'center' });
+    text(x, '세트 점수', W / 2, y + 206, F.s, C.sub, { align: 'center' });
+    y += 290;
+    // 세트
+    if (sets.length) {
+      text(x, '세트 · 맵', L, y, F.s, C.sub);
+      y += 40;
+      sets.forEach((s, k) => {
+        const ry = y + k * rowH, bh = rowH - 12;
+        box(x, L, ry, CW, bh, s.win ? C.win : C.loss);
+        text(x, `${k + 1}세트`, L + 20, ry + 18, F.s, C.sub);
+        text(x, s.map || '', L + 20, ry + 54, F.s, C.dimt, { max: 170 });
+        drawIcon(x, app, s.p, L + 200, ry + 16, 64);
+        text(x, s.name, L + 280, ry + 31, F.m, s.win ? '#fff' : C.sub, { max: 230, fit: [F.s] });
+        text(x, 'vs', L + 540, ry + 31, F.m, C.dimt, { align: 'center' });
+        text(x, s.their || '?', L + 580, ry + 31, F.m, s.win ? C.sub : '#fff', { max: 200, fit: [F.s] });
+        x.fillStyle = s.win ? '#1f6b34' : '#7a2a24'; x.fillRect(R - 100, ry + 20, 80, 52);
+        text(x, s.win ? '승' : '패', R - 60, ry + 31, F.m, '#fff', { align: 'center' });
+      });
+      y += sets.length * rowH + 8;
+    } else {
+      text(x, '세트 기록 없이 점수만 넣은 클랜전입니다.', L, y, F.m, C.dimt);
+      y += 60;
+    }
+    if (w.note) {
+      box(x, L, y, CW, 64);
+      text(x, '메모', L + 20, y + 20, F.s, C.sub);
+      text(x, w.note, L + 100, y + 17, F.m, C.tx, { max: CW - 120, fit: [F.s] });
+    }
+    // 전체 전적
+    let tot = null;
+    try { if (hasCL() && CL.totals) tot = CL.totals(); } catch (e) { tot = null; }
+    foot(x, HH, tot && tot.n ? `클랜전 전체 ${tot.n}번 · ${tot.w}승 ${tot.l}패${tot.d ? ` ${tot.d}무` : ''} · 세트 ${tot.sw}:${tot.sl}` : undefined);
+    return c;
+  }
+
+  /* ================= 카드 4: 주간 소식 ================= */
+  async function weekly(mon, app) {
+    await fontsReady();
+    const d = weekData(mon);
+    // 덩어리마다 높이를 먼저 셈
+    const blocks = [];
+    const ROW = 80;
+    const add = (title, right, rows, draw) => blocks.push({ title, right, h: 75 + 24 + rows * ROW + 16, draw });
+    if (d.empty) blocks.push({ title: '이번 주 기록', h: 75 + 160, draw: (x, L, y) => text(x, '이번 주는 기록이 없습니다', W / 2, y + 40, F.m, C.dimt, { align: 'center' }) });
+    else {
+      blocks.push({
+        title: '한눈에', h: 75 + 24 + 140, draw: (x, L, y, CW) => {
+          const items = [['내전', `${d.n}판`], ['리그', `${d.leagues.length}개`], ['클랜전', d.wars.length ? `${d.wars.filter((w) => w.result === 'w').length}승 ${d.wars.filter((w) => w.result === 'l').length}패` : '없음']];
+          const cw = (CW - 48) / 3;
+          items.forEach(([k, v], i) => { const cx = L + i * (cw + 24); box(x, cx, y, cw, 120, C.edge); text(x, k, cx + 20, y + 20, F.s, C.sub); text(x, v, cx + 20, y + 54, F.l, '#fff', { max: cw - 40, fit: [F.m] }); });
+        },
+      });
+      if (d.wins.length) add('내전 다승', `${d.n}판 가운데`, d.wins.length, (x, L, y, CW) => d.wins.forEach((r, k) => personRow(x, app, r.p, L, y + k * ROW, CW, `${r.rank}위`, [[`${r.w}승`, F.m, C.win], [' ', F.m, C.tx], [`${r.l}패`, F.m, C.loss]])));
+      if (d.streak) add('가장 긴 연승', '그 주 내전', d.streak.list.slice(0, 3).length, (x, L, y, CW) => d.streak.list.slice(0, 3).forEach((p, k) => personRow(x, app, p, L, y + k * ROW, CW, '', [[`${d.streak.n}연승`, F.m, C.sys]])));
+      if (d.ladder.length) add('래더 점수 상승', '그 주 첫 경기 직전과 비교', d.ladder.length, (x, L, y, CW) => d.ladder.forEach((r, k) => personRow(x, app, r.p, L, y + k * ROW, CW, `${k + 1}위`, [[`${r.from.t}${r.from.v} → ${r.to.t}${r.to.v}  `, F.s, C.dimt, 4], [`+${r.d}`, F.m, C.win]])));
+      if (d.leagues.length) add('리그', `${d.leagues.length}개`, Math.min(4, d.leagues.length), (x, L, y, CW) => d.leagues.slice(0, 4).forEach((s, k) => {
+        const ry = y + k * ROW;
+        box(x, L, ry, CW, ROW - 12);
+        text(x, s.name, L + 20, ry + 20, F.m, '#fff', { max: CW - 420, fit: [F.s] });
+        const champ = s.done && s.pod[0] ? s.pod[0].name : null;
+        text(x, champ ? `우승 ${champ}` : `진행 ${s.prog.done} / ${s.prog.total}경기`, L + CW - 20, ry + 23, champ ? F.m : F.s, champ ? C.sys : C.sub, { align: 'right', max: 380, fit: [F.s] });
+      }));
+      if (d.wars.length) add('클랜전', `${d.wars.length}번`, Math.min(5, d.wars.length), (x, L, y, CW) => d.wars.slice(0, 5).forEach((w, k) => {
+        const ry = y + k * ROW;
+        const [lab, col] = { w: ['승', C.win], l: ['패', C.loss], d: ['무', C.sys] }[w.result] || ['', C.sub];
+        box(x, L, ry, CW, ROW - 12, col);
+        text(x, fmt.date(w.on), L + 20, ry + 24, F.s, C.sub);
+        text(x, `vs ${w.opp}`, L + 180, ry + 20, F.m, '#fff', { max: CW - 460, fit: [F.s] });
+        runs(x, [[`${w.our} : ${w.their}  `, F.m, C.tx], [lab, F.m, col]], L + CW - 20, ry + 20, 'right');
+      }));
+    }
+    const inner = blocks.reduce((s, b) => s + b.h + 24, 0);
+    const HH = Math.max(H, 190 + inner + 90);
+    const [c, x] = sheet(HH);
+    sky(x, HH, 'week' + d.mon);
+    await head(x, '주간 소식', d.label + (d.live ? ' (진행 중)' : ''));
+    let y = 170;
+    const PX = M, PW = W - 2 * M, L = PX + 36, CW = PW - 72;
+    // 내용이 짧으면 덩어리 사이를 조금 벌려 아래를 채움
+    const spare = Math.max(0, HH - 100 - 170 - inner);
+    const gapAdd = blocks.length > 1 ? Math.min(40, Math.floor(spare / blocks.length)) : 0;
+    for (const b of blocks) {
+      const top = panel(x, PX, y, PW, b.h, b.title, b.right);
+      b.draw(x, L, top + 24, CW);
+      y += b.h + 24 + gapAdd;
+    }
+    foot(x, HH, '한국 시각 월~일 · 기록 RepMastered');
+    return c;
+  }
+  function personRow(x, app, p, L, y, CW, rank, right) {
+    box(x, L, y, CW, 68);
+    let nx = L + 20;
+    if (rank) { text(x, rank, nx, y + 19, F.m, C.sys); nx += 90; }
+    drawIcon(x, app, p, nx, y + 10, 48);
+    nx += 64;
+    text(x, p.name, nx, y + 19, F.m, '#fff', { max: CW - (nx - L) - 360, fit: [F.s] });
+    runs(x, right, L + CW - 20, y + 19, 'right');
+  }
+
+  /* ================= 화면: 채널 패널 · 주간 소식 화면 ================= */
+  function pnl(title, right, ...kids) {
+    return h('section', { class: 'pnl', 'aria-label': typeof title === 'string' ? title : undefined },
+      h('div', { class: 'pnl-h' }, h('h2', null, title), right ? h('div', { class: 'pnl-r' }, right) : null),
+      h('div', { class: 'pnl-b' }, ...kids));
+  }
+  const plink = (p) => h('a', { class: 'plink', href: '#p--' + p.id }, p.name);
+  const iconOf = (app, p, s = 24) => { try { return app && app.icon ? app.icon(p, s) : null; } catch (e) { return null; } };
+
+  function weeklyPanel(app) {
+    const d = weekData();
+    const sub = h('span', { class: 'pnl-sub' }, d.label);
+    const body = d.empty
+      ? [h('p', { class: 'note cd-none' }, '지난주는 기록이 없습니다.')]
+      : [h('dl', { class: 'facts' },
+        h('dt', null, '내전'), h('dd', null, `${d.n}판`),
+        d.wins[0] ? [h('dt', null, '다승'), h('dd', null, plink(d.wins[0].p), ` ${d.wins[0].w}승`)] : null,
+        d.streak ? [h('dt', null, '연승'), h('dd', null, plink(d.streak.list[0]), ` ${d.streak.n}연승`)] : null,
+        d.ladder[0] ? [h('dt', null, '래더'), h('dd', null, plink(d.ladder[0].p), h('span', { class: 'w' }, ` +${d.ladder[0].d}`))] : null,
+        d.leagues.length ? [h('dt', null, '리그'), h('dd', null, `${d.leagues.length}개`)] : null,
+        d.wars.length ? [h('dt', null, '클랜전'), h('dd', null, d.wars.map((w) => `${w.opp} ${w.our}:${w.their}`).join(', '))] : null)];
+    return h('section', { class: 'pnl p-week', 'aria-label': '주간 소식' },
+      h('div', { class: 'pnl-h' }, h('h2', null, '주간 소식'), h('div', { class: 'pnl-r' }, sub)),
+      h('div', { class: 'pnl-b' }, ...body, h('a', { class: 'btn sm wide cd-more', href: '#weekly' }, '주간 소식 보기')));
+  }
+
+  function weeklyView(app, mon) {
+    const d = weekData(mon);
+    const nav = h('div', { class: 'cd-wk-nav' },
+      d.prev ? h('a', { class: 'btn sm', href: '#weekly--' + d.prev, 'aria-label': '앞 주' }, '‹ 앞 주') : h('span', { class: 'btn sm', 'aria-disabled': 'true' }, '‹ 앞 주'),
+      h('p', { class: 'cd-wk-l' }, h('span', { class: 'cd-wk-d' }, d.label), d.live ? h('span', { class: 'temp-tag' }, '진행 중') : d.isLast ? h('span', { class: 'cd-tag' }, '지난주') : null),
+      d.next ? h('a', { class: 'btn sm', href: '#weekly--' + d.next, 'aria-label': '다음 주' }, '다음 주 ›') : h('span', { class: 'btn sm', 'aria-disabled': 'true' }, '다음 주 ›'),
+      h('button', { type: 'button', class: 'btn hot sm cd-make', onclick: (e) => open('weekly', d.mon, app, e.currentTarget) }, '카드 만들기'));
+    const row = (p, rank, ...right) => h('li', null, rank ? h('span', { class: 'cd-rk' }, rank) : null, iconOf(app, p, 24), plink(p), h('span', { class: 'cd-v' }, ...right));
+    const panels = [];
+    if (d.empty) panels.push(pnl('이번 주 기록', null, h('p', { class: 'note cd-none' }, '이번 주는 기록이 없습니다.')));
+    else {
+      panels.push(pnl('한눈에', null, h('dl', { class: 'facts' },
+        h('dt', null, '내전'), h('dd', null, `${d.n}판`),
+        h('dt', null, '리그'), h('dd', null, d.leagues.length ? `${d.leagues.length}개` : '없음'),
+        h('dt', null, '클랜전'), h('dd', null, d.wars.length ? `${d.wars.length}번` : '없음'))));
+      if (d.wins.length) panels.push(pnl('내전 다승', h('span', { class: 'pnl-sub' }, `${d.n}판 가운데`), h('ul', { class: 'cd-rows' }, d.wins.map((r) => row(r.p, `${r.rank}위`, h('span', { class: 'w' }, `${r.w}승`), ' ', h('span', { class: 'l' }, `${r.l}패`))))));
+      if (d.streak) panels.push(pnl('가장 긴 연승', h('span', { class: 'pnl-sub' }, '그 주 내전'), h('ul', { class: 'cd-rows' }, d.streak.list.slice(0, 3).map((p) => row(p, '', `${d.streak.n}연승`)))));
+      if (d.ladder.length) panels.push(pnl('래더 점수 상승', h('span', { class: 'pnl-sub' }, '그 주 첫 경기 직전과 비교'), h('ul', { class: 'cd-rows' }, d.ladder.map((r, k) => row(r.p, `${k + 1}위`, h('span', { class: 'c-dim cd-from' }, `${r.from.t}${r.from.v} → ${r.to.t}${r.to.v} `), h('span', { class: 'w' }, `+${r.d}`))))));
+      if (d.leagues.length) panels.push(pnl('리그', h('span', { class: 'pnl-sub' }, '그 주에 결과가 들어간 리그'), h('ul', { class: 'cd-rows' }, d.leagues.map((s) => h('li', null,
+        h('a', { class: 'plink', href: '#league--' + s.lg.id }, s.name),
+        h('span', { class: 'cd-v' }, s.done && s.pod[0] ? `우승 ${s.pod[0].name}` : `진행 ${s.prog.done} / ${s.prog.total}경기`),
+        h('button', { type: 'button', class: 'btn sm', onclick: (e) => open('league', s.lg, app, e.currentTarget) }, '카드'))))));
+      if (d.wars.length) panels.push(pnl('클랜전', h('span', { class: 'pnl-sub' }, `${d.wars.length}번`), h('ul', { class: 'cd-rows' }, d.wars.map((w) => h('li', null,
+        h('span', { class: 'cd-rk' }, fmt.date(w.on)), h('span', null, `vs ${w.opp}`),
+        h('span', { class: 'cd-v' }, `${w.our} : ${w.their} `, h('span', { class: w.result === 'w' ? 'w' : w.result === 'l' ? 'l' : 'c-dim' }, w.result === 'w' ? '승' : w.result === 'l' ? '패' : '무')),
+        h('button', { type: 'button', class: 'btn sm', onclick: (e) => open('war', w, app, e.currentTarget) }, '카드'))))));
+    }
+    return h('div', { class: 'page cd-week' },
+      h('header', { class: 'ptitle' }, h('h1', null, '주간 소식'), h('p', null, '한국 시각 월요일 0시부터 일요일 밤까지, 기록에서 자동으로 셉니다')),
+      nav,
+      h('div', { class: 'cd-wk-grid' }, ...panels),
+      h('p', { class: 'note' }, LIVE ? '래더 점수는 그 주 첫 래더 경기 직전과 다음 경기 직전(없으면 지금 점수)을 비교합니다.' : '임시 사이트는 받은 표본만 셉니다. 표본은 최근 약 60일이라 그보다 앞 주는 없습니다.'));
+  }
+
+  /* ================= 미리 보기 창 ================= */
+  let openNow = null;
+  function resolve(kind, arg) {
+    if (kind === 'profile') return typeof arg === 'string' ? DB.byId.get(arg) || null : arg || null;
+    if (kind === 'league') return typeof arg === 'string' ? leagues().find((x) => x.id === arg) || null : arg || null;
+    if (kind === 'war') { if (arg && typeof arg === 'object') return arg; if (!hasCL()) return null; return (CL.byWar ? CL.byWar(arg) : CL.wars().find((w) => w.id === arg)) || null; }
+    if (kind === 'weekly') return weekData(arg).mon;
+    return null;
+  }
+  const DRAW = { profile, league, war, weekly };
+  const TITLE = { profile: '전적 카드', league: '리그 결과 카드', war: '클랜전 카드', weekly: '주간 소식 카드' };
+  const slug = (s) => String(s || '').replace(/[^\w가-힣-]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 40) || 'card';
+  function fileName(kind, v) {
+    if (kind === 'profile') return `THUG_${slug(v.name)}.png`;
+    if (kind === 'league') return `THUG_리그_${slug(v.name)}.png`;
+    if (kind === 'war') return `THUG_클랜전_${v.on}_${slug(v.opp)}.png`;
+    return `THUG_주간소식_${v}.png`;
+  }
+  const toBlob = (c) => new Promise((res) => { try { c.toBlob((b) => res(b), 'image/png'); } catch (e) { console.error(e); res(null); } });
+
+  function open(kind, arg, app, from) {
+    if (openNow) openNow.close();
+    const v = resolve(kind, arg);
+    const back = from || document.activeElement;
+    const msg = h('p', { class: 'cd-msg', role: 'status' }, '그리는 중입니다.');
+    const pic = h('div', { class: 'cd-pic' }, msg);
+    const shareB = h('button', { type: 'button', class: 'btn hot', hidden: true }, '카톡으로 보내기');
+    const saveB = h('a', { class: 'btn', hidden: true, role: 'button' }, '그림 저장');
+    const closeB = h('button', { type: 'button', class: 'btn' }, '닫기');
+    const hint = h('p', { class: 'note cd-hint', hidden: true }, '이 기기에서는 바로 보내기가 안 됩니다. 그림을 저장한 뒤 카톡에서 사진으로 올려 주세요.');
+    const tid = 'cd-t-' + Date.now().toString(36);
+    const dlg = h('div', { class: 'pnl cd-dlg', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': tid },
+      h('div', { class: 'pnl-h' }, h('h2', { id: tid }, TITLE[kind] || '카드'), h('div', { class: 'pnl-r' }, h('span', { class: 'pnl-sub' }, '미리 보기'))),
+      h('div', { class: 'pnl-b cd-dlg-b' }, pic, h('div', { class: 'btns cd-btns' }, shareB, saveB, closeB), hint));
+    const ov = h('div', { class: 'cd-ov' }, dlg);
+    let url = null, file = null, done = false;
+    const prevOverflow = document.documentElement.style.overflow;
+    const close = () => {
+      if (done) return;
+      done = true;
+      document.removeEventListener('keydown', onKey, true);
+      ov.remove();
+      document.documentElement.style.overflow = prevOverflow;
+      if (url) setTimeout(() => URL.revokeObjectURL(url), 1000);
+      if (openNow === api) openNow = null;
+      if (back && back.isConnected && back.focus) { try { back.focus({ preventScroll: true }); } catch (e) { back.focus(); } }
+    };
+    const focusables = () => [...dlg.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')].filter((el) => !el.hidden && !el.closest('[hidden]'));
+    function onKey(e) {
+      if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+      if (e.key !== 'Tab') return;
+      const f = focusables();
+      if (!f.length) { e.preventDefault(); return; }
+      const i = f.indexOf(document.activeElement);
+      if (e.shiftKey && (i <= 0)) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && (i === f.length - 1 || i < 0)) { e.preventDefault(); f[0].focus(); }
+    }
+    ov.addEventListener('mousedown', (e) => { if (e.target === ov) ov._down = true; });
+    ov.addEventListener('click', (e) => { if (e.target === ov && ov._down !== false) close(); ov._down = false; });
+    closeB.addEventListener('click', close);
+    document.addEventListener('keydown', onKey, true);
+    document.body.append(ov);
+    document.documentElement.style.overflow = 'hidden';
+    closeB.focus();
+    const api = { close, el: ov };
+    openNow = api;
+    if (app && app.onLeave) app.onLeave(close);
+
+    if (!v || !DRAW[kind]) { msg.textContent = '카드를 만들 기록을 찾지 못했습니다.'; return api; }
+    DRAW[kind](v, app).then(toBlob).then((blob) => {
+      if (done) return;
+      if (!blob) { msg.textContent = '그림을 만들지 못했습니다.'; return; }
+      const name = fileName(kind, v);
+      url = URL.createObjectURL(blob);
+      const im = h('img', { src: url, alt: `${TITLE[kind]} 그림`, class: 'cd-img' });
+      pic.replaceChildren(im);
+      saveB.href = url; saveB.download = name; saveB.hidden = false;
+      try { file = new File([blob], name, { type: 'image/png' }); } catch (e) { file = null; }
+      let can = false;
+      try { can = !!(file && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })); } catch (e) { can = false; }
+      shareB.hidden = !can;
+      hint.hidden = can;
+      (can ? shareB : saveB).focus();
+    }).catch((e) => { console.error(e); if (!done) msg.textContent = '그림을 만들지 못했습니다.'; });
+    shareB.addEventListener('click', async () => {
+      if (!file) return;
+      try { await navigator.share({ files: [file], title: 'THUG 클랜' }); }
+      catch (e) { if (e && e.name !== 'AbortError') { hint.hidden = false; if (app && app.toast) app.toast('보내지 못했습니다. 그림 저장을 써 주세요.'); } }
+    });
+    saveB.addEventListener('click', () => { if (app && app.toast) setTimeout(() => app.toast('그림을 저장했습니다.'), 300); });
+    return api;
+  }
+
+  return { profile, league, war, weekly, weekData, weeklyPanel, weeklyView, open, lastWeek, _leagueState: leagueState, _parseMM: parseMM, _gains: ladderGains };
 })();
 
 /* THUG 클랜 — 입장, 채널 줄, 메뉴, 화면 바꾸기 */
@@ -5719,7 +7773,7 @@ const LG = (() => {
   }
 
   let first = true;
-  const TABS = [['channel', '채널'], ['rank', '서열'], ['games', '전적'], ['league', '리그'], ['duel', '맞대결'], ['look', '꾸미기']];
+  const TABS = [['channel', '채널'], ['rank', '서열'], ['games', '전적'], ['league', '리그'], ['war', '클랜전'], ['duel', '맞대결'], ['look', '꾸미기']];
 
   function boot() {
     const top = document.getElementById('top');
@@ -5728,9 +7782,10 @@ const LG = (() => {
       h('div', { class: 'chan-id' },
         h('p', { class: 'chan-name' }, h('span', { class: 'chan-k' }, '채널:'), ' Clan THUG'),
         h('p', { class: 'chan-meta' },
-          h('span', null, `클랜원 ${DB.persons.length}명`),
+          h('span', null, `클랜원 ${DB.ranked.length}명`),
           h('span', null, `기록 ${fmt.when(DB.NOW)}`),
-          staleTag())),
+          staleTag(),
+          adminTag)),
       h('button', { type: 'button', class: 'btn sm out', onclick: () => { if (LIVE) { LIVE.leave(); return; } store.del('thug.entered'); location.hash = ''; location.reload(); } }, IC.draw('exit', 1), h('span', null, '나가기'))));
 
     const nav = document.getElementById('nav');
@@ -5745,27 +7800,49 @@ const LG = (() => {
         ? h('p', null, '기록: ', src, `에서 날마다 자동으로 받습니다. 마지막 갱신 ${fmt.when(DB.NOW)}. 클랜원 ${DB.persons.length}명, 화면에 실은 1:1 경기 ${DB.games.length}판(클랜원끼리 한 경기 전부와 최근 경기).`)
         : h('p', null, '기록: ', src, `에서 ${fmt.when(DB.NOW)}에 받은 표본입니다. Thug_로 시작하는 이름 80개, 1:1 경기 ${DB.games.length}판.`),
       LIVE
-        ? h('p', null, LIVE.offline ? '지금은 연결이 안 되어 이 기기에 저장해 둔 기록을 보여 줍니다. ' : '', h('a', { href: '#admin' }, '입장 암호 바꾸기'), ' (클랜 마스터용)')
+        ? h('p', null, LIVE.offline ? '지금은 연결이 안 되어 이 기기에 저장해 둔 기록을 보여 줍니다. ' : '', h('a', { href: '#admin' }, '운영진 화면'), ' (클랜원 구분, 리그·클랜전 입력, 암호 바꾸기)')
         : h('p', null, '임시 사이트입니다. 입장 암호 확인, 날마다 자동 갱신, 로그인과 저장은 정식판에서 붙습니다.'),
       h('p', null, '그림: THUG 대표 로고와 종족 엠블럼은 클랜 자료, 초상은 이 사이트에서 새로 그린 도트입니다.'),
       h('p', null, '글꼴: 갈무리 © quiple, SIL OFL 1.1'));
 
-    window.addEventListener('hashchange', route);
+    window.addEventListener('hashchange', () => route());
+    if (LIVE) {
+      window.addEventListener('thug:admin', drawAdminTag);
+      // 클랜 기록이 새로 오면 클랜전 보기 화면만 그 자리에서 다시 그림(리그는 league.js가 스스로)
+      window.addEventListener('thug:club', () => {
+        const hs = decodeURIComponent(location.hash.slice(1));
+        if (hs === 'war' || hs.startsWith('war--') || hs === 'weekly' || hs.startsWith('weekly--')) route({ keep: true });
+      });
+    }
     route();
   }
 
-  function route() {
+  // 운영진으로 들어와 있으면 위 줄에 '운영진' 표시(정식판)
+  const adminTag = h('a', { class: 'temp-tag adm-tag', href: '#admin', hidden: true }, '운영진');
+  function drawAdminTag() { adminTag.hidden = !(LIVE && LIVE.isAdmin()); }
+  drawAdminTag();
+
+  function route(opt = {}) {
     for (const fn of app.leave.splice(0)) { try { fn(); } catch { /* 이미 멈춤 */ } }
     app._mm = null;
     app.mounted.length = 0;
     const hs = decodeURIComponent(location.hash.slice(1)) || 'channel';
+    // 리그·클랜전·운영진 화면에 들어올 때 클랜 기록이 2분 넘게 묵었으면 새로 받음(받으면 thug:club)
+    if (LIVE && !opt.keep && !LIVE.offline && /^(league|war|admin|weekly)/.test(hs) && Date.now() - LIVE.clubAt > 120e3) LIVE.refreshClub();
     let view, tab;
     if (hs.startsWith('p--')) { view = V.profile(app, hs.slice(3)); tab = 'rank'; }
     else if (hs === 'duel' || hs.startsWith('duel--')) { const [, a, b] = hs.split('--'); view = V.duel(app, a, b); tab = 'duel'; }
     else if (hs === 'rank') { view = V.rank(app); tab = 'rank'; }
     else if (hs === 'games') { view = V.games(app); tab = 'games'; }
     else if (hs === 'look') { view = V.look(app); tab = 'look'; }
-    else if (hs === 'admin' && LIVE) { view = adminView(); tab = ''; }
+    else if (hs === 'admin' && LIVE) { view = AD.view(app); tab = ''; }
+    else if (hs === 'war' || hs.startsWith('war--')) { view = WR.view(app, hs.startsWith('war--') ? hs.slice(5) : null); tab = 'war'; }
+    else if (hs === 'war-edit' || hs.startsWith('war-edit--')) { view = WR.edit(app, hs.startsWith('war-edit--') ? hs.slice(10) : null); tab = 'war'; }
+    else if ((hs === 'weekly' || hs.startsWith('weekly--')) && typeof CD !== 'undefined' && CD.weeklyView) {
+      try { view = CD.weeklyView(app, hs.startsWith('weekly--') ? hs.slice(8) : undefined); } catch (e) { console.error(e); view = null; }
+      if (!view) view = V.channel(app);
+      tab = 'channel';
+    }
     else if (hs === 'league' || hs.startsWith('league--')) {
       // 내전 리그 화면은 league.js(전역 LG)가 만듦. 아직 없으면 준비 중 패널
       const lid = hs.startsWith('league--') ? hs.slice(8) : undefined;
@@ -5779,7 +7856,7 @@ const LG = (() => {
     for (const a of document.querySelectorAll('#nav a')) {
       if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
     }
-    if (!first) window.scrollTo({ top: 0 });
+    if (!first && !opt.keep) window.scrollTo({ top: 0 });
     first = false;
     for (const fn of app.mounted.splice(0)) { try { fn(); } catch (e) { console.error(e); } }
   }
@@ -5789,28 +7866,6 @@ const LG = (() => {
     if (!LIVE) return h('span', { class: 'temp-tag' }, '임시 사이트');
     const days = Math.floor((Date.now() - DB.NOW) / 864e5);
     return days >= 2 ? h('span', { class: 'temp-tag' }, `갱신 ${days}일 멈춤`) : null;
-  }
-
-  // 클랜 마스터: 운영 암호로 입장 암호 바꾸기
-  function adminView() {
-    const f = (id, label, ac) => [h('label', { class: 'lbl', for: id }, label), h('input', { id, class: 'field', type: 'password', autocomplete: ac })];
-    const msg = h('p', { class: 'note', role: 'status' });
-    const form = h('form', { class: 'gate-form adm-form', autocomplete: 'off' },
-      f('admPw', '운영 암호', 'current-password'), f('newPw', '새 입장 암호(4자 이상)', 'new-password'), f('newPw2', '새 입장 암호 한 번 더', 'new-password'),
-      h('div', { class: 'adm-row' }, h('button', { class: 'btn hot', type: 'submit' }, '입장 암호 바꾸기')), msg);
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const a = form.querySelector('#admPw').value, n1 = form.querySelector('#newPw').value, n2 = form.querySelector('#newPw2').value;
-      if (n1.trim().length < 4) { msg.textContent = '새 입장 암호를 4자 이상으로 넣어 주세요.'; return; }
-      if (n1 !== n2) { msg.textContent = '새 입장 암호 두 칸이 다릅니다.'; return; }
-      msg.textContent = '바꾸는 중입니다.';
-      const r = await LIVE.call('thug_set_entry', { p_admin: a, p_new: n1 }).catch(() => null);
-      if (r && r.ok) { msg.textContent = '바꿨습니다. 모든 기기에서 새 암호를 한 번 넣어야 합니다. 잠시 뒤 입장 화면으로 갑니다.'; setTimeout(() => LIVE.leave(), 2500); }
-      else msg.textContent = !r ? '연결이 안 됩니다. 잠시 뒤 다시 해 주세요.' : r.reason === 'wrong' ? '운영 암호가 틀렸습니다.' : r.reason === 'wait' ? '여러 번 틀려 잠시 막혔습니다. 15분 뒤 다시 해 주세요.' : r.reason === 'notset' ? '운영 암호가 아직 정해지지 않았습니다.' : '바꾸지 못했습니다.';
-    });
-    return h('div', { class: 'page' }, h('header', { class: 'ptitle' }, h('h1', null, '입장 암호 바꾸기'), h('p', null, '클랜 마스터용. 바꾸면 모든 클랜원이 새 암호를 한 번 넣습니다')),
-      h('section', { class: 'pnl adm' }, h('div', { class: 'pnl-b' }, form,
-        h('p', { class: 'note' }, '새 암호는 카톡 오픈채팅방 공지에 올려 주세요. 운영 암호는 원장님께 받습니다.'))));
   }
 
   if (LIVE) { enter(); }
@@ -5825,7 +7880,7 @@ const LG = (() => {
 (() => {
   'use strict';
   const C = window.THUG_CFG || {};
-  const PASS = 'thug.pass', CACHE = 'thug.bundle';
+  const PASS = 'thug.pass', CACHE = 'thug.bundle', CLUB = 'thug.club', ADMIN = 'thug.admin';
   const get = (k) => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } };
   const del = (k) => { try { localStorage.removeItem(k); } catch { /* 저장 막힌 기기 */ } };
@@ -5844,11 +7899,59 @@ const LG = (() => {
     } finally { clearTimeout(t); }
   }
 
+  // 창고의 클랜 기록(리그·클랜원 구분·클랜전). 늘 이 모양으로 둠
+  const clubOf = (c) => ({
+    leagues: c && Array.isArray(c.leagues) ? c.leagues : [],
+    members: c && c.members && typeof c.members === 'object' && !Array.isArray(c.members) ? c.members : {},
+    wars: c && Array.isArray(c.wars) ? c.wars : [],
+  });
+  const fire = (name) => { try { window.dispatchEvent(new Event(name)); } catch { /* 옛 브라우저 */ } };
+  const adminPass = () => { const a = get(ADMIN); return a && a.token && (!a.exp || Date.parse(a.exp) > Date.now()) ? a : null; };
+
   const live = window.THUG_LIVE = {
     offline: false,
     call,
-    leave() { del(PASS); del(CACHE); location.hash = ''; location.reload(); },
+    club: clubOf(null),
+    clubAt: 0,
+    builtAt: null,
+    leave() { del(PASS); del(CACHE); del(CLUB); del(ADMIN); location.hash = ''; location.reload(); },
+    // 운영진: 운영 암호 → 이 기기에 운영진 통행증(30일)
+    isAdmin: () => !!adminPass(),
+    adminUntil: () => { const a = adminPass(); return a && a.exp ? Date.parse(a.exp) : null; },
+    async adminEnter(pw) {
+      let r = null;
+      try { r = await call('thug_admin_enter', { p_admin: pw }); } catch { r = null; }
+      if (r && r.ok) { put(ADMIN, { token: r.token, exp: r.expires }); fire('thug:admin'); live.refreshClub(); }
+      return r;
+    },
+    adminLeave() { del(ADMIN); fire('thug:admin'); },
+    // 운영진 쓰기: p_atok을 붙여 부름. 연결이 안 되면 null. 통행증이 끝났으면 지우고 알림
+    async adminCall(fn, body) {
+      const a = adminPass();
+      if (!a) { fire('thug:admin'); return { ok: false, reason: 'admin' }; }
+      let r = null;
+      try { r = await call(fn, { ...body, p_atok: a.token }); } catch { r = null; }
+      if (r && r.ok === false && r.reason === 'admin') { del(ADMIN); fire('thug:admin'); }
+      return r;
+    },
+    // 클랜 기록만 다시 받기(입장 통행증, 없으면 운영진 통행증으로)
+    async refreshClub() {
+      const p = get(PASS), a = adminPass();
+      const tok = (p && p.token) || (a && a.token);
+      if (!tok || !C.url) return false;
+      let r = null;
+      try { r = await call('thug_club', { p_token: tok }); } catch { r = null; }
+      if (!r || !r.ok) return false;
+      setClub(r.club);
+      return true;
+    },
   };
+  function setClub(c) {
+    live.club = clubOf(c);
+    live.clubAt = Date.now();
+    if (!put(CLUB, live.club)) del(CLUB);
+    fire('thug:club');
+  }
 
   const gate = document.getElementById('gate');
   const form = document.getElementById('gateForm');
@@ -5897,6 +8000,10 @@ const LG = (() => {
     try { r = await call('thug_bundle', { p_token: pass.token }); } catch { r = null; }
     if (r && r.ok) {
       if (!put(CACHE, r.bundle)) del(CACHE);
+      live.club = clubOf(r.club);
+      live.clubAt = Date.now();
+      live.builtAt = r.builtAt || null;
+      if (!put(CLUB, live.club)) del(CLUB);
       start(r.bundle, false);
     } else if (r && r.reason === 'pass') {
       del(PASS); del(CACHE);
@@ -5905,7 +8012,7 @@ const LG = (() => {
       showGate('아직 기록이 올라오지 않았습니다. 수집기가 처음 돈 뒤에 다시 열어 주세요.');
     } else {
       const cached = get(CACHE);
-      if (cached) start(cached, true);
+      if (cached) { live.club = clubOf(get(CLUB)); start(cached, true); }
       else showGate('연결이 안 됩니다. 인터넷 연결을 확인하고 다시 열어 주세요.');
     }
   }
@@ -5931,6 +8038,11 @@ const LG = (() => {
       : r.reason === 'wait' ? '여러 번 틀려 잠시 막혔습니다. 15분 뒤 다시 해 주세요.'
       : r.reason === 'notset' ? '아직 입장 암호가 정해지지 않았습니다.' : '들어가지 못했습니다.', true);
     pw.select();
+  });
+
+  // 화면이 다시 보일 때 클랜 기록(리그·클랜전)이 5분 넘게 묵었으면 새로 받음
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && started && !live.offline && Date.now() - live.clubAt > 5 * 60e3) live.refreshClub();
   });
 
   // 앱처럼 깔기: 화면 파일을 기기에 저장해 두는 도우미(기록은 저장하지 않음)
