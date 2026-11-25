@@ -1,25 +1,9 @@
-/* THUG 클랜 — 앱처럼 깔기 도우미. 화면 파일(쪽·그림·글꼴)만 기기에 저장해 두고, 기록(창고 요청)은 건드리지 않는다. */
-const VER = 'thug-acbe7f7647c6';
-const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png'];
-self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(VER).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
-});
+/* THUG 클랜 옛 주소 — 새 주소로 옮김(2026-11-25). 이 기기에 남은 옛 화면 저장(thug-…)을 지우고 스스로 물러난다.
+   fetch를 가로채지 않으므로 옛 주소의 쪽은 늘 서버의 '옮겨 가는 쪽'으로 열린다. */
+self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', (e) => {
-  e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== VER).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
-});
-self.addEventListener('fetch', (e) => {
-  const u = new URL(e.request.url);
-  if (e.request.method !== 'GET' || u.origin !== location.origin) return; // 창고(Supabase) 요청은 그대로 통과
-  const isPage = e.request.mode === 'navigate' || u.pathname.endsWith('/') || u.pathname.endsWith('.html');
-  if (isPage) {
-    // 쪽은 새것 먼저, 연결이 없으면 저장해 둔 것
-    e.respondWith(fetch(e.request).then((r) => { const c = r.clone(); caches.open(VER).then((s) => s.put('./index.html', c)); return r; })
-      .catch(() => caches.match('./index.html')));
-    return;
-  }
-  // 그림·글꼴은 저장해 둔 것 먼저
-  e.respondWith(caches.match(e.request).then((hit) => hit || fetch(e.request).then((r) => {
-    if (r.ok) { const c = r.clone(); caches.open(VER).then((s) => s.put(e.request, c)); }
-    return r;
-  })));
+  e.waitUntil((async () => {
+    try { for (const k of await caches.keys()) if (k.startsWith('thug-')) await caches.delete(k); } catch { /* 지울 것 없음 */ }
+    try { await self.registration.unregister(); } catch { /* 이미 물러남 */ }
+  })());
 });
